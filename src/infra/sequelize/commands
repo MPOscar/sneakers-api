@@ -1,0 +1,4 @@
+sequelize model:generate --name categories --attributes name:string
+sequelize model:generate --name brands --attributes "name:string, description:text, imgUrl:string"
+sequelize model:generate --name styles --attributes "name:string, description:text, brand:uuid, category:uuid, parent:string"
+sequelize model:generate --name collections --attributes "name:string, brand:uuid"

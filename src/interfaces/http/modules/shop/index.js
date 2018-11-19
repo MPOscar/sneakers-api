@@ -7,7 +7,7 @@ const {
   getAllUseCase,
   removeUseCase,
   updateUseCase
-} = require('src/app/brand')
+} = require('src/app/shop')
 
 module.exports = () => {
   const router = Router()

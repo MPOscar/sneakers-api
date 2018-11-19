@@ -23,6 +23,16 @@ module.exports = () => {
    *         format: uuid
    *       name:
    *         type: string
+   *       description:
+   *         type: string
+   *       brand:
+   *         type: string
+   *         format: uiid
+   *       category:
+   *         type: string
+   *         format: uiid
+   *       updatedAt:
+   *          type: date
    */
 
   router.use(auth.authenticate())

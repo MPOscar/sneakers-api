@@ -1,7 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fe32c061-ae32-4722-af52-d4a28067936d" name="Default Changelist" comment="" />
+    <list default="true" id="fe32c061-ae32-4722-af52-d4a28067936d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/release/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/release/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/release/release.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/release/release_image.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infra/errors/EntityNotFoundError.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infra/repositories/release/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infra/sequelize/seeders/development/006-styles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infra/sequelize/seeders/development/007-releases.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infra/sequelize/seeders/development/008-release-images.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infra/support/fakers/development/release-images.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infra/support/fakers/development/releases.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infra/support/fakers/development/styles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/release/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/brand/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/brand/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/category/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/category/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/collection/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/collection/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/crud.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/crud.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/shop/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shop/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/style/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/style/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/token/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/token/post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/entity.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/entity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/helper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/models/category.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/category.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/models/shop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/shop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/models/style.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/repositories/base_repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/base_repository.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/sequelize/commands" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/sequelize/commands" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/brand/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/brand/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/category/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/category/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/collection/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/collection/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/shop/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/shop/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/style/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/style/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/token/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/token/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -72,41 +112,54 @@
     <session id="870010961">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.41" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.44" value="2" />
+          <entry key="project.open.time.59" value="1" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="StandardJSService" value="2" />
+          <entry key="StandardJSService" value="5" />
+          <entry key="TypeScriptServerServiceImpl" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="commands" value="1" />
-          <entry key="js" value="27" />
-          <entry key="yml" value="1" />
+          <entry key="commands" value="5" />
+          <entry key="env" value="1" />
+          <entry key="js" value="153" />
+          <entry key="md" value="1" />
+          <entry key="ts" value="1" />
+          <entry key="yml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JavaScript" value="27" />
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="YAML" value="1" />
+          <entry key="JavaScript" value="153" />
+          <entry key="Markdown" value="1" />
+          <entry key="PLAIN_TEXT" value="6" />
+          <entry key="TypeScript" value="1" />
+          <entry key="YAML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="commands" value="30" />
-          <entry key="js" value="614" />
+          <entry key="commands" value="201" />
+          <entry key="js" value="3718" />
+          <entry key="md" value="50" />
+          <entry key="txt" value="160" />
+          <entry key="yml" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="614" />
-          <entry key="PLAIN_TEXT" value="30" />
+          <entry key="JavaScript" value="3718" />
+          <entry key="Markdown" value="50" />
+          <entry key="PLAIN_TEXT" value="361" />
+          <entry key="YAML" value="11" />
         </counts>
       </usages-collector>
     </session>
@@ -114,19 +167,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/collection/index.js">
+        <entry file="file://$PROJECT_DIR$/src/infra/repositories/base_repository.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="15" lean-forward="true" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+            <state relative-caret-position="306">
+              <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/collection/index.js">
+        <entry file="file://$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="108" selection-start-line="108" selection-end-line="192" selection-end-column="6" />
+            <state relative-caret-position="238">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/release/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="80" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -134,17 +196,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/style/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1555">
-              <caret line="154" column="15" selection-start-line="154" selection-start-column="15" selection-end-line="154" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/category/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="153" column="19" selection-start-line="153" selection-start-column="19" selection-end-line="153" selection-end-column="19" />
+            <state relative-caret-position="374">
+              <caret line="64" column="41" selection-start-line="64" selection-start-column="41" selection-end-line="64" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -152,51 +205,46 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/brand/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="187" column="10" lean-forward="true" selection-start-line="187" selection-start-column="10" selection-end-line="187" selection-end-column="10" />
+            <state relative-caret-position="102">
+              <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/collection/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="376">
+              <caret line="54" column="23" lean-forward="true" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/shop/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="121">
+              <caret line="47" column="40" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/category/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="42" column="44" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/shop/index.js">
+        <entry file="file://$PROJECT_DIR$/src/app/crud.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="184" column="19" lean-forward="true" selection-start-line="184" selection-start-column="19" selection-end-line="184" selection-end-column="19" />
+            <state relative-caret-position="476">
+              <caret line="51" column="21" lean-forward="true" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/infra/support/fakers/development/collections.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/infra/sequelize/seeders/development/005-collections.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/infra/repositories/collection/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/infra/sequelize/migrations/006-create-style.js">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -221,55 +269,23 @@
       <find>deleteUseCase</find>
       <find>database</find>
       <find>style</find>
-      <find>Style</find>
       <find>struct</find>
       <find>cate</find>
       <find>all</find>
       <find>idCate</find>
       <find>idBra</find>
+      <find>Style</find>
+      <find>getOne</find>
+      <find>cradle</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/infra/sequelize/migrations/20181117025632-create-brands.js" />
-        <option value="$PROJECT_DIR$/src/infra/sequelize/migrations/004-create-category.js" />
-        <option value="$PROJECT_DIR$/src/infra/sequelize/migrations/005-create-style.js" />
-        <option value="$PROJECT_DIR$/src/infra/database/models/brands.js" />
-        <option value="$PROJECT_DIR$/src/app/style/get_all.js" />
-        <option value="$PROJECT_DIR$/src/app/style/delete.js" />
-        <option value="$PROJECT_DIR$/src/infra/sequelize/migrations/005-create-brands.js" />
-        <option value="$PROJECT_DIR$/src/infra/database/models/style.js" />
-        <option value="$PROJECT_DIR$/src/app/style/create.js" />
-        <option value="$PROJECT_DIR$/src/infra/repositories/style/transform.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/utils/get_repository.js" />
-        <option value="$PROJECT_DIR$/src/container.js" />
-        <option value="$PROJECT_DIR$/src/app/brand/create.js" />
-        <option value="$PROJECT_DIR$/src/app/brand/delete.js" />
-        <option value="$PROJECT_DIR$/src/app/brand/update.js" />
-        <option value="$PROJECT_DIR$/src/app/style/update.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/router.js" />
-        <option value="$PROJECT_DIR$/src/app/brand/get_all.js" />
-        <option value="$PROJECT_DIR$/src/domain/brand/brand.js" />
-        <option value="$PROJECT_DIR$/src/app/crud/delete.js" />
-        <option value="$PROJECT_DIR$/src/app/crud/update.js" />
-        <option value="$PROJECT_DIR$/src/infra/repositories/style/index.js" />
-        <option value="$PROJECT_DIR$/src/infra/repositories/brand/index.js" />
-        <option value="$PROJECT_DIR$/src/infra/repositories/category/index.js" />
-        <option value="$PROJECT_DIR$/src/infra/repositories/shop/index.js" />
-        <option value="$PROJECT_DIR$/src/app/category/index.js" />
-        <option value="$PROJECT_DIR$/src/app/shop/index.js" />
-        <option value="$PROJECT_DIR$/src/app/brand/index.js" />
-        <option value="$PROJECT_DIR$/src/app/crud/index.js" />
-        <option value="$PROJECT_DIR$/src/app/crud/get_all.js" />
-        <option value="$PROJECT_DIR$/src/app/style/index.js" />
-        <option value="$PROJECT_DIR$/src/app/crud/create.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/user/index.js" />
-        <option value="$PROJECT_DIR$/src/app/crud.js" />
-        <option value="$PROJECT_DIR$/src/infra/repositories/base_repository.js" />
-        <option value="$PROJECT_DIR$/src/domain/collection/index.js" />
         <option value="$PROJECT_DIR$/src/domain/collection/collection.js" />
-        <option value="$PROJECT_DIR$/src/infra/sequelize/commands" />
         <option value="$PROJECT_DIR$/src/infra/database/models/collection.js" />
         <option value="$PROJECT_DIR$/src/infra/sequelize/migrations/20181119004446-create-collections.js" />
         <option value="$PROJECT_DIR$/src/infra/sequelize/migrations/006-create-style.js" />
@@ -277,12 +293,49 @@
         <option value="$PROJECT_DIR$/src/infra/support/fakers/development/collections.js" />
         <option value="$PROJECT_DIR$/src/infra/sequelize/seeders/development/005-collections.js" />
         <option value="$PROJECT_DIR$/src/infra/repositories/collection/index.js" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/src/domain/entity.js" />
+        <option value="$PROJECT_DIR$/src/domain/helper.js" />
+        <option value="$PROJECT_DIR$/src/domain/release/index.js" />
+        <option value="$PROJECT_DIR$/src/infra/database/models/style.js" />
+        <option value="$PROJECT_DIR$/src/infra/database/models/shop.js" />
+        <option value="$PROJECT_DIR$/src/infra/database/models/category.js" />
+        <option value="$PROJECT_DIR$/src/infra/sequelize/migrations/20181119225221-create-releases.js" />
+        <option value="$PROJECT_DIR$/src/infra/support/fakers/development/styles.js" />
+        <option value="$PROJECT_DIR$/src/infra/sequelize/seeders/development/006-styles.js" />
+        <option value="$PROJECT_DIR$/src/infra/sequelize/seeders/development/007-releases.js" />
+        <option value="$PROJECT_DIR$/src/infra/support/fakers/development/releases.js" />
+        <option value="$PROJECT_DIR$/src/interfaces/http/modules/token/index.js" />
+        <option value="$PROJECT_DIR$/src/app/token/post.js" />
+        <option value="$PROJECT_DIR$/src/infra/sequelize/commands" />
+        <option value="$PROJECT_DIR$/src/infra/sequelize/migrations/20181121045041-create-release-images.js" />
+        <option value="$PROJECT_DIR$/src/infra/database/models/release_image.js" />
+        <option value="$PROJECT_DIR$/src/infra/sequelize/seeders/development/008-release-images.js" />
+        <option value="$PROJECT_DIR$/src/interfaces/http/router.js" />
+        <option value="$PROJECT_DIR$/src/infra/sequelize/migrations/008-create-releases.js" />
+        <option value="$PROJECT_DIR$/src/domain/release/release.js" />
+        <option value="$PROJECT_DIR$/src/infra/sequelize/migrations/009-create-release-images.js" />
+        <option value="$PROJECT_DIR$/src/infra/support/fakers/development/release-images.js" />
+        <option value="$PROJECT_DIR$/src/infra/repositories/release/index.js" />
+        <option value="$PROJECT_DIR$/src/app/release/index.js" />
+        <option value="$PROJECT_DIR$/src/app/style/index.js" />
+        <option value="$PROJECT_DIR$/src/app/brand/index.js" />
+        <option value="$PROJECT_DIR$/src/app/category/index.js" />
         <option value="$PROJECT_DIR$/src/app/collection/index.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/http/modules/collection/index.js" />
+        <option value="$PROJECT_DIR$/src/app/shop/index.js" />
+        <option value="$PROJECT_DIR$/src/infra/database/models/release.js" />
+        <option value="$PROJECT_DIR$/src/domain/release/release_image.js" />
+        <option value="$PROJECT_DIR$/src/infra/errors/EntityNotFoundError.js" />
+        <option value="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.js" />
+        <option value="$PROJECT_DIR$/src/interfaces/http/modules/release/index.js" />
+        <option value="$PROJECT_DIR$/src/app/crud.js" />
+        <option value="$PROJECT_DIR$/src/infra/repositories/base_repository.js" />
         <option value="$PROJECT_DIR$/src/interfaces/http/modules/style/index.js" />
         <option value="$PROJECT_DIR$/src/interfaces/http/modules/category/index.js" />
         <option value="$PROJECT_DIR$/src/interfaces/http/modules/brand/index.js" />
+        <option value="$PROJECT_DIR$/src/interfaces/http/modules/collection/index.js" />
         <option value="$PROJECT_DIR$/src/interfaces/http/modules/shop/index.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -307,6 +360,7 @@
     <option name="width" value="697" />
     <option name="height" value="735" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -380,6 +434,25 @@
               <item name="moresneakers-api" type="b2602c69:ProjectViewProjectNode" />
               <item name="moresneakers-api" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="moresneakers-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="moresneakers-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="infra" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="moresneakers-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="moresneakers-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="infra" type="462c0819:PsiDirectoryNode" />
+              <item name="repositories" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="moresneakers-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="moresneakers-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="interfaces" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -392,55 +465,7 @@
             <path>
               <item name="moresneakers-api" type="b2602c69:ProjectViewProjectNode" />
               <item name="moresneakers-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="moresneakers-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="moresneakers-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="brand" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="moresneakers-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="moresneakers-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="category" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="moresneakers-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="moresneakers-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="collection" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="moresneakers-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="moresneakers-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="shop" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="moresneakers-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="moresneakers-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -471,11 +496,11 @@
       <recent name="F:\work\virtualnex\Projects\MoreSneakers\download\node-ddd-boilerplate-master\src\domain" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\work\virtualnex\Projects\MoreSneakers\repo\moresneakers-api\src\interfaces\http\modules" />
-      <recent name="F:\work\virtualnex\Projects\MoreSneakers\repo\moresneakers-api\src\app" />
-      <recent name="F:\work\virtualnex\Projects\MoreSneakers\repo\moresneakers-api\src\infra\repositories" />
       <recent name="F:\work\virtualnex\Projects\MoreSneakers\repo\moresneakers-api\src\infra\sequelize\seeders\development" />
       <recent name="F:\work\virtualnex\Projects\MoreSneakers\repo\moresneakers-api\src\infra\support\fakers\development" />
+      <recent name="F:\work\virtualnex\Projects\MoreSneakers\repo\moresneakers-api\src\app" />
+      <recent name="F:\work\virtualnex\Projects\MoreSneakers\repo\moresneakers-api\src\interfaces\http\modules" />
+      <recent name="F:\work\virtualnex\Projects\MoreSneakers\repo\moresneakers-api\src\infra\repositories" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -552,12 +577,23 @@
       <workItem from="1542421113366" duration="35611000" />
       <workItem from="1542572626572" duration="1545000" />
       <workItem from="1542586607713" duration="4377000" />
-      <workItem from="1542597109475" duration="3574000" />
+      <workItem from="1542597109475" duration="4906000" />
+      <workItem from="1542635580223" duration="49120000" />
+      <workItem from="1542810032373" duration="7752000" />
+      <workItem from="1542895924697" duration="12189000" />
     </task>
+    <task id="LOCAL-00001" summary="make fixings to doc">
+      <created>1542638719813</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1542638719813</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97556000" />
+    <option name="totallyTimeSpent" value="167949000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -589,24 +625,269 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="make fixings to doc" />
+    <MESSAGE value="add get by id to all resources&#10;change token key to access_token&#10;manage resources" />
+    <option name="LAST_COMMIT_MESSAGE" value="add get by id to all resources&#10;change token key to access_token&#10;manage resources" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/infra/sequelize/migrations/008-create-releases.js</url>
+          <line>42</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/api/companies/put_companies.spec.js" />
-    <entry file="file://$PROJECT_DIR$/test/api/companies/get_companies.spec.js" />
-    <entry file="file://$PROJECT_DIR$/test/api/companies/delete_companies.spec.js" />
-    <entry file="file://$PROJECT_DIR$/test/api/users/delete_users.spec.js">
+    <entry file="file://$PROJECT_DIR$/src/infra/support/fakers/development/brands.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-576" />
+        <state relative-caret-position="-204" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/mocha.opts">
+    <entry file="file://$PROJECT_DIR$/src/infra/support/fakers/development/styles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/sequelize/seeders/development/006-styles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/semantic-release/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="144" column="59" selection-start-line="144" selection-start-column="59" selection-end-line="144" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/jwt/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/logging/logger.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/factory.js">
+    <entry file="file://$PROJECT_DIR$/src/interfaces/http/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-32" />
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.js">
+    <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/token/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/token/post.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domain/brand/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/sequelize/commands">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/app/user/post.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="60" column="36" lean-forward="true" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/sequelize/seeders/development/007-releases.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="59" lean-forward="true" selection-start-line="4" selection-start-column="59" selection-end-line="4" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interfaces/http/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="48" selection-start-line="54" selection-start-column="48" selection-end-line="54" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/support/fakers/development/releases.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/sequelize/seeders/development/008-release-images.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/tcomb/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="191" column="16" selection-start-line="191" selection-start-column="16" selection-end-line="191" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/support/fakers/development/release-images.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/database/models/release_image.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/sequelize/migrations/008-create-releases.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/database/models/style.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="74" selection-start-line="18" selection-start-column="74" selection-end-line="18" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/sequelize/migrations/009-create-release-images.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/style/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/brand/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/category/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/collection/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shop/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/token/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/release/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="15" lean-forward="true" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/database/models/release.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domain/brand/brand.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="18" lean-forward="true" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domain/release/release_image.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domain/release/release.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domain/release/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/repositories/release/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="3" column="8" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/errors/EntityNotFoundError.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interfaces/http/utils/create_controller.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interfaces/http/utils/get_repository.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interfaces/http/middlewares/http_logger.js">
@@ -616,271 +897,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/domain/brand/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/database/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domain/brand/brand.js">
+    <entry file="file://$PROJECT_DIR$/src/infra/support/response.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-        </state>
+        <state relative-caret-position="-119" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/domain/style/style.js">
+    <entry file="file://$PROJECT_DIR$/src/container.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        <state>
+          <caret column="10" selection-start-column="10" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/repositories/base_repository.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/crud.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="55" column="14" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/repositories/category/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/repositories/brand/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/repositories/style/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/repositories/shop/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="61" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/category/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/shop/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/brand/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domain/category/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domain/category/category.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domain/shop/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domain/shop/shop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
+    <entry file="file://$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="16" column="57" lean-forward="true" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/domain/collection/collection.js">
+    <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/release/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domain/company/company.js" />
-    <entry file="file://$PROJECT_DIR$/src/domain/collection/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="42" selection-start-line="1" selection-start-column="42" selection-end-line="1" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/sequelize/commands">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/database/models/shop.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/database/models/brands.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/database/models/collection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="22" lean-forward="true" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/database/models/category.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/database/models/style.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/database/models/user.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/database/models/company.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/sequelize/migrations/002-company.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/style/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/sequelize/migrations/007-create-collections.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/support/fakers/development/collections.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/sequelize/seeders/development/005-collections.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/repositories/collection/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infra/sequelize/migrations/006-create-style.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/collection/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="15" lean-forward="true" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="80" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/style/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1555">
-          <caret line="154" column="15" selection-start-line="154" selection-start-column="15" selection-end-line="154" selection-end-column="15" />
+        <state relative-caret-position="374">
+          <caret line="64" column="41" selection-start-line="64" selection-start-column="41" selection-end-line="64" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/category/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="153" column="19" selection-start-line="153" selection-start-column="19" selection-end-line="153" selection-end-column="19" />
+        <state relative-caret-position="274">
+          <caret line="42" column="44" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/brand/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="187" column="10" lean-forward="true" selection-start-line="187" selection-start-column="10" selection-end-line="187" selection-end-column="10" />
+        <state relative-caret-position="102">
+          <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/collection/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="108" selection-start-line="108" selection-end-line="192" selection-end-column="6" />
+        <state relative-caret-position="376">
+          <caret line="54" column="23" lean-forward="true" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interfaces/http/modules/shop/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="184" column="19" lean-forward="true" selection-start-line="184" selection-start-column="19" selection-end-line="184" selection-end-column="19" />
+        <state relative-caret-position="121">
+          <caret line="47" column="40" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="272">
+            <caret line="193" column="8" lean-forward="true" selection-start-line="193" selection-start-column="8" selection-end-line="193" selection-end-column="8" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infra/repositories/base_repository.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/crud.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="51" column="21" lean-forward="true" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
         </state>
       </provider>
     </entry>

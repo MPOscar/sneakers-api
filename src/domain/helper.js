@@ -1,6 +1,6 @@
 
 const { complement, compose, isNil, pickBy } = require('ramda')
-const { Entity } = require('./entity')
+const Entity = require('./entity')
 const notNull = compose(complement(isNil))
 
 /**

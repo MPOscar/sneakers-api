@@ -3,6 +3,7 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
+  getOneUseCase,
   createUseCase,
   getAllUseCase,
   removeUseCase,
@@ -31,7 +32,36 @@ module.exports = () => {
  */
 
   router.use(auth.authenticate())
+  /**
+   * @swagger
+   * /shops/id:
+   *   get:
+   *     tags:
+   *       - Shops
+   *     description: Returns one shop given id
+   *     security:
+   *       - JWT: []
+   *     responses:
+   *       200:
+   *         description: A shop in json format
+   *         schema:
+   *           $ref: '#/definitions/shop'
+   *       401:
+   *        $ref: '#/responses/Unauthorized'
 
+   */
+  router
+    .get('/:id', (req, res, next) => {
+      getOneUseCase
+        .getOne(req.params.id)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          next(error)
+        })
+    })
   /**
   * @swagger
   * /shops:

@@ -3,6 +3,7 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
+  getOneUseCase,
   createUseCase,
   getAllUseCase,
   removeUseCase,
@@ -21,22 +22,63 @@ module.exports = () => {
    *       id:
    *         type: string
    *         format: uuid
+   *         description: Style's id in Uuidv4 format
    *       name:
    *         type: string
+   *         description: Style's name
    *       description:
    *         type: string
+   *         description: Style's description
    *       brand:
    *         type: string
    *         format: uiid
+   *         description: The brand it belongs to in Uuidv4 format
+   *       parent:
+   *         type: string
+   *         format: uiid
+   *         description: The parent style in Uuidv4 format
    *       category:
    *         type: string
    *         format: uiid
+   *         description: The category it belongs to in Uuidv4 format
    *       updatedAt:
-   *          type: date
+   *          type: string
+   *          format: date-time
+   *          description: The time it was last updated
    */
 
   router.use(auth.authenticate())
 
+  /**
+   * @swagger
+   * /styles/id:
+   *   get:
+   *     tags:
+   *       - Styles
+   *     description: Returns one style given id
+   *     security:
+   *       - JWT: []
+   *     responses:
+   *       200:
+   *         description: A style in json format
+   *         schema:
+   *           $ref: '#/definitions/style'
+   *       401:
+   *        $ref: '#/responses/Unauthorized'
+
+   */
+  router
+    .get('/:id', (req, res, next) => {
+      getOneUseCase
+        .getOne(req.params.id)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          next(error)
+        })
+    })
   /**
    * @swagger
    * /styles/:

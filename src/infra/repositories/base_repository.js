@@ -1,29 +1,36 @@
+const EntityNotFoundError = require('src/infra/errors/EntityNotFoundError')
 
 module.exports = (model, toEntity) => {
   this.model = model
-  const getAll = (...args) =>
-    model.findAll(...args).then((entity) =>
+  const getAll = (selectFields, filter = {}, pagination = {}) =>
+    model.findAll({ attributes: selectFields }).then((entity) =>
       entity.map((data) => {
         const { dataValues } = data
         return toEntity(dataValues)
       })
     )
 
-  const create = (...args) =>
-    model.create(...args).then(({ dataValues }) => {
-      return toEntity(dataValues)
-    })
+  const getById = (id, attrs) => model.findOne({ where: { id: id }, attributes: attrs }).then((entity) => {
+    if (!entity) {
+      throw new EntityNotFoundError()
+    }
+    const { dataValues } = entity
+    return toEntity(dataValues)
+  })
 
-  const update = (...args) =>
-    model.update(...args)
+  const create = (domain) => model.create(domain).then(({ dataValues }) => {
+    return toEntity(dataValues)
+  })
 
-  const destroy = (...args) =>
-    model.destroy(...args)
+  const update = (domain, id) => model.update(domain, { where: { id } })
+
+  const destroy = (id) => model.destroy({ where: { id } })
 
   return {
     getAll,
     create,
     update,
-    destroy
+    destroy,
+    getById
   }
 }

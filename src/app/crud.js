@@ -15,9 +15,7 @@ module.exports = (Repository, Domain, attrs) => {
     return Promise
       .resolve()
       .then(() =>
-        Repository.destroy({
-          where: { id }
-        })
+        Repository.destroy(id)
       )
       .catch((error) => {
         throw new Error(error)
@@ -28,9 +26,7 @@ module.exports = (Repository, Domain, attrs) => {
     return new Promise(async (resolve, reject) => {
       try {
         const domain = Domain(body)
-        await Repository.update(domain, {
-          where: { id }
-        })
+        await Repository.update(domain, id)
         resolve(domain)
       } catch (error) {
         reject(error)
@@ -38,20 +34,27 @@ module.exports = (Repository, Domain, attrs) => {
     })
   }
 
-  const all = () => {
+  const all = (filters = {}, pagination = {}) => {
     return Promise
       .resolve()
       .then(() =>
-        Repository.getAll({
-          attributes: attrs
-        })
+        Repository.getAll(attrs, filters, pagination)
       )
       .catch(error => {
         throw new Error(error)
       })
   }
 
+  const getOne = (id) => {
+    return Promise
+      .resolve()
+      .then(() =>
+        Repository.getById(id, attrs)
+      )
+  }
+
   const getAllUseCase = { all }
+  const getOneUseCase = { getOne }
   const createUseCase = { create }
   const removeUseCase = { remove }
   const updateUseCase = { update }
@@ -60,6 +63,7 @@ module.exports = (Repository, Domain, attrs) => {
     createUseCase,
     getAllUseCase,
     removeUseCase,
-    updateUseCase
+    updateUseCase,
+    getOneUseCase
   }
 }

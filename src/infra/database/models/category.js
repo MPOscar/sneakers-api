@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {
     freezeTableName: true,
-    timestamps: false
+    underscored: false
   })
   Category.associate = function (models) {
     // associations can be defined here

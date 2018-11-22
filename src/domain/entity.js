@@ -8,4 +8,4 @@ const Entity = t.struct({
   updatedAt: t.maybe(t.Date)
 })
 
-module.exports = { Entity }
+module.exports = Entity

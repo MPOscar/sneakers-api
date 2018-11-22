@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     isDeleted: DataTypes.BOOLEAN
   }, {
     freezeTableName: true,
-    timestamps: false
+    underscored: false
   })
   style.associate = function (models) {
     // associations can be defined here

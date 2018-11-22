@@ -3,7 +3,7 @@
  */
 const Token = require('src/domain/token')
 
- /**
+/**
   * function for getter user.
   */
 module.exports = ({ userRepository, webToken }) => {
@@ -30,11 +30,8 @@ module.exports = ({ userRepository, webToken }) => {
         const signIn = webToken.signin()
 
         resolve({
-          token: signIn({
+          access_token: signIn({
             id: userCredentials.id,
-//            firstName: userCredentials.firstName,
-//            lastName: userCredentials.lastName,
-//            middleName: userCredentials.middleName,
             email: userCredentials.email
           })
         })

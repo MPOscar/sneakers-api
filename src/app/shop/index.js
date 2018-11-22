@@ -4,6 +4,7 @@ const { Shop } = require('src/domain/shop')
 const attrs = ['id', 'name']
 
 const {
+  getOneUseCase,
   createUseCase,
   getAllUseCase,
   removeUseCase,
@@ -11,6 +12,7 @@ const {
 } = require('src/app/crud')(repository, Shop, attrs)
 
 module.exports = {
+  getOneUseCase,
   createUseCase,
   getAllUseCase,
   removeUseCase,

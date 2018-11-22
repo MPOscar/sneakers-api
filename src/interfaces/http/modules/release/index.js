@@ -3,44 +3,66 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
-  getOneUseCase,
   createUseCase,
   getAllUseCase,
+  removeUseCase,
   updateUseCase,
-  removeUseCase
-} = require('src/app/category')
+  getOneUseCase
+} = require('src/app/release')
 
 module.exports = () => {
   const router = Router()
   const { logger, auth, response: { Success, Fail } } = container.cradle
-
-  /**
- * @swagger
- * definitions:
- *   category:
- *     properties:
- *       id:
- *         type: string
- *         format: uuid
- *       name:
- *         type: string
- */
-
-  router.use(auth.authenticate())
   /**
    * @swagger
-   * /categories/id:
+   * definitions:
+   *   release:
+   *     properties:
+   *       id:
+   *         type: string
+   *         format: uuid
+   *       name:
+   *         type: string
+   *       description:
+   *         type: string
+   *       sku:
+   *         type: string
+   *       images:
+   *         type: array
+   *         items:
+   *           type: string
+   *       gender:
+   *         type: string
+   *       hot:
+   *         type: boolean
+   *       children:
+   *         type: boolean
+   *       price:
+   *         type: number
+   *       releaseDate:
+   *          type: string
+   *          format: date-time
+   *       updatedAt:
+   *          type: string
+   *          format: date-time
+   */
+
+  router.use(auth.authenticate())
+
+  /**
+   * @swagger
+   * /releases/id:
    *   get:
    *     tags:
-   *       - Categories
-   *     description: Returns one category given id
+   *       - Releases
+   *     description: Returns one release given id
    *     security:
    *       - JWT: []
    *     responses:
    *       200:
-   *         description: A category in json format
+   *         description: A release in json format
    *         schema:
-   *           $ref: '#/definitions/category'
+   *           $ref: '#/definitions/release'
    *       401:
    *        $ref: '#/responses/Unauthorized'
 
@@ -58,24 +80,25 @@ module.exports = () => {
         })
     })
   /**
-  * @swagger
-  * /categories:
-  *   get:
-  *     tags:
-  *       - Categories
-  *     description: Returns a list of categories
-  *     security:
-  *       - JWT: []
-  *     responses:
-  *       200:
-  *         description: An array of categories
-  *         schema:
-  *           type: array
-  *           items:
-  *             $ref: '#/definitions/category'
-  *       401:
-  *        $ref: '#/responses/Unauthorized'
-  */
+   * @swagger
+   * /releases/:
+   *   get:
+   *     tags:
+   *       - Releases
+   *     description: Returns a list of releases
+   *     security:
+   *       - JWT: []
+   *     responses:
+   *       200:
+   *         description: An array of releases
+   *         schema:
+   *           type: array
+   *           items:
+   *             $ref: '#/definitions/release'
+   *       401:
+   *        $ref: '#/responses/Unauthorized'
+
+   */
   router
     .get('/', (req, res) => {
       getAllUseCase
@@ -92,28 +115,28 @@ module.exports = () => {
 
   /**
  * @swagger
- * /categories:
+ * /releases/:
  *   post:
  *     tags:
- *       - Categories
- *     description: Create new category
+ *       - Releases
+ *     description: Create new release
  *     security:
  *       - JWT: []
  *     produces:
  *       - application/json
  *     parameters:
  *       - name: body
- *         description: Category's Entity
+ *         description: Release's Entity
  *         in: body
  *         required: true
  *         type: string
  *         schema:
- *           $ref: '#/definitions/category'
+ *           $ref: '#/definitions/release'
  *     responses:
  *       200:
  *         description: Successfully Created
  *         schema:
- *           $ref: '#/definitions/category'
+ *           $ref: '#/definitions/release'
  *       401:
  *         $ref: '#/responses/Unauthorized'
  *       400:
@@ -134,11 +157,11 @@ module.exports = () => {
     })
   /**
    * @swagger
-   * /categories/id:
+   * /releases/id:
    *   put:
    *     tags:
-   *       - Categories
-   *     description: Update Category
+   *       - Releases
+   *     description: Update Release
    *     security:
    *       - JWT: []
    *     produces:
@@ -147,20 +170,20 @@ module.exports = () => {
    *       - name: id
    *         in: path
    *         required: true
-   *         description: Category's ID to update
+   *         description: Release's ID to update
    *         type: string
    *       - name: body
-   *         description: Category's Entity
+   *         description: Release's Entity
    *         in: body
    *         required: true
    *         type: string
    *         schema:
-   *           $ref: '#/definitions/category'
+   *           $ref: '#/definitions/release'
    *     responses:
    *       200:
    *         description: Successfully Updated
    *         schema:
-   *           $ref: '#/definitions/category'
+   *           $ref: '#/definitions/release'
    *       401:
    *         $ref: '#/responses/Unauthorized'
    *       400:
@@ -181,11 +204,11 @@ module.exports = () => {
     })
   /**
    * @swagger
-   * /categories/id:
+   * /releases/id:
    *   delete:
    *     tags:
-   *       - Categories
-   *     description: Delete Category
+   *       - Releases
+   *     description: Delete Release
    *     security:
    *       - JWT: []
    *     produces:
@@ -194,13 +217,13 @@ module.exports = () => {
    *       - name: id
    *         in: path
    *         required: true
-   *         description: Category's ID to delete
+   *         description: Release's ID to delete
    *         type: string
    *     responses:
    *       200:
    *         description: Successfully Deleted
    *         schema:
-   *           $ref: '#/definitions/category'
+   *           $ref: '#/definitions/release'
    *       401:
    *         $ref: '#/responses/Unauthorized'
    */

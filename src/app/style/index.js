@@ -4,6 +4,7 @@ const { Style } = require('src/domain/style')
 const attrs = ['id', 'name', 'category', 'description', 'brand', 'updatedAt']
 
 const {
+  getOneUseCase,
   createUseCase,
   getAllUseCase,
   removeUseCase,
@@ -11,6 +12,7 @@ const {
 } = require('src/app/crud')(repository, Style, attrs)
 
 module.exports = {
+  getOneUseCase,
   createUseCase,
   getAllUseCase,
   removeUseCase,

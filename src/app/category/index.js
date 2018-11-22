@@ -4,6 +4,7 @@ const { Category } = require('src/domain/category')
 const attrs = ['id', 'name']
 
 const {
+  getOneUseCase,
   createUseCase,
   getAllUseCase,
   removeUseCase,
@@ -11,6 +12,7 @@ const {
 } = require('src/app/crud')(repository, Category, attrs)
 
 module.exports = {
+  getOneUseCase,
   createUseCase,
   getAllUseCase,
   removeUseCase,

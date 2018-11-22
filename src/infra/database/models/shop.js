@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     rank: DataTypes.INTEGER
   }, {
     freezeTableName: true,
-    timestamps: false
+    underscored: false
   })
   shop.associate = function(models) {
     // associations can be defined here

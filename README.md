@@ -1,4 +1,4 @@
-# Node DDD Boilerplate
+# MoreSneakers Api
 > RESTful api with Domain Driven Design
 
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
@@ -12,7 +12,7 @@
 
 ## Quick Start
 
-1. Clone the repository with `git clone --depth=1 https://github.com/joshuaalpuerto/node-ddd-boilerplate.git`
+1. Clone the repository
 2. Install the dependencies with [Yarn](https://yarnpkg.com/en/docs/install/)
 3. Install global dependencies [Application Setup](https://github.com/joshuaalpuerto/node-ddd-boilerplate#application-setup-development)
 4. Create the development and test [Databases](https://github.com/joshuaalpuerto/node-ddd-boilerplate#database-setup-development)
@@ -32,21 +32,10 @@ $ npm install -g sequelize-cli  # CLI for Sequelize
 
 ### Database Setup (Development)
 
-1. Install [PostgreSql](https://www.postgresql.org/) - v9.6.
-2. Create an empty database named - `node_ddd` and `node_ddd_test` for test enviroment.
+1. Install MySql
+2. Create an empty database named - `more_sneakers` and `more_sneakers_test` for test enviroment.
 3. Rename the .env and populate it with the correct credentials and settings of your Postgresql databases
-4. Enable SSL in the `postgresql.conf` configuration file of your Postgresql installation.
 
-Follow the the steps in the next section to enable Posgresql SSL connections.
-
-```sh
-$ psql
-psql (9.6.0)
-Type "help" for help.
-
-$ CREATE DATABASE node_ddd;
-$ CREATE DATABASE node_ddd_test;
-```
 
 ## Overview
 

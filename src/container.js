@@ -10,6 +10,7 @@ const database = require('./infra/database')
 const jwt = require('./infra/jwt')
 const response = require('./infra/support/response')
 const date = require('./infra/support/date')
+const query = require('./infra/support/query_mapper')
 
 const container = createContainer()
 
@@ -23,6 +24,7 @@ container
     database: asFunction(database).singleton(),
     auth: asFunction(auth).singleton(),
     jwt: asFunction(jwt).singleton(),
+    query: asFunction(query).singleton(),
     response: asFunction(response).singleton(),
     date: asFunction(date).singleton(),
     config: asValue(config)

@@ -19,10 +19,13 @@ const createImage = (imageDomain) => {
   })
 }
 
-const getAll = (selectFields, filter = {}, pagination = {}) =>
+const getAll = (selectFields, filter = {}, pagination = {}, order = {}) =>
   model.findAll({
     attributes: selectFields,
-    include: [{ model: database.models.release_images, as: 'images' }]
+    include: [{ model: database.models.release_images, as: 'images' }],
+    offset: pagination.offset || 0,
+    limit: pagination.limit || 1000000,
+    order: [[ order.field || 'createdAt', order.type || 'DESC' ]]
   }).then((entities) =>
     entities.map((data) => {
       const { dataValues } = data

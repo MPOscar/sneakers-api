@@ -34,11 +34,11 @@ module.exports = (Repository, Domain, attrs) => {
     })
   }
 
-  const all = (filters = {}, pagination = {}) => {
+  const all = ({ filters, pagination, order }) => {
     return Promise
       .resolve()
       .then(() =>
-        Repository.getAll(attrs, filters, pagination)
+        Repository.getAll(attrs, filters, pagination, order)
       )
       .catch(error => {
         throw new Error(error)

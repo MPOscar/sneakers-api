@@ -7,9 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4
     },
     fileName: DataTypes.STRING,
-    uploadUrl: DataTypes.STRING,
-    imgUrl: DataTypes.STRING,
-    isMain: DataTypes.BOOLEAN
+    imgUrl: DataTypes.STRING
   }, {
     underscored: false
   })

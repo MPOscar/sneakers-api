@@ -1,7 +1,7 @@
 const repository = require('src/infra/repositories/style')
 const { Style } = require('src/domain/style')
 
-const attrs = ['id', 'name', 'category', 'description', 'brand', 'updatedAt']
+const attrs = ['id', 'name', 'category', 'description', 'brand', 'createdAt', 'updatedAt']
 
 const {
   getOneUseCase,

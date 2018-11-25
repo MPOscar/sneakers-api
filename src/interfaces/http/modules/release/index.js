@@ -3,6 +3,9 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
+  updateMainImageUseCase,
+  removeImageUseCase,
+  createImageUseCase,
   createUseCase,
   getAllUseCase,
   removeUseCase,
@@ -240,6 +243,134 @@ module.exports = () => {
             Fail(error.message))
         })
     })
+  /**
+   * @swagger
+   * /releases/id/images:
+   *   post:
+   *     tags:
+   *       - Releases
+   *     description: Add a new image to a release
+   *     security:
+   *       - JWT: []
+   *     produces:
+   *       - application/json
+   *     parameters:
+   *       - name: body
+   *         description: Release's Entity
+   *         in: body
+   *         required: true
+   *         type: string
+   *         schema:
+   *           $ref: '#/definitions/release'
+   *     responses:
+   *       200:
+   *         description: Successfully Created
+   *         schema:
+   *           $ref: '#/definitions/release'
+   *       401:
+   *         $ref: '#/responses/Unauthorized'
+   *       400:
+   *         $ref: '#/responses/BadRequest'
+   */
+  router
+    .post('/:id/images', (req, res) => {
+      createImageUseCase
+        .createImage({ id: req.params.id, body: req.body })
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
 
+  /**
+   * @swagger
+   * /releases/id:
+   *   delete:
+   *     tags:
+   *       - Releases
+   *     description: Delete Release
+   *     security:
+   *       - JWT: []
+   *     produces:
+   *       - application/json
+   *     parameters:
+   *       - name: id
+   *         in: path
+   *         required: true
+   *         description: Release's ID to delete
+   *         type: string
+   *     responses:
+   *       200:
+   *         description: Successfully Deleted
+   *         schema:
+   *           $ref: '#/definitions/release'
+   *       401:
+   *         $ref: '#/responses/Unauthorized'
+   */
+  router
+    .delete('/:idRelease/images/:idImage', (req, res) => {
+      removeImageUseCase.remove({ id: req.params.idImage })
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error)
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
+  /**
+   * @swagger
+   * /releases/id/mainImage:
+   *   patch:
+   *     tags:
+   *       - Releases
+   *     description: Change release main image
+   *     security:
+   *       - JWT: []
+   *     produces:
+   *       - application/json
+   *     parameters:
+   *       - name: id
+   *         in: path
+   *         required: true
+   *         description: Release's ID to update
+   *         type: string
+   *       - name: body
+   *         description: Release's Entity
+   *         in: body
+   *         required: true
+   *         type: string
+   *         schema:
+   *           mainImage:
+   *            type: string
+   *            format: uuid
+   *     responses:
+   *       200:
+   *         description: Successfully Updated
+   *         schema:
+   *           $ref: '#/definitions/release'
+   *       401:
+   *         $ref: '#/responses/Unauthorized'
+   *       400:
+   *         $ref: '#/responses/BadRequest'
+   */
+  router
+    .patch('/:id/mainImage', (req, res) => {
+      updateMainImageUseCase
+        .updateMainImage(req.params.id, req.body.mainImage)
+        .then(() => {
+          res.status(Status.OK).json(Success({}))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
   return router
 }

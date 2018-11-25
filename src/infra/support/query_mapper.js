@@ -3,8 +3,8 @@ module.exports = () => {
     const { limit, offset, ordering, ...filters } = params
     console.log(JSON.stringify(filters))
     const pagination = {
-      limit: (params.limit) ? parseInt(params.limit) : 0,
-      offset: (params.offset) ? parseInt(params.offset) : 1000000
+      limit: (params.limit) ? parseInt(params.limit) : 1000000,
+      offset: (params.offset) ? parseInt(params.offset) : 0
     }
     const orderStr = params.ordering
     let order = {}

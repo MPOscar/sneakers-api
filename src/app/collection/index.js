@@ -1,7 +1,7 @@
 const repository = require('src/infra/repositories/collection')
 const { Collection } = require('src/domain/collection')
 
-const attrs = ['id', 'name', 'brand', 'updatedAt']
+const attrs = ['id', 'name', 'brand', 'createdAt', 'updatedAt']
 
 const {
   getOneUseCase,

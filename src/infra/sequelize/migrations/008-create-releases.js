@@ -34,7 +34,10 @@ module.exports = {
       gender: {
         type: Sequelize.STRING
       },
-      style: {
+      mainImage: {
+        type: Sequelize.UUID
+      },
+      styleId: {
         type: Sequelize.UUID,
         references: {
           model: 'styles',
@@ -45,11 +48,13 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('NOW')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('NOW')
       }
     })
   },

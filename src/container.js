@@ -11,6 +11,7 @@ const jwt = require('./infra/jwt')
 const response = require('./infra/support/response')
 const date = require('./infra/support/date')
 const query = require('./infra/support/query_mapper')
+const upload = require('./infra/multer')
 
 const container = createContainer()
 
@@ -27,6 +28,7 @@ container
     query: asFunction(query).singleton(),
     response: asFunction(response).singleton(),
     date: asFunction(date).singleton(),
+    upload: asFunction(upload).singleton(),
     config: asValue(config)
   })
   // register repositories

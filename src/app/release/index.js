@@ -1,20 +1,7 @@
 const repository = require('src/infra/repositories/release')
 const { Release } = require('src/domain/release')
 
-const createImage = ({ body }) => {
-  return Promise
-    .resolve()
-    .then(() => {
-      const domain = Release(body)
-      return repository.create(domain)
-    })
-    .catch(error => {
-      throw new Error(error)
-    })
-}
-
-const attrs = ['id', 'name', 'description', 'style', 'sku', 'hot', 'children', 'price', 'gender', 'color', 'updatedAt']
-
+const attrs = ['id', 'name', 'description', 'styleId', 'sku', 'hot', 'children', 'price', 'gender', 'color', 'mainImage', 'createdAt', 'updatedAt']
 const {
   getOneUseCase,
   createUseCase,
@@ -22,8 +9,9 @@ const {
   removeUseCase,
   updateUseCase
 } = require('src/app/crud')(repository, Release, attrs)
-
-const createImageUseCase = { createImage }
+const createImageUseCase = require('./create_image')
+const removeImageUseCase = require('./delete_image')
+const updateMainImageUseCase = require('./change_main_image')
 
 module.exports = {
   getOneUseCase,
@@ -31,5 +19,7 @@ module.exports = {
   getAllUseCase,
   removeUseCase,
   updateUseCase,
-  createImageUseCase
+  createImageUseCase,
+  removeImageUseCase,
+  updateMainImageUseCase
 }

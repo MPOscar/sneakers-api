@@ -1,5 +1,3 @@
-const { assoc } = require('ramda')
-
 module.exports = ({ config }) => {
   const defaultResponse = (success = true) => {
     return {
@@ -10,19 +8,18 @@ module.exports = ({ config }) => {
   }
 
   const Success = (data) => {
-    return assoc(
-      'data',
-      data,
-      defaultResponse(true)
-    )
+    const response = defaultResponse(true)
+    return Object.assign(response, {
+      data: data,
+      dataCount: data.length
+    })
   }
 
   const Fail = (data) => {
-    return assoc(
-      'error',
-      data,
-      defaultResponse(false)
-    )
+    const response = defaultResponse(false)
+    return Object.assign(response, {
+      error: data
+    })
   }
 
   return {

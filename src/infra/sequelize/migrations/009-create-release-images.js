@@ -10,14 +10,8 @@ module.exports = {
       fileName: {
         type: Sequelize.STRING
       },
-      uploadUrl: {
-        type: Sequelize.STRING
-      },
       imgUrl: {
         type: Sequelize.STRING
-      },
-      isMain: {
-        type: Sequelize.BOOLEAN
       },
       releaseId: {
         type: Sequelize.UUID,
@@ -30,11 +24,13 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('NOW')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('NOW')
       }
     })
   },

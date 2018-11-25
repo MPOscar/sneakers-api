@@ -7,3 +7,5 @@ npm-debug.*
 yarn-error.log
 debug.log
 coverage
+public/images/*
+.idea/*

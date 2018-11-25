@@ -30,7 +30,7 @@ module.exports = ({ config, logger, database }) => {
       origin: [
         process.env.CORS_ORIGIN_URL || 'http://localhost:3000'
       ],
-      methods: ['GET', 'POST', 'PUT', 'DELETE'],
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
       allowedHeaders: ['Content-Type', 'Authorization']
     }))
     .use(bodyParser.json())
@@ -54,6 +54,7 @@ module.exports = ({ config, logger, database }) => {
   apiRouter.use('/brands', controller('brand'))
   apiRouter.use('/releases', controller('release'))
   apiRouter.use('/collections', controller('collection'))
+  apiRouter.use('/image', controller('image'))
 
   router.use(`/api/${config.version}`, apiRouter)
 

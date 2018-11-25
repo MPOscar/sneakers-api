@@ -1,10 +1,11 @@
-const { Release } = require('src/domain/release')
+const { Release, ReleaseImage } = require('src/domain/release')
 const BaseRepository = require('../base_repository')
 const container = require('src/container') // we have to get the DI
 // inject database
 const { database } = container.cradle
 const model = database.models.releases
-const releaseImage = database.models.release_images
+const releaseImageModel = database.models.release_images
+const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
 
 const {
   create,
@@ -13,10 +14,16 @@ const {
   destroy
 } = BaseRepository(model, Release)
 
-const createImage = (imageDomain) => {
-  releaseImage.create(imageDomain).then(({ dataValues }) => {
-    return Release(dataValues)
+const createImage = async (id, imageDomain) => {
+  const release = await model.findOne({
+    where: { id }
   })
+  if (!release) {
+    throw new EntityNotFound()
+  }
+  const newImage = await releaseImageModel.create(imageDomain)
+  await release.addImage(newImage)
+  return ReleaseImage(newImage)
 }
 
 const getAll = (selectFields, filter = {}, pagination = {}, order = {}) =>
@@ -33,11 +40,14 @@ const getAll = (selectFields, filter = {}, pagination = {}, order = {}) =>
     })
   )
 
+const destroyImage = (id) => releaseImageModel.destroy({ where: { id } })
+
 module.exports = {
   create,
   update,
   getById,
   destroy,
   getAll,
-  createImage
+  createImage,
+  destroyImage
 }

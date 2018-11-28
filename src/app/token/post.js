@@ -2,6 +2,7 @@
  * this file will hold all the get use-case for user domain
  */
 const Token = require('src/domain/token')
+const InvalidCredentialsError = require('src/infra/errors/InvalidCredentialsError')
 
 /**
   * function for getter user.
@@ -21,18 +22,21 @@ module.exports = ({ userRepository, webToken }) => {
             isDeleted: 0
           }
         })
-
+        if (!userCredentials) {
+          throw new InvalidCredentialsError()
+        }
         const validatePass = userRepository.validatePassword(userCredentials.password)
 
         if (!validatePass(credentials.password)) {
-          throw new Error('Invalid Credentials')
+          throw new InvalidCredentialsError()
         }
         const signIn = webToken.signin()
 
         resolve({
           access_token: signIn({
             id: userCredentials.id,
-            email: userCredentials.email
+            email: userCredentials.email,
+            roleId: userCredentials.roleId
           })
         })
       } catch (error) {

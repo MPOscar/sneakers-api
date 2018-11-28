@@ -8,7 +8,7 @@ module.exports = () => {
       imgUrl: ''
     },
     {
-      id: '6079e5b0-c8c5-47d1-9fc2-27109501f4221',
+      id: '6079e5b0-c8c5-47d1-9fc2-27109501f422',
       name: 'Fila',
       description: '',
       imgUrl: ''

@@ -19,12 +19,24 @@ module.exports = (model) => {
 
   const findById = (...args) =>
     model.findById(...args)
-      .then(({ dataValues }) => toEntity(dataValues))
+      .then((data) => {
+        if (!data) {
+          return null
+        }
+        const { dataValues } = data
+        return toEntity(dataValues)
+      })
       .catch((error) => { throw new Error(error) })
 
   const findOne = (...args) =>
     model.findOne(...args)
-      .then(({ dataValues }) => toEntity(dataValues))
+      .then((data) => {
+        if (!data) {
+          return null
+        }
+        const { dataValues } = data
+        return toEntity(dataValues)
+      })
       .catch((error) => { throw new Error(error) })
 
   const validatePassword = (endcodedPassword) => (password) =>

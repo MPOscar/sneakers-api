@@ -14,31 +14,48 @@ const {
   destroy
 } = BaseRepository(model, Release)
 
-const createImage = async (id, imageDomain) => {
+const createImages = async (id, images) => {
   const release = await model.findOne({
     where: { id }
   })
   if (!release) {
     throw new EntityNotFound()
   }
-  const newImage = await releaseImageModel.create(imageDomain)
-  await release.addImage(newImage)
-  return ReleaseImage(newImage)
+  const newImages = await releaseImageModel.bulkCreate(images)
+  await release.addImages(newImages)
+  return newImages
 }
 
-const getAll = (selectFields, filter = {}, pagination = {}, order = {}) =>
-  model.findAll({
-    attributes: selectFields,
-    include: [{ model: database.models.release_images, as: 'images' }],
-    offset: pagination.offset || 0,
-    limit: pagination.limit || 1000000,
-    order: [[ order.field || 'createdAt', order.type || 'DESC' ]]
-  }).then((entities) =>
+const { toSequelizeSearch } = require('src/infra/support/sequelize_search_attrs')
+const getAll = (selectFields, filter, pagination, order) => {
+  const attrs = {
+    include: [{ model: releaseImageModel, as: 'images' }]
+  }
+  Object.assign(attrs, toSequelizeSearch({ selectFields, filter, pagination, order }))
+  return model.findAll(attrs).then((entities) =>
     entities.map((data) => {
       const { dataValues } = data
       return Release(dataValues)
     })
   )
+}
+
+const getAllImages = async (id) => {
+  const release = await model.findOne({
+    where: { id }
+  })
+  if (!release) {
+    throw new EntityNotFound()
+  }
+  const images = release.getImages()
+  if (!images) {
+    return []
+  }
+  return images.map((data) => {
+    const { dataValues } = data
+    return ReleaseImage(dataValues)
+  })
+}
 
 const destroyImage = (id) => releaseImageModel.destroy({ where: { id } })
 
@@ -48,6 +65,7 @@ module.exports = {
   getById,
   destroy,
   getAll,
-  createImage,
-  destroyImage
+  createImages,
+  destroyImage,
+  getAllImages
 }

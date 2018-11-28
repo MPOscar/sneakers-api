@@ -1,17 +1,10 @@
 const EntityNotFoundError = require('src/infra/errors/EntityNotFoundError')
+const { toSequelizeSearch } = require('src/infra/support/sequelize_search_attrs')
 
 module.exports = (model, toEntity) => {
   this.model = model
   const getAll = (selectFields, filter, pagination, order) => {
-    const attrs = {
-      attributes: selectFields,
-      offset: pagination.offset || 0,
-      limit: pagination.limit || 1000000,
-      order: [[order.field || 'createdAt', order.type || 'DESC']]
-    }
-    if (filter && filter !== {}) {
-      Object.assign(attrs, { where: filter })
-    }
+    const attrs = toSequelizeSearch({ selectFields, filter, pagination, order })
     return model.findAll(attrs).then((entity) =>
       entity.map((data) => {
         const { dataValues } = data

@@ -12,6 +12,7 @@ const {
 const createImageUseCase = require('./create_image')
 const removeImageUseCase = require('./delete_image')
 const updateMainImageUseCase = require('./change_main_image')
+const getAllImagesUseCase = require('./getAllImages')
 
 module.exports = {
   getOneUseCase,
@@ -19,6 +20,7 @@ module.exports = {
   getAllUseCase,
   removeUseCase,
   updateUseCase,
+  getAllImagesUseCase,
   createImageUseCase,
   removeImageUseCase,
   updateMainImageUseCase

@@ -27,17 +27,21 @@ const createImages = async (id, images) => {
 }
 
 const { toSequelizeSearch } = require('src/infra/support/sequelize_search_attrs')
-const getAll = (selectFields, filter, pagination, order) => {
+const { SearchResult } = require('src/domain/search')
+const getAll = (selectFields, searchParams) => {
   const attrs = {
-    include: [{ model: releaseImageModel, as: 'images' }]
+    include: [{ model: releaseImageModel, as: 'images' }],
+    distinct: true
   }
-  Object.assign(attrs, toSequelizeSearch({ selectFields, filter, pagination, order }))
-  return model.findAll(attrs).then((entities) =>
-    entities.map((data) => {
+  Object.assign(attrs, toSequelizeSearch(selectFields, searchParams))
+  return model.findAndCountAll(attrs).then((result) => {
+    console.log(result.count)
+    const rows = result.rows.map((data) => {
       const { dataValues } = data
       return Release(dataValues)
     })
-  )
+    return SearchResult({ rows, count: result.count })
+  })
 }
 
 const getAllImages = async (id) => {

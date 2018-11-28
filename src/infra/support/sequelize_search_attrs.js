@@ -1,12 +1,12 @@
-const toSequelizeSearch = ({ selectFields, filter, pagination, order }) => {
+const toSequelizeSearch = (selectFields, searchParams) => {
   const attrs = {
     attributes: selectFields,
-    offset: pagination.offset || 0,
-    limit: pagination.limit || 1000000,
-    order: [[order.field || 'createdAt', order.type || 'DESC']]
+    offset: searchParams.pagination.offset || 0,
+    limit: searchParams.pagination.limit || 1000000,
+    order: [[searchParams.order.field || 'createdAt', searchParams.order.type || 'DESC']],
   }
-  if (filter && filter !== {}) {
-    Object.assign(attrs, { where: filter })
+  if (searchParams.filter && searchParams.filter !== {}) {
+    Object.assign(attrs, { where: searchParams.filter })
   }
   return attrs
 }

@@ -1,3 +1,5 @@
+const { SearchResult } = require('src/domain/search')
+
 module.exports = ({ config }) => {
   const defaultResponse = (success = true) => {
     return {
@@ -9,6 +11,12 @@ module.exports = ({ config }) => {
 
   const Success = (data) => {
     const response = defaultResponse(true)
+    if (SearchResult.is(data)) {
+      return Object.assign(response, {
+        data: data.rows,
+        dataCount: data.count
+      })
+    }
     return Object.assign(response, {
       data: data,
       dataCount: data.length

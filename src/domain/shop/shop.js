@@ -3,8 +3,9 @@ const { makeEntity } = require('../helper')
 
 const Shop = makeEntity(t.struct({
   name: t.String,
-  status: t.maybe(t.Number),
+  active: t.maybe(t.Boolean),
   country: t.maybe(t.String),
+  region: t.maybe(t.String),
   address: t.maybe(t.String),
   shippingDetails: t.maybe(t.String),
   trackingListBaseUrl: t.maybe(t.String),

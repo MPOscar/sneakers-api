@@ -5,3 +5,5 @@ sequelize model:generate --name collections --attributes "name:string, brand:uui
 
 sequelize model:generate --name  releases --attributes "sku:string name:string, description:string, color:string, images:json, releaseDate:date, hot:boolean, price:real, gender:string"
 sequelize model:generate --name  release_images --attributes "fileName:string uploadUrl:string, imgUrl:string, isMain:boolean"
+
+sequelize model:generate --name  offer --attributes "description:text, status:string, shipping:string, offerDate:date, price:real, raffle:boolean"

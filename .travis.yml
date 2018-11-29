@@ -8,7 +8,7 @@ before_install:
  - npm install -g standard@10.0.3
  - npm install -g babel-eslint@8.0.3
  - npm install -g snazzy
- - psql -c 'create database node_ddd_test;' -U postgres
+ - mysql -c 'create database more_sneakers;' -U root
 install:
  - yarn
 after_script:

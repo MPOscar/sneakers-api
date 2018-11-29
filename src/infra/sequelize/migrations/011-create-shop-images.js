@@ -1,38 +1,26 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('shops', {
+    return queryInterface.createTable('shop_images', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      name: {
+      fileName: {
         type: Sequelize.STRING
       },
-      address: {
-        type: Sequelize.TEXT
-      },
-      country: {
+      imgUrl: {
         type: Sequelize.STRING
       },
-      region: {
-        type: Sequelize.STRING
-      },
-      currency: {
-        type: Sequelize.STRING
-      },
-      shippingDetails: {
-        type: Sequelize.TEXT
-      },
-      trackingListBaseUrl: {
-        type: Sequelize.STRING
-      },
-      active: {
-        type: Sequelize.BOOLEAN
-      },
-      rank: {
-        type: Sequelize.INTEGER
+      shopId: {
+        type: Sequelize.UUID,
+        references: {
+          model: 'shops',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
       },
       createdAt: {
         allowNull: false,
@@ -47,6 +35,6 @@ module.exports = {
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('shops')
+    return queryInterface.dropTable('shop_images')
   }
 }

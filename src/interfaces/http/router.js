@@ -53,6 +53,7 @@ module.exports = ({ config, logger, database }) => {
   apiRouter.use('/styles', controller('style'))
   apiRouter.use('/brands', controller('brand'))
   apiRouter.use('/releases', controller('release'))
+  apiRouter.use('/offers', controller('offer'))
   apiRouter.use('/collections', controller('collection'))
   apiRouter.use('/image', controller('image'))
 

@@ -10,16 +10,18 @@ module.exports = (sequelize, DataTypes) => {
     address: DataTypes.TEXT,
     currency: DataTypes.STRING,
     country: DataTypes.STRING,
+    region: DataTypes.STRING,
     shippingDetails: DataTypes.TEXT,
     trackingListBaseUrl: DataTypes.STRING,
-    status: DataTypes.INTEGER,
+    active: DataTypes.BOOLEAN,
     rank: DataTypes.INTEGER
   }, {
     freezeTableName: true,
     underscored: false
   })
-  shop.associate = function(models) {
+  shop.associate = function (models) {
     // associations can be defined here
+    shop.hasMany(models.shop_images, { as: 'images' })
   }
   return shop
 }

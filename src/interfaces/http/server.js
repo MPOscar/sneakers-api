@@ -7,8 +7,9 @@ module.exports = ({ config, router, logger, auth }) => {
   app.use(auth.initialize())
   app.use(router)
 
-  // we define our static folder
   app.use(express.static('public'))
+  // we define our static folder
+  app.use('/api/images', express.static('public/upload/images'))
 
   return {
     app,

@@ -8,7 +8,12 @@ const notNull = compose(complement(isNil))
  */
 const cleanData = (entity) => pickBy(notNull, entity)
 
-const makeEntity = (entity) => compose(cleanData, Entity.extend(entity))
+const makeEntity = (entity, transform) => {
+  if (transform) {
+    return compose(cleanData, Entity.extend(entity), transform)
+  }
+  return compose(cleanData, Entity.extend(entity))
+}
 
 module.exports = {
   cleanData,

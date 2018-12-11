@@ -14,7 +14,9 @@ const Release = t.struct({
   children: t.maybe(t.Boolean),
   price: t.Number,
   gender: t.maybe(t.String),
-  styleId: t.maybe(t.String)
+  styleId: t.maybe(t.String),
+  brandId: t.maybe(t.String), // gotten from style
+  collectionId: t.maybe(t.String)
 })
 
 module.exports = Release

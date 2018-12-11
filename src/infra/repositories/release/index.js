@@ -5,6 +5,8 @@ const container = require('src/container') // we have to get the DI
 const { database } = container.cradle
 const model = database.models.releases
 const releaseImageModel = database.models.release_images
+const styleModel = database.models.styles
+
 const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
 
 const {
@@ -29,16 +31,23 @@ const createImages = async (id, images) => {
 const { toSequelizeSearch } = require('src/infra/support/sequelize_search_attrs')
 const { SearchResult } = require('src/domain/search')
 const getAll = (selectFields, searchParams) => {
+  const imageInclude = { model: releaseImageModel, as: 'images' }
+  const styleInclude = { model: styleModel, as: 'style', attributes: [ 'id', 'brand', 'category' ] }
+  if (searchParams.filter && searchParams.filter.brandId) {
+    Object.assign(styleInclude, { where: { brand: searchParams.filter.brandId } })
+    delete searchParams.filter.brandId
+  }
   const attrs = {
-    include: [{ model: releaseImageModel, as: 'images' }],
+    include: [
+      imageInclude, styleInclude],
     distinct: true
   }
   Object.assign(attrs, toSequelizeSearch(selectFields, searchParams))
   return model.findAndCountAll(attrs).then((result) => {
-    console.log(result.count)
     const rows = result.rows.map((data) => {
       const { dataValues } = data
-      return Release(dataValues)
+      let newRelease = Release(dataValues)
+      return newRelease
     })
     return SearchResult({ rows, count: result.count })
   })

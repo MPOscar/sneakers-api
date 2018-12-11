@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   releases.associate = function (models) {
     // associations can be defined here
     releases.belongsTo(models.styles, { as: 'style' })
+    releases.belongsTo(models.collections, { as: 'collection' })
     releases.hasMany(models.release_images, { as: 'images' })
   }
   return releases

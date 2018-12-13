@@ -9,6 +9,7 @@ const Shop = makeEntity(t.struct({
   address: t.maybe(t.String),
   shippingDetails: t.maybe(t.String),
   trackingListBaseUrl: t.maybe(t.String),
+  mainImage: t.maybe(t.String),
   currency: t.maybe(t.String),
   rank: t.maybe(t.Number)
 }))

@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4
     },
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    imgUrl: DataTypes.STRING
   }, {
     underscored: false
   })

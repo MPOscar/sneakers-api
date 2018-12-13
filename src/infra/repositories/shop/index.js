@@ -22,13 +22,13 @@ const createImages = async (id, images) => {
 }
 
 const getAllImages = async (id) => {
-  const release = await model.findOne({
+  const shop = await model.findOne({
     where: { id }
   })
-  if (!release) {
+  if (!shop) {
     throw new EntityNotFound()
   }
-  const images = release.getImages()
+  const images = shop.getImages()
   if (!images) {
     return []
   }

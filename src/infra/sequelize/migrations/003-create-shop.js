@@ -28,6 +28,9 @@ module.exports = {
       trackingListBaseUrl: {
         type: Sequelize.STRING
       },
+      mainImage: {
+        type: Sequelize.UUID
+      },
       active: {
         type: Sequelize.BOOLEAN
       },

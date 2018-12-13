@@ -3,6 +3,7 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
+  changeImageUrlUseCase,
   getOneUseCase,
   createUseCase,
   getAllUseCase,
@@ -179,6 +180,53 @@ module.exports = () => {
         })
         .catch((error) => {
           logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
+  /**
+   * @swagger
+   * /collections/id:
+   *   put:
+   *     tags:
+   *       - Collections
+   *     description: Update Collection
+   *     security:
+   *       - JWT: []
+   *     produces:
+   *       - application/json
+   *     parameters:
+   *       - name: id
+   *         in: path
+   *         required: true
+   *         description: Collection's ID to update
+   *         type: string
+   *       - name: body
+   *         description: Collection's Entity
+   *         in: body
+   *         required: true
+   *         type: string
+   *         schema:
+   *           $ref: '#/definitions/collection'
+   *     responses:
+   *       200:
+   *         description: Successfully Updated
+   *         schema:
+   *           $ref: '#/definitions/collection'
+   *       401:
+   *         $ref: '#/responses/Unauthorized'
+   *       400:
+   *         $ref: '#/responses/BadRequest'
+   */
+  router
+    .patch('/:id/imgUrl', (req, res) => {
+      changeImageUrlUseCase
+        .updateImageUrl(req.params.id, req.body.imgUrl)
+        .then(() => {
+          res.status(Status.OK).json(Success({}))
+        })
+        .catch((error) => {
+          logger.error(error)
           res.status(Status.BAD_REQUEST).json(
             Fail(error.message))
         })

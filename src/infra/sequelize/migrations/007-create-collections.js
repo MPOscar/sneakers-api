@@ -11,6 +11,9 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true
       },
+      imgUrl: {
+        type: Sequelize.STRING
+      },
       brand: {
         type: Sequelize.UUID,
         references: {

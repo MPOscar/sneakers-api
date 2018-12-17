@@ -12,7 +12,7 @@ module.exports = {
         unique: true
       },
       imgUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       brand: {
         type: Sequelize.UUID,

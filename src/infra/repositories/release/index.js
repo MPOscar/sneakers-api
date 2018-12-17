@@ -9,12 +9,27 @@ const styleModel = database.models.styles
 
 const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
 
+const getOptionsCallback = (searchParams) => {
+  const imageInclude = { model: releaseImageModel, as: 'images' }
+  const styleInclude = { model: styleModel, as: 'style', attributes: [ 'id', 'brand', 'category' ] }
+  if (searchParams.filter && searchParams.filter.brandId) {
+    Object.assign(styleInclude, { where: { brand: searchParams.filter.brandId } })
+    delete searchParams.filter.brandId
+  }
+  return {
+    include: [
+      imageInclude, styleInclude],
+    distinct: true
+  }
+}
+
 const {
   create,
   update,
   getById,
-  destroy
-} = BaseRepository(model, Release)
+  destroy,
+  getAll
+} = BaseRepository(model, Release, { getOptionsCallback })
 
 const createImages = async (id, images) => {
   const release = await model.findOne({
@@ -28,6 +43,7 @@ const createImages = async (id, images) => {
   return newImages
 }
 
+/*
 const { toSequelizeSearch } = require('src/infra/support/sequelize_search_attrs')
 const { SearchResult } = require('src/domain/search')
 const getAll = (selectFields, searchParams) => {
@@ -51,7 +67,7 @@ const getAll = (selectFields, searchParams) => {
     })
     return SearchResult({ rows, count: result.count })
   })
-}
+} */
 
 const getAllImages = async (id) => {
   const release = await model.findOne({

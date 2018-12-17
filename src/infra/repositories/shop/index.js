@@ -6,8 +6,31 @@ const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
 const { database } = container.cradle
 const model = database.models.shops
 const imageModel = database.models.shop_images
+const workingHoursModel = database.models.shop_working_hours
 
-const repository = BaseRepository(model, Shop)
+const createOptions = {
+  include: [{
+    model: workingHoursModel,
+    as: 'workingHours'
+  }]
+}
+const updateOptions = createOptions
+const getOptions = {
+  include: [{
+    model: workingHoursModel,
+    as: 'workingHours',
+    attributes: ['dayOfWeek', 'openHour', 'closeHour'],
+    order: [[ 'dayOfWeek', 'ASC' ]]
+  }]
+}
+
+const {
+  update,
+  getAll,
+  destroy,
+  getById,
+  create
+} = BaseRepository(model, Shop, { createOptions, updateOptions, getOptions })
 
 const createImages = async (id, images) => {
   const release = await model.findOne({
@@ -19,6 +42,18 @@ const createImages = async (id, images) => {
   const newImages = await imageModel.bulkCreate(images)
   await release.addImages(newImages)
   return newImages
+}
+
+const updateWorkingHours = async (id, workingHours) => {
+  const shop = await model.findOne({
+    where: { id }
+  })
+  if (!shop) {
+    throw new EntityNotFound()
+  }
+  const newWorkingHours = await workingHoursModel.bulkCreate(workingHours)
+  await shop.setWorkingHours(newWorkingHours)
+  return newWorkingHours
 }
 
 const getAllImages = async (id) => {
@@ -40,10 +75,14 @@ const getAllImages = async (id) => {
 
 const destroyImage = (id) => imageModel.destroy({ where: { id } })
 
-Object.assign(repository, {
+module.exports = {
   getAllImages,
   createImages,
-  destroyImage
-})
-
-module.exports = repository
+  destroyImage,
+  updateWorkingHours,
+  update,
+  getAll,
+  destroy,
+  getById,
+  create
+}

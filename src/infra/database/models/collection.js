@@ -7,13 +7,13 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4
     },
     name: DataTypes.STRING,
-    imgUrl: DataTypes.STRING
+    imgUrl: DataTypes.TEXT
   }, {
     underscored: false
   })
   collections.associate = function (models) {
     // associations can be defined here
-    collections.belongsTo(models.brands)
+    collections.belongsTo(models.brands, { as: 'brandId', foreignKey: 'brand' })
   }
   return collections
 }

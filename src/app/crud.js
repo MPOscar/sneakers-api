@@ -1,12 +1,18 @@
 const EntityUniqueConstrainError = require('src/infra/errors/EntityAlreadyExists')
 
-module.exports = (Repository, Domain, attrs) => {
+module.exports = (Repository, Domain, attrs, options) => {
   const create = ({ body }) => {
     return Promise
       .resolve()
       .then(() => {
         const domain = Domain(body)
-        return Repository.create(domain)
+        const createPromise = Repository.create(domain)
+        createPromise.then((entity) => {
+          if (options && options.afterCreate) {
+            options.afterCreate(domain, entity)
+          }
+        })
+        return createPromise
       })
       .catch(error => {
         if (error.name && error.name === 'SequelizeUniqueConstraintError') {

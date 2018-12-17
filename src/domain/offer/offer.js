@@ -11,7 +11,9 @@ const Offer = t.struct({
   shipping: t.enums.of(['worldwide', 'unavailable']),
   description: t.String,
   links: t.maybe(t.list(t.String)),
-  raffle: t.Boolean
+  raffle: t.Boolean,
+  raffleStart: t.maybe(t.String),
+  raffleEnd: t.maybe(t.String)
 })
 
 module.exports = Offer

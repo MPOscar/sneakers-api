@@ -1,53 +1,25 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('offers', {
+    return queryInterface.createTable('shop_working_hours', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      description: {
-        type: Sequelize.TEXT
+      dayOfWeek: {
+        type: Sequelize.INTEGER
       },
-      status: {
+      openHour: {
         type: Sequelize.STRING
       },
-      shipping: {
-        type: Sequelize.STRING
-      },
-      offerDate: {
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('NOW')
-      },
-      price: {
-        type: Sequelize.REAL
-      },
-      salePercentage: {
-        type: Sequelize.REAL
-      },
-      raffle: {
-        type: Sequelize.BOOLEAN
-      },
-      raffleStart: {
-        type: Sequelize.STRING
-      },
-      raffleEnd: {
+      closeHour: {
         type: Sequelize.STRING
       },
       shopId: {
         type: Sequelize.UUID,
         references: {
           model: 'shops',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
-      },
-      releaseId: {
-        type: Sequelize.UUID,
-        references: {
-          model: 'releases',
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -66,6 +38,6 @@ module.exports = {
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('offers')
+    return queryInterface.dropTable('shop_working_hours')
   }
 }

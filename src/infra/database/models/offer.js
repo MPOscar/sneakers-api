@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     offerDate: DataTypes.DATE,
     salePercentage: DataTypes.REAL,
     price: DataTypes.REAL,
-    raffle: DataTypes.BOOLEAN
+    raffle: DataTypes.BOOLEAN,
+    raffleStart: DataTypes.STRING,
+    raffleEnd: DataTypes.STRING
   }, {
     underscored: false
   })

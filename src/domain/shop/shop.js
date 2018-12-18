@@ -14,6 +14,11 @@ const Shop = makeEntity(t.struct({
   currency: t.maybe(t.String),
   rank: t.maybe(t.Number),
   workingHours: t.maybe(t.list(ShopWorkingHours))
+}, {
+  defaultProps: {
+    workingHours: [],
+    currency: 'EUR'
+  }
 }))
 
 module.exports = Shop

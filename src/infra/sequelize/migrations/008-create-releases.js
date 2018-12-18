@@ -25,6 +25,9 @@ module.exports = {
       hot: {
         type: Sequelize.BOOLEAN
       },
+      customized: {
+        type: Sequelize.BOOLEAN
+      },
       children: {
         type: Sequelize.BOOLEAN
       },

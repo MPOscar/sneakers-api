@@ -1,7 +1,7 @@
 const repository = require('src/infra/repositories/release')
 const { Release } = require('src/domain/release')
 
-const attrs = ['id', 'name', 'description', 'styleId', 'collectionId', 'sku', 'hot', 'children', 'price', 'gender', 'color', 'mainImage', 'createdAt', 'updatedAt']
+const attrs = ['id', 'name', 'description', 'styleId', 'collectionId', 'sku', 'hot', 'children', 'price', 'gender', 'color', 'mainImage', 'customized', 'createdAt', 'updatedAt']
 const {
   getOneUseCase,
   createUseCase,

@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     color: DataTypes.STRING,
     releaseDate: DataTypes.DATE,
     hot: DataTypes.BOOLEAN,
+    customized: DataTypes.BOOLEAN,
     children: DataTypes.BOOLEAN,
     price: DataTypes.REAL,
     gender: DataTypes.STRING,

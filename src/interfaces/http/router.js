@@ -56,6 +56,8 @@ module.exports = ({ config, logger, database }) => {
   apiRouter.use('/offers', controller('offer'))
   apiRouter.use('/collections', controller('collection'))
   apiRouter.use('/blogs', controller('blog'))
+  apiRouter.use('/deals', controller('deal'))
+  apiRouter.use('/urls', controller('url'))
   apiRouter.use('/image', controller('image'))
   router.use(`/api/${config.version}`, apiRouter)
 

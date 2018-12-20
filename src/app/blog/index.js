@@ -1,7 +1,7 @@
 const repository = require('src/infra/repositories/blog')
 const { Blog } = require('src/domain/blog')
 
-const attrs = ['id', 'title', 'body', 'type', 'brandId', 'imgUrl', 'createdAt', 'updatedAt']
+const attrs = ['id', 'title', 'body', 'type', 'brandId', 'imgUrl', 'author', 'createdAt', 'updatedAt']
 
 const {
   getOneUseCase,

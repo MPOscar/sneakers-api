@@ -17,13 +17,15 @@ module.exports = (sequelize, DataTypes) => {
     active: DataTypes.BOOLEAN,
     rank: DataTypes.INTEGER
   }, {
-    freezeTableName: true,
     underscored: false
   })
   shop.associate = function (models) {
     // associations can be defined here
     shop.hasMany(models.shop_images, { as: 'images' })
     shop.hasMany(models.shop_working_hours, { as: 'workingHours' })
+    shop.belongsToMany(models.styles, { through: 'style_shops', as: 'styles' })
+
+    console.log('associating shops')
   }
   return shop
 }

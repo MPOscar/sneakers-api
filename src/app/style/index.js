@@ -10,8 +10,12 @@ const {
   removeUseCase,
   updateUseCase
 } = require('src/app/crud')(repository, Style, attrs)
+const linkShopsUseCase = require('./link_shops')
+const getLinkedShopsUseCase = require('./get_link_shops')
 
 module.exports = {
+  getLinkedShopsUseCase,
+  linkShopsUseCase,
   getOneUseCase,
   createUseCase,
   getAllUseCase,

@@ -43,32 +43,6 @@ const createImages = async (id, images) => {
   return newImages
 }
 
-/*
-const { toSequelizeSearch } = require('src/infra/support/sequelize_search_attrs')
-const { SearchResult } = require('src/domain/search')
-const getAll = (selectFields, searchParams) => {
-  const imageInclude = { model: releaseImageModel, as: 'images' }
-  const styleInclude = { model: styleModel, as: 'style', attributes: [ 'id', 'brand', 'category' ] }
-  if (searchParams.filter && searchParams.filter.brandId) {
-    Object.assign(styleInclude, { where: { brand: searchParams.filter.brandId } })
-    delete searchParams.filter.brandId
-  }
-  const attrs = {
-    include: [
-      imageInclude, styleInclude],
-    distinct: true
-  }
-  Object.assign(attrs, toSequelizeSearch(selectFields, searchParams))
-  return model.findAndCountAll(attrs).then((result) => {
-    const rows = result.rows.map((data) => {
-      const { dataValues } = data
-      let newRelease = Release(dataValues)
-      return newRelease
-    })
-    return SearchResult({ rows, count: result.count })
-  })
-} */
-
 const getAllImages = async (id) => {
   const release = await model.findOne({
     where: { id }

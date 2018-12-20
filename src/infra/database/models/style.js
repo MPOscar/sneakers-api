@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
     parent: DataTypes.STRING,
     isDeleted: DataTypes.BOOLEAN
   }, {
-    freezeTableName: true,
     underscored: false
   })
   style.associate = function (models) {
+    style.belongsToMany(models.shops, { through: 'style_shops', as: 'shops' })
     // associations can be defined here
     style.belongsTo(models.categories, { as: 'CategoryModel', foreignKey: 'category' })
     style.belongsTo(models.brands, { as: 'BrandModel', foreignKey: 'brand' })

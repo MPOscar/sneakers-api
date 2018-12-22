@@ -25,8 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     shop.hasMany(models.shop_working_hours, { as: 'workingHours' })
     shop.belongsToMany(models.styles, { through: 'style_shops', as: 'styles' })
     shop.belongsToMany(models.brands, { through: 'brand_shops', as: 'brands' })
-
-    console.log('associating shops')
+    shop.belongsToMany(models.collections, { through: 'collection_shops', as: 'collections' })
   }
   return shop
 }

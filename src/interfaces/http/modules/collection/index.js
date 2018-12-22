@@ -3,6 +3,8 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
+  getLinkedShopsUseCase,
+  linkShopsUseCase,
   changeImageUrlUseCase,
   getOneUseCase,
   createUseCase,
@@ -270,5 +272,82 @@ module.exports = () => {
         })
     })
 
+  /**
+   * @swagger
+   * /collections/id/shops:
+   *   post:
+   *     tags:
+   *       - Collections
+   *     description: Set the shops linked to a collection
+   *     security:
+   *       - JWT: []
+   *     produces:
+   *       - application/json
+   *     parameters:
+   *       - name: body
+   *         description: Collection's Entity
+   *         in: body
+   *         required: true
+   *         type: string
+   *         schema:
+   *           $ref: '#/definitions/collection'
+   *     responses:
+   *       200:
+   *         description: Successfully Created
+   *         schema:
+   *           $ref: '#/definitions/collection'
+   *       401:
+   *         $ref: '#/responses/Unauthorized'
+   *       400:
+   *         $ref: '#/responses/BadRequest'
+   */
+  router
+    .post('/:id/shops', (req, res) => {
+      linkShopsUseCase
+        .linkShops({ id: req.params.id, body: req.body })
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
+
+  /**
+   * @swagger
+   * /collections/:
+   *   get:
+   *     tags:
+   *       - Collections
+   *     description: Returns the list of shops linked to a collection
+   *     security:
+   *       - JWT: []
+   *     responses:
+   *       200:
+   *         description: An array of collections
+   *         schema:
+   *           type: array
+   *           items:
+   *             id:
+   *               type: string
+   *       401:
+   *        $ref: '#/responses/Unauthorized'
+
+   */
+  router
+    .get('/:id/shops', (req, res) => {
+      getLinkedShopsUseCase
+        .getLinkedShops(req.params.id)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
   return router
 }

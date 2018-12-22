@@ -8,7 +8,7 @@ const {
   getAllUseCase,
   updateUseCase,
   removeUseCase
-} = require('src/app/url')
+} = require('src/app/task')
 
 module.exports = () => {
   const router = Router()
@@ -17,32 +17,35 @@ module.exports = () => {
   /**
  * @swagger
  * definitions:
- *   url:
+ *   task:
  *     properties:
  *       id:
  *         type: string
  *         format: uuid
- *       url:
+ *       responsable:
  *         type: string
- *       vanityUrl:
+ *         format: uuid
+ *       description:
+ *         type: string
+ *       priority:
  *         type: string
  */
 
   router.use(auth.authenticate())
   /**
    * @swagger
-   * /urls/id:
+   * /tasks/id:
    *   get:
    *     tags:
    *       - Categories
-   *     description: Returns one url given id
+   *     description: Returns one task given id
    *     security:
    *       - JWT: []
    *     responses:
    *       200:
-   *         description: A url in json format
+   *         description: A task in json format
    *         schema:
-   *           $ref: '#/definitions/url'
+   *           $ref: '#/definitions/task'
    *       401:
    *        $ref: '#/responses/Unauthorized'
 
@@ -61,20 +64,20 @@ module.exports = () => {
     })
   /**
   * @swagger
-  * /urls:
+  * /tasks:
   *   get:
   *     tags:
   *       - Categories
-  *     description: Returns a list of urls
+  *     description: Returns a list of tasks
   *     security:
   *       - JWT: []
   *     responses:
   *       200:
-  *         description: An array of urls
+  *         description: An array of tasks
   *         schema:
   *           type: array
   *           items:
-  *             $ref: '#/definitions/url'
+  *             $ref: '#/definitions/task'
   *       401:
   *        $ref: '#/responses/Unauthorized'
   */
@@ -94,28 +97,28 @@ module.exports = () => {
 
   /**
  * @swagger
- * /urls:
+ * /tasks:
  *   post:
  *     tags:
  *       - Categories
- *     description: Create new url
+ *     description: Create new task
  *     security:
  *       - JWT: []
  *     produces:
  *       - application/json
  *     parameters:
  *       - name: body
- *         description: Url's Entity
+ *         description: Task's Entity
  *         in: body
  *         required: true
  *         type: string
  *         schema:
- *           $ref: '#/definitions/url'
+ *           $ref: '#/definitions/task'
  *     responses:
  *       200:
  *         description: Successfully Created
  *         schema:
- *           $ref: '#/definitions/url'
+ *           $ref: '#/definitions/task'
  *       401:
  *         $ref: '#/responses/Unauthorized'
  *       400:
@@ -136,11 +139,11 @@ module.exports = () => {
     })
   /**
    * @swagger
-   * /urls/id:
+   * /tasks/id:
    *   put:
    *     tags:
    *       - Categories
-   *     description: Update Url
+   *     description: Update Task
    *     security:
    *       - JWT: []
    *     produces:
@@ -149,20 +152,20 @@ module.exports = () => {
    *       - name: id
    *         in: path
    *         required: true
-   *         description: Url's ID to update
+   *         description: Task's ID to update
    *         type: string
    *       - name: body
-   *         description: Url's Entity
+   *         description: Task's Entity
    *         in: body
    *         required: true
    *         type: string
    *         schema:
-   *           $ref: '#/definitions/url'
+   *           $ref: '#/definitions/task'
    *     responses:
    *       200:
    *         description: Successfully Updated
    *         schema:
-   *           $ref: '#/definitions/url'
+   *           $ref: '#/definitions/task'
    *       401:
    *         $ref: '#/responses/Unauthorized'
    *       400:
@@ -183,11 +186,11 @@ module.exports = () => {
     })
   /**
    * @swagger
-   * /urls/id:
+   * /tasks/id:
    *   delete:
    *     tags:
    *       - Categories
-   *     description: Delete Url
+   *     description: Delete Task
    *     security:
    *       - JWT: []
    *     produces:
@@ -196,13 +199,13 @@ module.exports = () => {
    *       - name: id
    *         in: path
    *         required: true
-   *         description: Url's ID to delete
+   *         description: Task's ID to delete
    *         type: string
    *     responses:
    *       200:
    *         description: Successfully Deleted
    *         schema:
-   *           $ref: '#/definitions/url'
+   *           $ref: '#/definitions/task'
    *       401:
    *         $ref: '#/responses/Unauthorized'
    */

@@ -1,43 +1,22 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('deals', {
+    return queryInterface.createTable('tasks', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      url: {
+      description: {
+        type: Sequelize.TEXT
+      },
+      priority: {
         type: Sequelize.STRING
       },
-      startDate: {
-        type: Sequelize.DATE
-      },
-      endDate: {
-        type: Sequelize.DATE
-      },
-      salePercentage: {
-        type: Sequelize.FLOAT
-      },
-      status: {
-        type: Sequelize.STRING
-      },
-      promoCode: {
-        type: Sequelize.STRING
-      },
-      time: {
-        type: Sequelize.STRING
-      },
-      displayOnSale: {
-        type: Sequelize.BOOLEAN
-      },
-      imgUrl: {
-        type: Sequelize.STRING
-      },
-      shopId: {
+      responsable: {
         type: Sequelize.UUID,
         references: {
-          model: 'shops',
+          model: 'users',
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -56,6 +35,6 @@ module.exports = {
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('deals')
+    return queryInterface.dropTable('tasks')
   }
 }

@@ -31,9 +31,36 @@ const getShops = async (id) => {
   return shops
 }
 
+const setOffers = async (id, offers) => {
+  const collection = await model.findOne({
+    where: { id }
+  })
+  if (!collection) {
+    throw new EntityNotFound()
+  }
+  await collection.setOffers(offers)
+  return offers
+}
+
+const getOffers = async (id) => {
+  const collection = await model.findOne({
+    where: { id }
+  })
+  if (!collection) {
+    throw new EntityNotFound()
+  }
+  const offers = await collection.getOffers()
+  if (!offers) {
+    return []
+  }
+  return offers
+}
+
 const CollectionRepository = BaseRepository(model, Collection)
 Object.assign(CollectionRepository, {
   getShops,
-  setShops
+  setShops,
+  getOffers,
+  setOffers
 })
 module.exports = CollectionRepository

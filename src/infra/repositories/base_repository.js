@@ -21,13 +21,19 @@ module.exports = (model, toEntity, options) => {
     })
   }
 
-  const getById = (id, attrs) => model.findOne({ where: { id: id }, attributes: attrs }).then((entity) => {
-    if (!entity) {
-      throw new EntityNotFoundError()
+  const getById = (id, attrs) => {
+    const getAttrs = { where: { id: id }, attributes: attrs }
+    if (options && options.getOptions) {
+      Object.assign(getAttrs, options.getOptions)
     }
-    const { dataValues } = entity
-    return toEntity(dataValues)
-  })
+    return model.findOne(getAttrs).then((entity) => {
+      if (!entity) {
+        throw new EntityNotFoundError()
+      }
+      const { dataValues } = entity
+      return toEntity(dataValues)
+    })
+  }
 
   const create = (domain) => {
     if (options && options.createOptions) {

@@ -4,9 +4,10 @@ const linkOffers = ({ id, body }) => {
   return Promise
     .resolve()
     .then(() => {
-      if (body && body.length) {
+      if (body) {
         return repository.setOffers(id, body)
       }
+      return []
     })
     .catch(error => {
       throw new Error(error)

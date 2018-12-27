@@ -4,9 +4,10 @@ const linkShops = ({ id, body }) => {
   return Promise
     .resolve()
     .then(() => {
-      if (body && body.length) {
+      if (body) {
         return repository.setShops(id, body)
       }
+      return []
     })
     .catch(error => {
       throw new Error(error)

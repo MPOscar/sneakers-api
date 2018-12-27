@@ -38,7 +38,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       mainImage: {
-        type: Sequelize.UUID
+        type: Sequelize.STRING
       },
       styleId: {
         type: Sequelize.UUID,

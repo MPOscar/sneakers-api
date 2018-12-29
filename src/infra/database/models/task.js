@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   })
   tasks.associate = function (models) {
     // associations can be defined here
-    tasks.belongsTo(models.users, { as: 'responsable', foreignKey: 'reponsable' })
+    tasks.belongsTo(models.users, { foreignKey: 'responsable' })
   }
   return tasks
 }

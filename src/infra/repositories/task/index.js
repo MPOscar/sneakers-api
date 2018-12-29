@@ -4,6 +4,11 @@ const container = require('src/container') // we have to get the DI
 // inject database
 const { database } = container.cradle
 
-const repository = BaseRepository(database.models.tasks, Task)
+const getOptions = {
+  include: [{
+    model: database.models.users
+  }]
+}
+const repository = BaseRepository(database.models.tasks, Task, { getOptions })
 
 module.exports = repository

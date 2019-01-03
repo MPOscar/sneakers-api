@@ -5,7 +5,7 @@ const Offer = t.struct({
   shopId: t.String,
   offerDate: t.maybe(t.Date),
   price: t.Number,
-  salePercentage: t.Number,
+  salePercentage: t.maybe(t.Number),
   currency: t.maybe(t.String),
   status: t.enums.of(['sold_out', 'available', 'on_sale', 'unavailable', 'raffle_open']),
   shipping: t.enums.of(['worldwide', 'unavailable']),

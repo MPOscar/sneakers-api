@@ -5,13 +5,14 @@ const { SearchResult } = require('src/domain/search')
 module.exports = (model, toEntity, options) => {
   this.model = model
   const getAll = (selectFields, searchParams) => {
-    const attrs = toSequelizeSearch(selectFields, searchParams)
+    const attrs = {}
     if (options && options.getOptions) {
       Object.assign(attrs, options.getOptions)
     }
     if (options && options.getOptionsCallback) {
       Object.assign(attrs, options.getOptionsCallback(searchParams))
     }
+    Object.assign(attrs, toSequelizeSearch(selectFields, searchParams))
     return model.findAndCountAll(attrs).then((result) => {
       const rows = result.rows.map((data) => {
         const { dataValues } = data

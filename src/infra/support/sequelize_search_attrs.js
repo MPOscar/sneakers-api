@@ -1,10 +1,14 @@
+const Sequelize = require('sequelize')
+
+const Op = Sequelize.Op
+
 const toLikeFilters = (filter) => {
   var newFilter = {}
   Object.keys(filter).forEach((key) => {
     if (typeof filter[key] === 'number') {
       newFilter[key] = filter[key]
     } else {
-      newFilter[key] = { $like: '%' + filter[key] + '%' }
+      newFilter[key] = { [Op.like]: '%' + filter[key] + '%' }
     }
   })
   return newFilter

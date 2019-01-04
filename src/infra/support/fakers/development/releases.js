@@ -10,7 +10,9 @@ module.exports = () => {
       price: '50',
       gender: 'm',
       releaseDate: '',
-      color: 'blue'
+      color: 'blue',
+      customized: false,
+      styleId: '94f6a741-205c-46d7-a3d9-29a6e51416e4'
     }
   ]
 }

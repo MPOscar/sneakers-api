@@ -9,7 +9,7 @@ const Release = t.struct({
   images: t.maybe(t.list(Entity.extend(ReleaseImage))),
   mainImage: t.maybe(t.String),
   releaseDate: t.maybe(t.Date),
-  color: t.String,
+  color: t.maybe(t.String),
   hot: t.Boolean,
   customized: t.Boolean,
   children: t.maybe(t.Boolean),
@@ -20,7 +20,10 @@ const Release = t.struct({
   collectionId: t.maybe(t.String)
 }, {
   defaultProps: {
-    customized: false
+    customized: false,
+    description: '',
+    hot: false,
+    price: 0
   }
 })
 

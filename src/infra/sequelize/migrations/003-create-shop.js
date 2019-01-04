@@ -22,6 +22,9 @@ module.exports = {
       currency: {
         type: Sequelize.STRING
       },
+      zipCode: {
+        type: Sequelize.STRING
+      },
       shippingDetails: {
         type: Sequelize.TEXT
       },

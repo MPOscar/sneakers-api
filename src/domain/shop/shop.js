@@ -7,6 +7,7 @@ const Shop = makeEntity(t.struct({
   active: t.maybe(t.Boolean),
   country: t.maybe(t.String),
   region: t.maybe(t.String),
+  zipCode: t.maybe(t.String),
   address: t.maybe(t.String),
   shippingDetails: t.maybe(t.String),
   trackingListBaseUrl: t.maybe(t.String),

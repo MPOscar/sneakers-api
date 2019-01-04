@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     description: DataTypes.TEXT,
     parent: DataTypes.STRING,
-    isDeleted: DataTypes.BOOLEAN
+    isDeleted: DataTypes.BOOLEAN,
+    isParent: DataTypes.BOOLEAN
   }, {
     underscored: false
   })

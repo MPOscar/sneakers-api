@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     region: DataTypes.STRING,
     zipCode: DataTypes.STRING,
     shippingDetails: DataTypes.TEXT,
+    shippingCountries: DataTypes.STRING,
+    countries: DataTypes.TEXT,
     trackingListBaseUrl: DataTypes.STRING,
     mainImage: DataTypes.STRING,
     active: DataTypes.BOOLEAN,

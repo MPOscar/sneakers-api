@@ -28,6 +28,12 @@ module.exports = {
       shippingDetails: {
         type: Sequelize.TEXT
       },
+      shippingCountries: {
+        type: Sequelize.STRING
+      },
+      countries: {
+        type: Sequelize.TEXT
+      },
       trackingListBaseUrl: {
         type: Sequelize.STRING
       },

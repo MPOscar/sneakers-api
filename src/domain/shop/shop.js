@@ -10,6 +10,8 @@ const Shop = makeEntity(t.struct({
   zipCode: t.maybe(t.String),
   address: t.maybe(t.String),
   shippingDetails: t.maybe(t.String),
+  shippingCountries: t.maybe(t.enums.of(['Worldwide', 'Europe', 'USA', 'Select Countries'])),
+  countries: t.maybe(t.String),
   trackingListBaseUrl: t.maybe(t.String),
   mainImage: t.maybe(t.String),
   currency: t.maybe(t.String),

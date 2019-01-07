@@ -1,7 +1,7 @@
 const repository = require('src/infra/repositories/shop')
 const { Shop } = require('src/domain/shop')
 
-const attrs = ['id', 'name', 'address', 'currency', 'country', 'region', 'shippingDetails', 'shippingCountries', 'countries', 'mainImage', 'trackingListBaseUrl', 'rank', 'active', 'zipCode', 'createdAt', 'updatedAt']
+const attrs = ['id', 'name', 'address', 'currency', 'country', 'region', 'shippingDetails', 'shippingCountries', 'countries', 'mainImage', 'trackingListBaseUrl', 'rank', 'active', 'zipCode', 'parent', 'isParent', 'createdAt', 'updatedAt']
 
 const {
   getOneUseCase,

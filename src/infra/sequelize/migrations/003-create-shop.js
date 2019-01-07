@@ -46,6 +46,13 @@ module.exports = {
       rank: {
         type: Sequelize.INTEGER
       },
+      parent: {
+        type: Sequelize.STRING
+      },
+      isParent: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

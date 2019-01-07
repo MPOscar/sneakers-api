@@ -2,7 +2,7 @@ const t = require('tcomb')
 
 const Offer = t.struct({
   releaseId: t.String,
-  shopId: t.String,
+  shopId: t.maybe(t.String),
   offerDate: t.maybe(t.Date),
   price: t.Number,
   salePercentage: t.maybe(t.Number),

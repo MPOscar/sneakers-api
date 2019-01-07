@@ -18,7 +18,9 @@ module.exports = (sequelize, DataTypes) => {
     trackingListBaseUrl: DataTypes.STRING,
     mainImage: DataTypes.STRING,
     active: DataTypes.BOOLEAN,
-    rank: DataTypes.INTEGER
+    rank: DataTypes.INTEGER,
+    parent: DataTypes.STRING,
+    isParent: DataTypes.BOOLEAN
   }, {
     underscored: false
   })

@@ -15,12 +15,15 @@ const Shop = makeEntity(t.struct({
   trackingListBaseUrl: t.maybe(t.String),
   mainImage: t.maybe(t.String),
   currency: t.maybe(t.String),
+  parent: t.maybe(t.String),
+  isParent: t.maybe(t.Boolean),
   rank: t.maybe(t.Number),
   workingHours: t.maybe(t.list(ShopWorkingHours))
 }, {
   defaultProps: {
     workingHours: [],
-    currency: 'EUR'
+    currency: 'EUR',
+    isParent: false
   }
 }))
 

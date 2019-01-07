@@ -3,8 +3,8 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
-  getLinkedOffersUseCase,
-  linkOffersUseCase,
+  getLinkedReleasesUseCase,
+  linkReleasesUseCase,
   getLinkedShopsUseCase,
   linkShopsUseCase,
   changeImageUrlUseCase,
@@ -354,11 +354,11 @@ module.exports = () => {
 
   /**
    * @swagger
-   * /collections/id/offers:
+   * /collections/id/releases:
    *   post:
    *     tags:
    *       - Collections
-   *     description: Set the offers linked to a collection
+   *     description: Set the releases linked to a collection
    *     security:
    *       - JWT: []
    *     produces:
@@ -382,9 +382,9 @@ module.exports = () => {
    *         $ref: '#/responses/BadRequest'
    */
   router
-    .post('/:id/offers', (req, res) => {
-      linkOffersUseCase
-        .linkOffers({ id: req.params.id, body: req.body })
+    .post('/:id/releases', (req, res) => {
+      linkReleasesUseCase
+        .linkReleases({ id: req.params.id, body: req.body })
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })
@@ -397,11 +397,11 @@ module.exports = () => {
 
   /**
    * @swagger
-   * /collections/id/offers:
+   * /collections/id/releases:
    *   get:
    *     tags:
    *       - Collections
-   *     description: Returns the list of offers linked to a collection
+   *     description: Returns the list of releases linked to a collection
    *     security:
    *       - JWT: []
    *     responses:
@@ -417,9 +417,9 @@ module.exports = () => {
 
    */
   router
-    .get('/:id/offers', (req, res) => {
-      getLinkedOffersUseCase
-        .getLinkedOffers(req.params.id)
+    .get('/:id/releases', (req, res) => {
+      getLinkedReleasesUseCase
+        .getLinkedReleases(req.params.id)
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })

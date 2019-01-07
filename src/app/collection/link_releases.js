@@ -1,11 +1,11 @@
 const repository = require('src/infra/repositories/collection')
 
-const linkOffers = ({ id, body }) => {
+const linkReleases = ({ id, body }) => {
   return Promise
     .resolve()
     .then(() => {
       if (body) {
-        return repository.setOffers(id, body)
+        return repository.setReleases(id, body)
       }
       return []
     })
@@ -14,4 +14,4 @@ const linkOffers = ({ id, body }) => {
     })
 }
 
-module.exports = { linkOffers }
+module.exports = { linkReleases }

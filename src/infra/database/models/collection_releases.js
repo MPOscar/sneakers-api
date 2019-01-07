@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const collectionOffers = sequelize.define('collection_offers', {
+  const collectionOffers = sequelize.define('collection_releases', {
     id: {
       allowNull: false,
       primaryKey: true,

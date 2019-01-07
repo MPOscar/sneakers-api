@@ -1,17 +1,17 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('collection_offers', {
+    return queryInterface.createTable('collection_releases', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      offerId: {
+      releaseId: {
         type: Sequelize.UUID,
         onDelete: 'CASCADE',
         references: {
-          model: 'offers',
+          model: 'releases',
           key: 'id'
         },
         allowNull: false
@@ -38,6 +38,6 @@ module.exports = {
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('collection_offers')
+    return queryInterface.dropTable('collection_releases')
   }
 }

@@ -13,12 +13,12 @@ const {
 const changeImageUrlUseCase = require('./change_image_url')
 const linkShopsUseCase = require('./link_shops')
 const getLinkedShopsUseCase = require('./get_link_shops')
-const linkOffersUseCase = require('./link_offers')
-const getLinkedOffersUseCase = require('./get_link_offers')
+const linkReleasesUseCase = require('./link_releases')
+const getLinkedReleasesUseCase = require('./get_link_releases')
 
 module.exports = {
-  linkOffersUseCase,
-  getLinkedOffersUseCase,
+  linkReleasesUseCase,
+  getLinkedReleasesUseCase,
   getLinkedShopsUseCase,
   linkShopsUseCase,
   changeImageUrlUseCase,

@@ -1,12 +1,12 @@
 const repository = require('src/infra/repositories/collection')
 
-const getLinkedOffers = (id) => {
+const getLinkedReleases = (id) => {
   return Promise
     .resolve()
     .then(() =>
-      repository.getOffers(id)
-    ).then((offers) =>
-      offers.map((offer) => offer.id)
+      repository.getReleases(id)
+    ).then((releases) =>
+      releases.map((release) => release.id)
     )
     .catch(error => {
       throw new Error(error)
@@ -14,5 +14,5 @@ const getLinkedOffers = (id) => {
 }
 
 module.exports = {
-  getLinkedOffers
+  getLinkedReleases
 }

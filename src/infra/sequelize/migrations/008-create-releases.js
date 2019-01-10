@@ -40,6 +40,9 @@ module.exports = {
       mainImage: {
         type: Sequelize.STRING
       },
+      currency: {
+        type: Sequelize.STRING
+      },
       styleId: {
         type: Sequelize.UUID,
         references: {

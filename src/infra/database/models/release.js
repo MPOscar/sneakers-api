@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     children: DataTypes.BOOLEAN,
     price: DataTypes.REAL,
     gender: DataTypes.STRING,
-    mainImage: DataTypes.STRING
+    mainImage: DataTypes.STRING,
+    currency: DataTypes.STRING
   }, {
     underscored: false
   })

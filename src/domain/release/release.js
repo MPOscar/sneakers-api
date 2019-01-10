@@ -12,6 +12,7 @@ const Release = t.struct({
   color: t.maybe(t.String),
   hot: t.Boolean,
   customized: t.Boolean,
+  currency: t.maybe(t.String),
   children: t.maybe(t.Boolean),
   price: t.Number,
   gender: t.maybe(t.String),

@@ -12,6 +12,9 @@ module.exports = {
     'dialect': 'mysql',
     'define': {
       'underscored': true
+    },
+    'dialectOptions': {
+      'useUTC': true
     }
   },
   test: {
@@ -19,6 +22,9 @@ module.exports = {
     'dialect': 'mysql',
     'define': {
       'underscored': true
+    },
+    'dialectOptions': {
+      'useUTC': true
     }
   },
   staging: {
@@ -31,7 +37,8 @@ module.exports = {
     'dialectOptions': {
       'ssl': {
         'require': true
-      }
+      },
+      'useUTC': true
     }
   },
   production: {
@@ -44,7 +51,8 @@ module.exports = {
     'dialectOptions': {
       'ssl': {
         'require': true
-      }
+      },
+      'useUTC': true
     }
   }
 }

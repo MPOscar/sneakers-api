@@ -1,12 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
   const Layout = sequelize.define('layouts', {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
       primaryKey: true,
-      allowNull: false
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
     },
-    page: DataTypes.STRING
+    page: DataTypes.STRING,
+    headerJson: DataTypes.TEXT,
+    headingJson: DataTypes.TEXT,
+    sliderJson: DataTypes.TEXT,
+    hottestJson: DataTypes.TEXT
   }, {
     freezeTableName: true,
     underscored: false

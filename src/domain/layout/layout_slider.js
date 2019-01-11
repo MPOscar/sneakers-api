@@ -1,14 +1,26 @@
 const t = require('tcomb')
 
+const image = t.struct({
+  url: t.String,
+  display: t.maybe(t.String)
+})
+
+const filter = t.struct({
+  key: t.String,
+  value: t.String
+})
+
 const Layout = t.struct({
-  type: t.maybe(t.String),
   url: t.maybe(t.String),
-  images: t.list(t.String),
-  filters: t.maybe(t.Object),
-  filterLimit: t.maybe(t.Number)
+  isFiltered: t.Boolean,
+  filters: t.list(filter),
+  filterLimit: t.maybe(t.Number),
+  images: t.list(image)
 }, {
   defaultProps: {
-    manualImages: []
+    images: [],
+    filters: [],
+    isFiltered: false
   }
 })
 

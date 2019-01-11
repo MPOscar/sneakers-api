@@ -60,6 +60,7 @@ module.exports = ({ config, logger, database }) => {
   apiRouter.use('/urls', controller('url'))
   apiRouter.use('/tasks', controller('task'))
   apiRouter.use('/image', controller('image'))
+  apiRouter.use('/layouts', controller('layout'))
   router.use(`/api/${config.version}`, apiRouter)
 
   router.use(partialRight(errorHandler, [logger, config]))

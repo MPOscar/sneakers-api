@@ -1,4 +1,4 @@
-const { cleanData } = require('../helper')
+const { makeEntity } = require('../helper')
 
-const Layout = cleanData(require('./layout'))
+const Layout = makeEntity(require('./layout'))
 module.exports = { Layout }

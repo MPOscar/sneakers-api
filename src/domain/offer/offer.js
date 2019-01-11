@@ -7,7 +7,7 @@ const Offer = t.struct({
   price: t.Number,
   salePercentage: t.maybe(t.Number),
   currency: t.maybe(t.String),
-  status: t.enums.of(['sold_out', 'available', 'on_sale', 'unavailable', 'raffle_open']),
+  status: t.enums.of(['sold_out', 'available', 'on_sale', 'unavailable', 'raffle_open', 'restock']),
   shipping: t.enums.of(['worldwide', 'unavailable']),
   description: t.String,
   links: t.maybe(t.list(t.String)),

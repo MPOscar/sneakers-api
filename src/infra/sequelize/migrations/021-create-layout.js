@@ -11,6 +11,18 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      headerJson: {
+        type: Sequelize.TEXT
+      },
+      headingJson: {
+        type: Sequelize.TEXT
+      },
+      sliderJson: {
+        type: Sequelize.TEXT
+      },
+      hottestJson: {
+        type: Sequelize.TEXT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

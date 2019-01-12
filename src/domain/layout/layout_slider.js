@@ -5,15 +5,10 @@ const image = t.struct({
   display: t.maybe(t.String)
 })
 
-const filter = t.struct({
-  key: t.String,
-  value: t.String
-})
-
-const Layout = t.struct({
+const Slider = t.struct({
   url: t.maybe(t.String),
   isFiltered: t.Boolean,
-  filters: t.list(filter),
+  filter: t.maybe(t.Object),
   filterLimit: t.maybe(t.Number),
   images: t.list(image)
 }, {
@@ -24,4 +19,4 @@ const Layout = t.struct({
   }
 })
 
-module.exports = Layout
+module.exports = Slider

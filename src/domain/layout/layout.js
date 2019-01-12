@@ -6,7 +6,7 @@ const layoutHottest = require('./layout_hottest')
 
 const Layout = t.struct({
   page: t.String,
-  slider: t.maybe(layoutSlider),
+  sliders: t.list(layoutSlider),
   header: t.maybe(layoutHeader),
   hottest: t.maybe(layoutHottest),
   heading: t.maybe(layoutHeading)

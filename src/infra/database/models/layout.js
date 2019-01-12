@@ -7,16 +7,16 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4
     },
     page: DataTypes.STRING,
-    headerJson: DataTypes.TEXT,
-    headingJson: DataTypes.TEXT,
-    sliderJson: DataTypes.TEXT,
-    hottestJson: DataTypes.TEXT
+    title: DataTypes.STRING,
+    description: DataTypes.TEXT,
+    keywords: DataTypes.STRING
   }, {
     freezeTableName: true,
     underscored: false
   })
   Layout.associate = function (models) {
     // associations can be defined here
+    Layout.hasMany(models.layout_sliders, { as: 'layout_sliders' })
   }
   return Layout
 }

@@ -1,25 +1,26 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('layouts', {
+    return queryInterface.createTable('layout_slider_images', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      page: {
-        type: Sequelize.STRING,
-        primaryKey: true,
-        allowNull: false
-      },
-      title: {
+      url: {
         type: Sequelize.STRING
       },
-      description: {
-        type: Sequelize.TEXT
-      },
-      keywords: {
+      display: {
         type: Sequelize.STRING
+      },
+      layoutSliderId: {
+        type: Sequelize.UUID,
+        references: {
+          model: 'layout_sliders',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
       },
       createdAt: {
         allowNull: false,
@@ -34,6 +35,6 @@ module.exports = {
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('layouts')
+    return queryInterface.dropTable('layout_slider_images')
   }
 }

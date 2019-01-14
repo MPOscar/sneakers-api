@@ -1,4 +1,4 @@
-const { Layout, LayoutSlider, LayoutHeading } = require('src/domain/layout')
+const { Layout, LayoutSlider, LayoutHeading, LayoutHeader } = require('src/domain/layout')
 
 // Transforms layout from domain to database object
 const map = (layoutDomain) => {
@@ -29,6 +29,29 @@ const unmapHeading = (dbModel) => {
   return LayoutHeading(dbModel)
 }
 
+const mapHeader = (headerDomain) => {
+  let newHeaderDomain = LayoutHeader(headerDomain)
+  newHeaderDomain.headerItemsPerColumn = headerDomain.itemsPerColumn
+  delete newHeaderDomain.itemsPerColumn
+  if (headerDomain.columns) {
+    newHeaderDomain.columns.map((column) => {
+      column.filter = JSON.stringify(column.filter)
+    })
+  }
+  return newHeaderDomain
+}
+
+// Transforms layout_slider from domain to database object
+const unmapHeader = (dbModel) => {
+  let headerDomain = Object.create(dbModel)
+  headerDomain.itemsPerColumn = headerDomain.headerItemsPerColumn
+  delete headerDomain.headerItemsPerColumn
+  headerDomain.columns.map((column) => {
+    column.filter = JSON.parse(column.filter)
+  })
+  return LayoutHeader(dbModel)
+}
+
 const unmapSlider = (dbModel) => {
   const sliderDomain = dbModel
   sliderDomain.filter = JSON.parse(dbModel.filter)
@@ -51,5 +74,7 @@ module.exports = {
   mapSlider,
   unmapSlider,
   mapHeading,
-  unmapHeading
+  unmapHeading,
+  mapHeader,
+  unmapHeader
 }

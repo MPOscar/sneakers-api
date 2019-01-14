@@ -3,6 +3,8 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
+  getLayoutHeaderUseCase,
+  setLayoutHeaderUseCase,
   getLayoutHeadingUseCase,
   setLayoutHeadingUseCase,
   getLayoutSliderUseCase,
@@ -88,7 +90,6 @@ module.exports = () => {
     })
   router
     .put('/:page/heading', (req, res) => {
-      console.log(JSON.stringify(req.params))
       setLayoutHeadingUseCase
         .setLayoutHeading(req.params.page, req.body)
         .then(data => {
@@ -114,6 +115,31 @@ module.exports = () => {
             Fail(error.message))
         })
     })
-
+  router
+    .put('/:page/header', (req, res) => {
+      setLayoutHeaderUseCase
+        .setHeader(req.params.page, req.body)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
+  router
+    .get('/:page/header', (req, res) => {
+      getLayoutHeaderUseCase
+        .getLayoutHeader(req.params.page)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
   return router
 }

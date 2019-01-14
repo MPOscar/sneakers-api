@@ -9,6 +9,9 @@ const styleModel = database.models.styles
 
 const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
 
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
+
 const getOptionsCallback = (searchParams) => {
   const imageInclude = { model: releaseImageModel, as: 'images' }
   const styleInclude = { model: styleModel, as: 'style', attributes: [ 'id', 'brand', 'category' ] }
@@ -60,6 +63,15 @@ const getAllImages = async (id) => {
   })
 }
 
+const getPastReleases = async (date) => {
+  const releases = await model.find({
+    where: { [Op.lt]: { releaseDate: date } }
+  })
+  return releases.map((data) => {
+    return Release(data)
+  })
+}
+
 const destroyImage = (id) => releaseImageModel.destroy({ where: { id } })
 
 module.exports = {
@@ -70,5 +82,6 @@ module.exports = {
   getAll,
   createImages,
   destroyImage,
-  getAllImages
+  getAllImages,
+  getPastReleases
 }

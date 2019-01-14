@@ -6,7 +6,8 @@ const Layout = t.struct({
   keywords: t.maybe(t.String)
 }, {
   defaultProps: {
-    manualImages: []
+    description: '',
+    keywords: ''
   }
 })
 

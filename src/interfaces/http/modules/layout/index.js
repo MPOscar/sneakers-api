@@ -49,7 +49,7 @@ module.exports = () => {
   router.use(auth.authenticate())
 
   router
-    .put('/', (req, res) => {
+    .put('/', (req, res, next) => {
       setLayoutUseCase
         .setLayout(req.query.page, req.body)
         .then(data => {
@@ -57,13 +57,12 @@ module.exports = () => {
         })
         .catch((error) => {
           logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
+          next(error)
         })
     })
 
   router
-    .put('/:page/slider', (req, res) => {
+    .put('/:page/slider', (req, res, next) => {
       setLayoutSliderUseCase
         .setLayout(req.params.page, req.body)
         .then(data => {
@@ -71,12 +70,11 @@ module.exports = () => {
         })
         .catch((error) => {
           logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
+          next(error)
         })
     })
   router
-    .get('/:page/slider', (req, res) => {
+    .get('/:page/slider', (req, res, next) => {
       getLayoutSliderUseCase
         .getLayoutSlider(req.query)
         .then(data => {
@@ -84,12 +82,11 @@ module.exports = () => {
         })
         .catch((error) => {
           logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
+          next(error)
         })
     })
   router
-    .put('/:page/heading', (req, res) => {
+    .put('/:page/heading', (req, res, next) => {
       setLayoutHeadingUseCase
         .setLayoutHeading(req.params.page, req.body)
         .then(data => {
@@ -97,13 +94,12 @@ module.exports = () => {
         })
         .catch((error) => {
           logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
+          next(error)
         })
     })
 
   router
-    .get('/:page/heading', (req, res) => {
+    .get('/:page/heading', (req, res, next) => {
       getLayoutHeadingUseCase
         .getLayoutHeading(req.params.page)
         .then(data => {
@@ -111,12 +107,11 @@ module.exports = () => {
         })
         .catch((error) => {
           logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
+          next(error)
         })
     })
   router
-    .put('/:page/header', (req, res) => {
+    .put('/:page/header', (req, res, next) => {
       setLayoutHeaderUseCase
         .setHeader(req.params.page, req.body)
         .then(data => {
@@ -124,12 +119,11 @@ module.exports = () => {
         })
         .catch((error) => {
           logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
+          next(error)
         })
     })
   router
-    .get('/:page/header', (req, res) => {
+    .get('/:page/header', (req, res, next) => {
       getLayoutHeaderUseCase
         .getLayoutHeader(req.params.page)
         .then(data => {
@@ -137,8 +131,7 @@ module.exports = () => {
         })
         .catch((error) => {
           logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
+          next(error)
         })
     })
   return router

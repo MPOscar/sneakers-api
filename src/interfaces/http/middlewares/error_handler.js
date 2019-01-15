@@ -9,6 +9,5 @@ module.exports = (err, req, res, next, logger, config) => { // eslint-disable-li
     err.statusCode = Status.INTERNAL_SERVER_ERROR
   }
   const response = Fail(err.message)
-
   res.status(err.statusCode).json(response)
 }

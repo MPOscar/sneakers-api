@@ -54,8 +54,8 @@ const getPopularStyles = async (brandId) => {
   })
   styles.sort((a, b) => {
     return b.releaseCount - a.releaseCount
-  }).slice(0, 5)
-  return styles
+  })
+  return styles.slice(0, 5)
 }
 
 Object.assign(StyleRepository, {

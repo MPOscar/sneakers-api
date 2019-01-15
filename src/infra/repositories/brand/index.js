@@ -5,8 +5,32 @@ const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
 // inject database
 const { database } = container.cradle
 const model = database.models.brands
+const styleModel = database.models.styles
+const releaseModel = database.models.releases
+// const Sequelize = require('sequelize')
 
-const repository = BaseRepository(model, Brand)
+const getOptionsCallback = (searchParams) => {
+  if (searchParams.filter && searchParams.filter.popular) {
+    const include = {
+      model: styleModel,
+      as: 'popular',
+      attributes: [ 'id', 'name' ],
+      include: {
+        model: releaseModel,
+        as: 'releases',
+        attributes: [ 'id' ]
+      }
+    }
+    delete searchParams.filter.popular
+    return {
+      include: [ include ],
+      distinct: true
+    }
+  }
+  return {}
+}
+
+const repository = BaseRepository(model, Brand, { getOptionsCallback })
 
 const setShops = async (id, shops) => {
   const entity = await model.findOne({

@@ -5,6 +5,8 @@ const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
 // inject database
 const { database } = container.cradle
 const model = database.models.styles
+const releaseModel = database.models.releases
+const Sequelize = require('sequelize')
 
 const StyleRepository = BaseRepository(model, Style)
 
@@ -33,9 +35,33 @@ const getShops = async (id) => {
   return shops
 }
 
+const getPopularStyles = async (brandId) => {
+  let styles = await model.findAll({
+    attributes: [ 'id', 'name' ],
+    include: {
+      model: releaseModel,
+      as: 'releases',
+      attributes: [ 'id' ]
+    }
+  })
+  console.log('sorting styles')
+  styles = styles.map((style) => {
+    return {
+      id: style.id,
+      name: style.name,
+      releaseCount: style.releases.length
+    }
+  })
+  styles.sort((a, b) => {
+    return b.releaseCount - a.releaseCount
+  }).slice(0, 5)
+  return styles
+}
+
 Object.assign(StyleRepository, {
   getShops,
-  setShops
+  setShops,
+  getPopularStyles
 })
 
 module.exports = StyleRepository

@@ -3,6 +3,7 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
+  getPopularUseCase,
   getLinkedShopsUseCase,
   linkShopsUseCase,
   getOneUseCase,
@@ -51,6 +52,19 @@ module.exports = () => {
 
   router.use(auth.authenticate())
 
+  router
+    .get('/popular', (req, res) => {
+      getPopularUseCase
+        .getPopularStyles(req.query.brandId)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
   /**
    * @swagger
    * /styles/id:

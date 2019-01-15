@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   })
   style.associate = function (models) {
     style.belongsToMany(models.shops, { through: 'style_shops', as: 'shops' })
+    style.hasMany(models.releases, { as: 'releases' })
     // associations can be defined here
     style.belongsTo(models.categories, { as: 'CategoryModel', foreignKey: 'category' })
     style.belongsTo(models.brands, { as: 'BrandModel', foreignKey: 'brand' })

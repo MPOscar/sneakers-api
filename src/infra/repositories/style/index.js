@@ -42,9 +42,9 @@ const getPopularStyles = async (brandId) => {
       model: releaseModel,
       as: 'releases',
       attributes: [ 'id' ]
-    }
+    },
+    where: { brand: brandId }
   })
-  console.log('sorting styles')
   styles = styles.map((style) => {
     return {
       id: style.id,

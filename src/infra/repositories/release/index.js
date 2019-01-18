@@ -64,8 +64,8 @@ const getAllImages = async (id) => {
 }
 
 const getPastReleases = async (date) => {
-  const releases = await model.find({
-    where: { [Op.lt]: { releaseDate: date } }
+  const releases = await model.findAll({
+    where: { releaseDate: { [Op.lt]: date } }
   })
   return releases.map((data) => {
     return Release(data)

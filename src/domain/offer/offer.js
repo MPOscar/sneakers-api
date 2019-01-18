@@ -13,7 +13,12 @@ const Offer = t.struct({
   links: t.maybe(t.list(t.String)),
   raffle: t.Boolean,
   raffleStart: t.maybe(t.String),
-  raffleEnd: t.maybe(t.String)
+  raffleEnd: t.maybe(t.String),
+  displayWhatsNew: t.maybe(t.Boolean)
+}, {
+  defaultProps: {
+    displayWhatsNew: false
+  }
 })
 
 module.exports = Offer

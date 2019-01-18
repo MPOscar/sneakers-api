@@ -1,6 +1,8 @@
 const repository = require('src/infra/repositories/release')
+const moment = require('moment')
 
-const getOutOfDate = (date) => {
+const getOutOfDate = () => {
+  const date = new Date(moment.utc().format('YYYY-MM-DD'))
   return Promise
     .resolve()
     .then(() =>

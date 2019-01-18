@@ -35,6 +35,9 @@ module.exports = {
       raffleEnd: {
         type: Sequelize.STRING
       },
+      displayWhatsNew: {
+        type: Sequelize.BOOLEAN
+      },
       shopId: {
         type: Sequelize.UUID,
         references: {

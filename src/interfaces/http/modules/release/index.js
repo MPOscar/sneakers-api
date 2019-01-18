@@ -3,6 +3,7 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
+  getOutdatedUseCase,
   getAllImagesUseCase,
   updateMainImageUseCase,
   removeImageUseCase,
@@ -105,16 +106,27 @@ module.exports = () => {
    */
   router
     .get('/', (req, res) => {
-      getAllUseCase
-        .all(mapQuery(req.query))
-        .then(data => {
-          res.status(Status.OK).json(Success(data))
-        })
-        .catch((error) => {
-          logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
-        })
+      if (!req.query.outdated) {
+        getAllUseCase.all(mapQuery(req.query))
+          .then(data => {
+            res.status(Status.OK).json(Success(data))
+          })
+          .catch((error) => {
+            logger.error(error) // we still need to log every error for debugging
+            res.status(Status.BAD_REQUEST).json(
+              Fail(error.message))
+          })
+      } else {
+        getOutdatedUseCase.getOutOfDate()
+          .then(data => {
+            res.status(Status.OK).json(Success(data))
+          })
+          .catch((error) => {
+            logger.error(error) // we still need to log every error for debugging
+            res.status(Status.BAD_REQUEST).json(
+              Fail(error.message))
+          })
+      }
     })
 
   /**

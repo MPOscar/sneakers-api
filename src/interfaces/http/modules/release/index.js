@@ -52,8 +52,6 @@ module.exports = () => {
    *          format: date-time
    */
 
-  router.use(auth.authenticate())
-
   /**
    * @swagger
    * /releases/id:
@@ -106,29 +104,18 @@ module.exports = () => {
    */
   router
     .get('/', (req, res) => {
-      if (!req.query.outdated) {
-        getAllUseCase.all(mapQuery(req.query))
-          .then(data => {
-            res.status(Status.OK).json(Success(data))
-          })
-          .catch((error) => {
-            logger.error(error) // we still need to log every error for debugging
-            res.status(Status.BAD_REQUEST).json(
-              Fail(error.message))
-          })
-      } else {
-        getOutdatedUseCase.getOutOfDate()
-          .then(data => {
-            res.status(Status.OK).json(Success(data))
-          })
-          .catch((error) => {
-            logger.error(error) // we still need to log every error for debugging
-            res.status(Status.BAD_REQUEST).json(
-              Fail(error.message))
-          })
-      }
+      getAllUseCase.all(mapQuery(req.query))
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
     })
-
+  // jwt security
+  router.use(auth.authenticate())
   /**
  * @swagger
  * /releases/:

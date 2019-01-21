@@ -8,32 +8,53 @@ const releaseImageModel = database.models.release_images
 const styleModel = database.models.styles
 
 const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
-
+const moment = require('moment')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 
-const getOptionsCallback = (searchParams) => {
-  const imageInclude = { model: releaseImageModel, as: 'images' }
-  const styleInclude = { model: styleModel, as: 'style', attributes: [ 'id', 'brand', 'category' ] }
-  if (searchParams.filter && searchParams.filter.brandId) {
-    Object.assign(styleInclude, { where: { brand: searchParams.filter.brandId } })
-    delete searchParams.filter.brandId
-  }
-  return {
-    include: [
-      imageInclude, styleInclude],
-    distinct: true
+const getOptions = {
+  include: [
+    { model: releaseImageModel, as: 'images' },
+    { model: styleModel, as: 'style', attributes: [ 'id', 'brand', 'category' ] }
+  ],
+  distinct: true
+}
+
+const filterMappings = {
+  brandId: (value) => {
+    return {
+      filter: { brand: value },
+      model: styleModel
+    }
+  },
+  outdated: (value) => {
+    const date = new Date(moment.utc().format('YYYY-MM-DD'))
+    return {
+      // with date past today and not null
+      filter: { releaseDate: { [Op.lt]: date, [Op.ne]: null, [Op.ne]: '0000-00-00 00:00:00' } }
+    }
+  },
+  coming: (value) => {
+    const date = new Date(moment.utc().format('YYYY-MM-DD'))
+    return {
+      filter: { releaseDate: { [Op.gte]: date, [Op.ne]: null, [Op.ne]: '0000-00-00 00:00:00' } }
+    }
+  },
+  upcoming: (value) => {
+    return {
+      filter: { releaseDate: { [Op.or]: { [Op.eq]: null, [Op.eq]: '0000-00-00 00:00:00' } } }
+    }
   }
 }
 
-const {
-  create,
-  update,
-  getById,
-  destroy,
-  getAll
-} = BaseRepository(model, Release, { getOptionsCallback })
+const repository = BaseRepository(model, Release, { getOptions, filterMappings })
 
+/**
+ * Associates images to the release
+ * @param id
+ * @param images
+ * @returns {Promise<Array<Model>>}
+ */
 const createImages = async (id, images) => {
   const release = await model.findOne({
     where: { id }
@@ -46,6 +67,11 @@ const createImages = async (id, images) => {
   return newImages
 }
 
+/**
+ * Get all images associated with a release
+ * @param id
+ * @returns {Promise<*>}
+ */
 const getAllImages = async (id) => {
   const release = await model.findOne({
     where: { id }
@@ -63,6 +89,11 @@ const getAllImages = async (id) => {
   })
 }
 
+/**
+ * Fetches all releases after date
+ * @param date
+ * @returns {Promise<*[]>}
+ */
 const getPastReleases = async (date) => {
   const releases = await model.findAll({
     where: { releaseDate: { [Op.lt]: date } }
@@ -72,16 +103,18 @@ const getPastReleases = async (date) => {
   })
 }
 
+/**
+ * Delete image from release
+ * @param id
+ * @returns {*}
+ */
 const destroyImage = (id) => releaseImageModel.destroy({ where: { id } })
 
-module.exports = {
-  create,
-  update,
-  getById,
-  destroy,
-  getAll,
+Object.assign(repository, {
   createImages,
   destroyImage,
   getAllImages,
   getPastReleases
-}
+})
+
+module.exports = repository

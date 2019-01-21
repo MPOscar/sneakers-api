@@ -2,17 +2,19 @@ const EntityNotFoundError = require('src/infra/errors/EntityNotFoundError')
 const { toSequelizeSearch } = require('src/infra/support/sequelize_search_attrs')
 const { SearchResult } = require('src/domain/search')
 
-module.exports = (model, toEntity, options) => {
+module.exports = (model, toEntity, options = {}) => {
   this.model = model
   const getAll = (selectFields, searchParams) => {
-    const attrs = {}
-    if (options && options.getOptions) {
+    let attrs = {}
+    // include sub queries and other sequelize options
+    if (options.getOptions) {
       Object.assign(attrs, options.getOptions)
     }
-    if (options && options.getOptionsCallback) {
+    // get options from searchParams
+    if (options.getOptionsCallback) {
       Object.assign(attrs, options.getOptionsCallback(searchParams))
     }
-    Object.assign(attrs, toSequelizeSearch(selectFields, searchParams))
+    attrs = toSequelizeSearch(attrs, selectFields, searchParams, options.filterMappings)
     return model.findAndCountAll(attrs).then((result) => {
       const rows = result.rows.map((data) => {
         const { dataValues } = data

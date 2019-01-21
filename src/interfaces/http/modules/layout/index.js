@@ -46,6 +46,48 @@ module.exports = () => {
         })
     })
 
+  router
+    .get('/:page/slider', (req, res, next) => {
+      getLayoutSliderUseCase
+        .getLayoutSlider(req.query)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          next(error)
+        })
+    })
+
+  router
+    .get('/:page/heading', (req, res, next) => {
+      getLayoutHeadingUseCase
+        .getLayoutHeading(req.params.page)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          next(error)
+        })
+    })
+
+  router
+    .get('/:page/header', (req, res, next) => {
+      getLayoutHeaderUseCase
+        .getLayoutHeader(req.params.page)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          next(error)
+        })
+    })
+
+  /**
+   * Authentication for modifying endpoints
+   */
   router.use(auth.authenticate())
 
   router
@@ -73,18 +115,7 @@ module.exports = () => {
           next(error)
         })
     })
-  router
-    .get('/:page/slider', (req, res, next) => {
-      getLayoutSliderUseCase
-        .getLayoutSlider(req.query)
-        .then(data => {
-          res.status(Status.OK).json(Success(data))
-        })
-        .catch((error) => {
-          logger.error(error) // we still need to log every error for debugging
-          next(error)
-        })
-    })
+
   router
     .put('/:page/heading', (req, res, next) => {
       setLayoutHeadingUseCase
@@ -99,18 +130,6 @@ module.exports = () => {
     })
 
   router
-    .get('/:page/heading', (req, res, next) => {
-      getLayoutHeadingUseCase
-        .getLayoutHeading(req.params.page)
-        .then(data => {
-          res.status(Status.OK).json(Success(data))
-        })
-        .catch((error) => {
-          logger.error(error) // we still need to log every error for debugging
-          next(error)
-        })
-    })
-  router
     .put('/:page/header', (req, res, next) => {
       setLayoutHeaderUseCase
         .setHeader(req.params.page, req.body)
@@ -122,17 +141,6 @@ module.exports = () => {
           next(error)
         })
     })
-  router
-    .get('/:page/header', (req, res, next) => {
-      getLayoutHeaderUseCase
-        .getLayoutHeader(req.params.page)
-        .then(data => {
-          res.status(Status.OK).json(Success(data))
-        })
-        .catch((error) => {
-          logger.error(error) // we still need to log every error for debugging
-          next(error)
-        })
-    })
+
   return router
 }

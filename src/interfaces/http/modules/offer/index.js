@@ -66,9 +66,6 @@ module.exports = () => {
    *          format: date-time
    *          description: The time it was created
    */
-
-  router.use(auth.authenticate())
-
   /**
    * @swagger
    * /offers/id:
@@ -132,6 +129,10 @@ module.exports = () => {
             Fail(error.message))
         })
     })
+  /**
+   * Authentication for modifying endpoints
+   */
+  router.use(auth.authenticate())
 
   /**
  * @swagger

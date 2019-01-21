@@ -36,7 +36,6 @@ module.exports = () => {
    *         format: uuid
    */
 
-  router.use(auth.authenticate())
   /**
    * @swagger
    * /blogs/id:
@@ -100,6 +99,11 @@ module.exports = () => {
             Fail(error.message))
         })
     })
+
+  /**
+   * Authentication for modifying endpoints
+   */
+  router.use(auth.authenticate())
 
   /**
  * @swagger

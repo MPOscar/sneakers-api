@@ -33,7 +33,6 @@ module.exports = () => {
    *          type: string
    */
 
-  router.use(auth.authenticate())
   /**
    * @swagger
    * /brands/id:
@@ -97,6 +96,11 @@ module.exports = () => {
             Fail(error.message))
         })
     })
+
+  /**
+   * Authentication for modifying endpoints
+   */
+  router.use(auth.authenticate())
 
   /**
  * @swagger

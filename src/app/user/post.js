@@ -2,7 +2,7 @@
  * this file will hold all the get use-case for user domain
  */
 const { User } = require('src/domain/user')
- /**
+/**
   * function for getter user.
   */
 module.exports = ({ userRepository }) => {
@@ -16,6 +16,7 @@ module.exports = ({ userRepository }) => {
           password
         })
         const user = User(entity)
+        console.log(JSON.stringify(user))
         return userRepository.create(user)
       })
       .catch((error) => {

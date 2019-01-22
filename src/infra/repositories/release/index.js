@@ -44,6 +44,16 @@ const filterMappings = {
     return {
       filter: { releaseDate: { [Op.or]: { [Op.eq]: null, [Op.eq]: '0000-00-00 00:00:00' } } }
     }
+  },
+  minPrice: (value) => {
+    return {
+      filter: { price: { [Op.gte]: value } }
+    }
+  },
+  maxPrice: (value) => {
+    return {
+      filter: { price: { [Op.lte]: value } }
+    }
   }
 }
 

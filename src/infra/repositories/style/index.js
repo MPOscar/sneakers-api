@@ -6,8 +6,6 @@ const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
 const { database } = container.cradle
 const model = database.models.styles
 const releaseModel = database.models.releases
-const Sequelize = require('sequelize')
-
 const StyleRepository = BaseRepository(model, Style)
 
 const setShops = async (id, shops) => {

@@ -3,7 +3,6 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
-  getOutdatedUseCase,
   getAllImagesUseCase,
   updateMainImageUseCase,
   removeImageUseCase,

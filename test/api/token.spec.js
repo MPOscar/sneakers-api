@@ -14,7 +14,7 @@ describe('Routes: Login', () => {
   beforeEach((done) => {
     // we need to add user before we can request our token
     UserUseCase
-      .destroy({where: {}})
+      .destroy({ where: {} })
       .then(() =>
         UserUseCase.create({
           firstName: 'Test',
@@ -22,9 +22,8 @@ describe('Routes: Login', () => {
           middleName: 'Super Dev',
           email: 'testdev1@gmail.com',
           password: 'pass',
-          roleId: 1,
           isDeleted: 0,
-          createdBy: '48e40a9c-c5e9-4d63-9aba-b77cdf4ca67b'
+          verificationCode: ''
         })
       ).then(() => done())
   })
@@ -39,7 +38,7 @@ describe('Routes: Login', () => {
         .expect(200)
         .end((err, res) => {
           expect(res.body).to.include.keys('data')
-          expect(res.body.data).to.include.keys('token')
+          expect(res.body.data).to.include.keys('access_token')
           done(err)
         })
     })
@@ -66,7 +65,7 @@ describe('Routes: Login', () => {
         .expect(400)
         .end((err, res) => {
           expect(res.body).to.include.keys('error')
-          expect(res.body.error).to.equal('Invalid Credentials')
+          expect(res.body.error).to.eql('Invalid credentials')
           done(err)
         })
     })

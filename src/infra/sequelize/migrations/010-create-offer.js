@@ -20,7 +20,13 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn('NOW')
       },
-      price: {
+      priceUSD: {
+        type: Sequelize.REAL
+      },
+      priceGBP: {
+        type: Sequelize.REAL
+      },
+      priceEUR: {
         type: Sequelize.REAL
       },
       salePercentage: {

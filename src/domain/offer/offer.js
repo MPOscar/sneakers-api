@@ -4,7 +4,9 @@ const Offer = t.struct({
   releaseId: t.String,
   shopId: t.maybe(t.String),
   offerDate: t.maybe(t.Date),
-  price: t.Number,
+  priceUSD: t.Number,
+  priceGBP: t.Number,
+  priceEUR: t.Number,
   salePercentage: t.maybe(t.Number),
   currency: t.maybe(t.String),
   status: t.enums.of(['sold_out', 'available', 'on_sale', 'unavailable', 'raffle_open', 'restock']),
@@ -17,7 +19,10 @@ const Offer = t.struct({
   displayWhatsNew: t.maybe(t.Boolean)
 }, {
   defaultProps: {
-    displayWhatsNew: false
+    displayWhatsNew: false,
+    priceUSD: 0,
+    priceGBP: 0,
+    priceEUR: 0
   }
 })
 

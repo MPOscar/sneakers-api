@@ -27,12 +27,12 @@ const filterMappings = {
   },
   minPrice: (value) => {
     return {
-      filter: { price: { [Op.gte]: parseFloat(value) } }
+      filter: { priceEUR: { [Op.gte]: parseFloat(value) } }
     }
   },
   maxPrice: (value) => {
     return {
-      filter: { price: { [Op.lte]: parseFloat(value) } }
+      filter: { priceEUR: { [Op.lte]: parseFloat(value) } }
     }
   }
 }

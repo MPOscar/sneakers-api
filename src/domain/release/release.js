@@ -14,7 +14,9 @@ const Release = t.struct({
   customized: t.Boolean,
   currency: t.maybe(t.String),
   children: t.maybe(t.Boolean),
-  price: t.Number,
+  priceUSD: t.Number,
+  priceGBP: t.Number,
+  priceEUR: t.Number,
   gender: t.maybe(t.String),
   styleId: t.maybe(t.String),
   brandId: t.maybe(t.String), // gotten from style
@@ -24,7 +26,9 @@ const Release = t.struct({
     customized: false,
     description: '',
     hot: false,
-    price: 0
+    priceUSD: 0,
+    priceGBP: 0,
+    priceEUR: 0
   }
 })
 

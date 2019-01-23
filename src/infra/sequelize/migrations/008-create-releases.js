@@ -31,7 +31,13 @@ module.exports = {
       children: {
         type: Sequelize.BOOLEAN
       },
-      price: {
+      priceUSD: {
+        type: Sequelize.REAL
+      },
+      priceGBP: {
+        type: Sequelize.REAL
+      },
+      priceEUR: {
         type: Sequelize.REAL
       },
       gender: {

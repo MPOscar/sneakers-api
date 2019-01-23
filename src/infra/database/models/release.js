@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     hot: DataTypes.BOOLEAN,
     customized: DataTypes.BOOLEAN,
     children: DataTypes.BOOLEAN,
-    price: DataTypes.REAL,
+    priceUSD: DataTypes.REAL,
+    priceGBP: DataTypes.REAL,
+    priceEUR: DataTypes.REAL,
     gender: DataTypes.STRING,
     mainImage: DataTypes.STRING,
     currency: DataTypes.STRING

@@ -7,6 +7,7 @@ const { database } = container.cradle
 const model = database.models.shops
 const imageModel = database.models.shop_images
 const workingHoursModel = database.models.shop_working_hours
+const countriesRepository = require('./countries_repository')
 
 const createOptions = {
   include: [{
@@ -73,6 +74,10 @@ const getAllImages = async (id) => {
   })
 }
 
+const getCountries = async () => {
+  return countriesRepository.getCountries()
+}
+
 const destroyImage = (id) => imageModel.destroy({ where: { id } })
 
 module.exports = {
@@ -84,5 +89,6 @@ module.exports = {
   getAll,
   destroy,
   getById,
-  create
+  create,
+  getCountries
 }

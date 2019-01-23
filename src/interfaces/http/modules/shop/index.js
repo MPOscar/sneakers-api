@@ -3,6 +3,7 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
+  getCountriesUseCase,
   getAllImagesUseCase,
   updateMainImageUseCase,
   removeImageUseCase,
@@ -42,6 +43,20 @@ module.exports = () => {
  *         type: string
  *         format: uuid
  */
+
+  router
+    .get('/countries', (req, res) => {
+      getCountriesUseCase
+        .getCountries()
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
 
   /**
    * @swagger

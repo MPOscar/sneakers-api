@@ -13,6 +13,7 @@ const createImageUseCase = require('./create_image')
 const removeImageUseCase = require('./delete_image')
 const updateMainImageUseCase = require('./change_main_image')
 const getAllImagesUseCase = require('./getAllImages')
+const getCountriesUseCase = require('./get_countries')
 
 const update = ({ id, body }) => {
   return new Promise(async (resolve, reject) => {
@@ -37,5 +38,6 @@ module.exports = {
   getAllImagesUseCase,
   createImageUseCase,
   removeImageUseCase,
-  updateMainImageUseCase
+  updateMainImageUseCase,
+  getCountriesUseCase
 }

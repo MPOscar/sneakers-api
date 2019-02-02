@@ -130,6 +130,38 @@ module.exports = () => {
         })
     })
   /**
+   * @swagger
+   * /offers/:
+   *   post:
+   *     tags:
+   *       - Offers
+   *     description: Returns a list of offers
+   *     security:
+   *       - JWT: []
+   *     responses:
+   *       200:
+   *         description: An array of offers
+   *         schema:
+   *           type: array
+   *           items:
+   *             $ref: '#/definitions/offer'
+   *       401:
+   *        $ref: '#/responses/Unauthorized'
+
+   */
+  router
+    .post('/search', (req, res) => {
+      getAllUseCase.all(mapQuery(req.body))
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
+  /**
    * Authentication for modifying endpoints
    */
   router.use(auth.authenticate())

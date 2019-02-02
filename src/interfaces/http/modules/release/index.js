@@ -113,7 +113,42 @@ module.exports = () => {
             Fail(error.message))
         })
     })
-  // jwt security
+
+  /**
+   * @swagger
+   * /releases/search:
+   *   post:
+   *     tags:
+   *       - Releases
+   *     description: Returns a list of releases
+   *     security:
+   *       - JWT: []
+   *     responses:
+   *       200:
+   *         description: An array of releases
+   *         schema:
+   *           type: array
+   *           items:
+   *             $ref: '#/definitions/release'
+   *       401:
+   *        $ref: '#/responses/Unauthorized'
+
+   */
+  router
+    .post('/search', (req, res) => {
+      getAllUseCase.all(mapQuery(req.body))
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
+  /**
+   * Authentication for modifying endpoints
+   */
   router.use(auth.authenticate())
   /**
  * @swagger

@@ -26,7 +26,6 @@ module.exports = () => {
  *         type: string
  */
 
-  router.use(auth.authenticate())
   /**
    * @swagger
    * /categories/id:
@@ -58,24 +57,24 @@ module.exports = () => {
         })
     })
   /**
-  * @swagger
-  * /categories:
-  *   get:
-  *     tags:
-  *       - Categories
-  *     description: Returns a list of categories
-  *     security:
-  *       - JWT: []
-  *     responses:
-  *       200:
-  *         description: An array of categories
-  *         schema:
-  *           type: array
-  *           items:
-  *             $ref: '#/definitions/category'
-  *       401:
-  *        $ref: '#/responses/Unauthorized'
-  */
+   * @swagger
+   * /categories:
+   *   get:
+   *     tags:
+   *       - Categories
+   *     description: Returns a list of categories
+   *     security:
+   *       - JWT: []
+   *     responses:
+   *       200:
+   *         description: An array of categories
+   *         schema:
+   *           type: array
+   *           items:
+   *             $ref: '#/definitions/category'
+   *       401:
+   *        $ref: '#/responses/Unauthorized'
+   */
   router
     .get('/', (req, res) => {
       getAllUseCase
@@ -89,6 +88,7 @@ module.exports = () => {
             Fail(error.message))
         })
     })
+  router.use(auth.authenticate())
 
   /**
  * @swagger

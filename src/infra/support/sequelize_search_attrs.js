@@ -6,6 +6,9 @@ const toLikeFilter = (filter) => {
   if (typeof filter === 'number') {
     return filter
   }
+  if (Array.isArray(filter)) {
+    return { [Op.or]: filter }
+  }
   return { [Op.like]: '%' + filter + '%' }
 }
 

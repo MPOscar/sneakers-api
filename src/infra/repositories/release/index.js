@@ -23,7 +23,7 @@ const getOptions = {
 const filterMappings = {
   brandId: (value) => {
     return {
-      filter: { brand: value },
+      filter: { brand: Array.isArray(value) ? { [Op.or]: value } : value },
       model: styleModel
     }
   },

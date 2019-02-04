@@ -54,6 +54,16 @@ const filterMappings = {
     return {
       filter: { priceEUR: { [Op.lte]: value } }
     }
+  },
+  fromDate: (value) => {
+    return {
+      filter: { releaseDate: { [Op.gte]: moment.utc(value) } }
+    }
+  },
+  toDate: (value) => {
+    return {
+      filter: { releaseDate: { [Op.lte]: moment.utc(value) } }
+    }
   }
 }
 

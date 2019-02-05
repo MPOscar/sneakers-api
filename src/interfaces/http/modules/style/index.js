@@ -50,8 +50,6 @@ module.exports = () => {
    *          description: The time it was last updated
    */
 
-  router.use(auth.authenticate())
-
   router
     .get('/popular', (req, res) => {
       getPopularUseCase
@@ -128,6 +126,11 @@ module.exports = () => {
             Fail(error.message))
         })
     })
+
+  /**
+   * Authenticated endpoints
+   */
+  router.use(auth.authenticate())
 
   /**
  * @swagger

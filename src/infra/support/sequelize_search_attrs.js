@@ -12,6 +12,20 @@ const toLikeFilter = (filter) => {
   return { [Op.like]: '%' + filter + '%' }
 }
 
+const updateFiltersInIncludes = (attrs, filterObject) => {
+  attrs.include.forEach((subModel) => {
+    if (subModel.model === filterObject.model) {
+      if (!subModel.where) {
+        subModel.where = {}
+      }
+      Object.assign(subModel.where, filterObject.filter)
+    } else if (subModel.include && Array.isArray(subModel.include)) {
+      // Update submodel filters
+      updateFiltersInIncludes(subModel, filterObject)
+    }
+  })
+}
+
 const toSequelizeSearch = (attrs, selectFields, searchParams, filterMappings) => {
   Object.assign(attrs, {
     attributes: selectFields,
@@ -28,19 +42,13 @@ const toSequelizeSearch = (attrs, selectFields, searchParams, filterMappings) =>
         if (!filterObject.model) {
           Object.assign(newFilters, filterObject.filter)
         } else {
-          attrs.include.forEach((subModel) => {
-            if (subModel.model === filterObject.model) {
-              if (!subModel.where) {
-                subModel.where = {}
-              }
-              Object.assign(subModel.where, filterObject.filter)
-            }
-          })
+          updateFiltersInIncludes(attrs, filterObject)
         }
       } else {
         newFilters[key] = toLikeFilter(searchParams.filter[key])
       }
     })
+    console.log(JSON.stringify(attrs))
     Object.assign(attrs, { where: newFilters })
   }
   return attrs

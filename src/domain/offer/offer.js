@@ -16,7 +16,8 @@ const Offer = t.struct({
   raffle: t.Boolean,
   raffleStart: t.maybe(t.String),
   raffleEnd: t.maybe(t.String),
-  displayWhatsNew: t.maybe(t.Boolean)
+  displayWhatsNew: t.maybe(t.Boolean),
+  release: t.maybe(t.Object)
 }, {
   defaultProps: {
     displayWhatsNew: false,

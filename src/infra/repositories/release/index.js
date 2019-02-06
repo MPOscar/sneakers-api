@@ -27,6 +27,12 @@ const filterMappings = {
       model: styleModel
     }
   },
+  categoryId: (value) => {
+    return {
+      filter: { category: Array.isArray(value) ? { [Op.or]: value } : value },
+      model: styleModel
+    }
+  },
   outdated: (value) => {
     const date = new Date(moment.utc().format('YYYY-MM-DD'))
     return {

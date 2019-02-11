@@ -59,11 +59,14 @@ module.exports = (model, toEntity, options = {}) => {
 
   const destroy = (id) => model.destroy({ where: { id } })
 
+  const destroyAll = () => model.destroy({ where: { } })
+
   return {
     getAll,
     create,
     update,
     destroy,
+    destroyAll,
     getById
   }
 }

@@ -12,7 +12,7 @@ const Offer = t.struct({
   status: t.enums.of(['sold_out', 'available', 'on_sale', 'unavailable', 'raffle_open', 'restock']),
   shipping: t.enums.of(['worldwide', 'unavailable']),
   description: t.String,
-  links: t.maybe(t.list(t.String)),
+  links: t.maybe(t.list(t.Object)),
   raffle: t.Boolean,
   raffleStart: t.maybe(t.String),
   raffleEnd: t.maybe(t.String),
@@ -23,7 +23,8 @@ const Offer = t.struct({
     displayWhatsNew: false,
     priceUSD: 0,
     priceGBP: 0,
-    priceEUR: 0
+    priceEUR: 0,
+    links: []
   }
 })
 

@@ -28,15 +28,17 @@ const updateFiltersInIncludes = (attrs, filterObject) => {
 
 const toSequelizeSearch = (attrs, selectFields, searchParams, filterMappings) => {
   Object.assign(attrs, {
-    attributes: selectFields,
     offset: searchParams.pagination.offset || 0,
     limit: searchParams.pagination.limit || 1000000,
     order: [[searchParams.order.field || 'createdAt', searchParams.order.type || 'DESC']]
   })
+  if (selectFields) {
+    Object.assign(attrs, { attributes: selectFields })
+  }
   if (searchParams.filter && searchParams.filter !== {}) {
     var newFilters = {}
     Object.keys(searchParams.filter).forEach((key) => {
-      if (filterMappings[key]) {
+      if (filterMappings && filterMappings[key]) {
         let filterCallback = filterMappings[key]
         let filterObject = filterCallback(searchParams.filter[key])
         if (!filterObject.model) {
@@ -48,7 +50,6 @@ const toSequelizeSearch = (attrs, selectFields, searchParams, filterMappings) =>
         newFilters[key] = toLikeFilter(searchParams.filter[key])
       }
     })
-    console.log(JSON.stringify(attrs))
     Object.assign(attrs, { where: newFilters })
   }
   return attrs

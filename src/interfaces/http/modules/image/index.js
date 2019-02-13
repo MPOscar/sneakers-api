@@ -7,7 +7,7 @@ module.exports = () => {
   const { auth, response: { Success }, upload } = container.cradle
   router.use(auth.authenticate())
   router.post('/', upload.image, function (req, res, next) {
-    var baseUrl = req.protocol + '://' + req.get('host') + '/api/images/'
+    var baseUrl = process.env.IMAGE_URL || 'http://localhost:3000/api/images/'
     res.status(Status.OK).json(Success({ url: (baseUrl + req.file.filename) }))
   })
   return router

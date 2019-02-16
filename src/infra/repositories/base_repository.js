@@ -14,8 +14,8 @@ module.exports = (model, toEntity, options = {}) => {
     if (options.getOptionsCallback) {
       Object.assign(attrs, options.getOptionsCallback(searchParams))
     }
-    attrs = toSequelizeSearch(attrs, selectFields, searchParams, options.filterMappings)
-    return model.findAndCountAll(attrs).then((result) => {
+    let searchAttrs = toSequelizeSearch(attrs, selectFields, searchParams, options.filterMappings)
+    return model.findAndCountAll(searchAttrs).then((result) => {
       const rows = result.rows.map((data) => {
         const { dataValues } = data
         return toEntity(dataValues)
@@ -28,6 +28,9 @@ module.exports = (model, toEntity, options = {}) => {
     const getAttrs = { where: { id: id }, attributes: attrs }
     if (options && options.getOptions) {
       Object.assign(getAttrs, options.getOptions)
+    }
+    if (options.getOptionsCallback) {
+      Object.assign(getAttrs, options.getOptionsCallback({}))
     }
     return model.findOne(getAttrs).then((entity) => {
       if (!entity) {
@@ -49,6 +52,20 @@ module.exports = (model, toEntity, options = {}) => {
     })
   }
 
+  const bulkCreate = (elements) => {
+    if (elements && Array.isArray(elements) && elements.length > 0) {
+      elements = elements.map((element) => { toEntity(element) })
+    }
+    if (options && options.createOptions) {
+      return model.bulkCreate(elements, options.createOptions).then((models) => {
+        return models
+      })
+    }
+    return model.bulkCreate(elements).then((models) => {
+      return models
+    })
+  }
+
   const update = (domain, id) => {
     if (options && options.updateOptions) {
       Object.assign(options.updateOptions, { where: { id } })
@@ -64,6 +81,7 @@ module.exports = (model, toEntity, options = {}) => {
   return {
     getAll,
     create,
+    bulkCreate,
     update,
     destroy,
     destroyAll,

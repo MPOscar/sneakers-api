@@ -61,5 +61,17 @@ describe('Get all offers', () => {
           done(err)
         })
     })
+
+    it('should list the offers', (done) => {
+      request.get(`${BASE_URI}/offers`)
+        .set('Authorization', `Bearer ${global.token}`)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body).to.include.keys('data')
+          expect(res.body.data).to.be.an('Array')
+          expect(res.body.data.length).to.be.equal(1)
+          done(err)
+        })
+    })
   })
 })

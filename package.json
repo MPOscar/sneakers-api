@@ -8,6 +8,7 @@
     "npm": ">=5"
   },
   "scripts": {
+    "local": "NODE_PATH=. NODE_ENV=development node index.js",
     "dev": "cross-env NODE_PATH=. NODE_ENV=development nodemon",
     "gc": "git-cz",
     "start": "node cluster.js",

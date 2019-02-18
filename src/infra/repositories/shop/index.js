@@ -16,13 +16,15 @@ const createOptions = {
   }]
 }
 const updateOptions = createOptions
-const getOptions = {
-  include: [{
-    model: workingHoursModel,
-    as: 'workingHours',
-    attributes: ['dayOfWeek', 'openHour', 'closeHour'],
-    order: [[ 'dayOfWeek', 'ASC' ]]
-  }]
+const getOptionsCallback = (params) => {
+  return {
+    include: [{
+      model: workingHoursModel,
+      as: 'workingHours',
+      attributes: ['dayOfWeek', 'openHour', 'closeHour'],
+      order: [['dayOfWeek', 'ASC']]
+    }]
+  }
 }
 
 const {
@@ -30,8 +32,9 @@ const {
   getAll,
   destroy,
   getById,
-  create
-} = BaseRepository(model, Shop, { createOptions, updateOptions, getOptions })
+  create,
+  destroyAll
+} = BaseRepository(model, Shop, { createOptions, updateOptions, getOptionsCallback })
 
 const createImages = async (id, images) => {
   const release = await model.findOne({
@@ -90,5 +93,6 @@ module.exports = {
   destroy,
   getById,
   create,
+  destroyAll,
   getCountries
 }

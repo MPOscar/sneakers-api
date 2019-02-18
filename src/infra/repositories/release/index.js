@@ -12,12 +12,14 @@ const moment = require('moment')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 
-const getOptions = {
-  include: [
-    { model: releaseImageModel, as: 'images' },
-    { model: styleModel, as: 'style', attributes: [ 'id', 'brand', 'category' ] }
-  ],
-  distinct: true
+const getOptionsCallback = (params) => {
+  return {
+    include: [
+      { model: releaseImageModel, as: 'images' },
+      { model: styleModel, as: 'style', attributes: [ 'id', 'brand', 'category' ] }
+    ],
+    distinct: true
+  }
 }
 
 const filterMappings = {
@@ -73,7 +75,7 @@ const filterMappings = {
   }
 }
 
-const repository = BaseRepository(model, Release, { getOptions, filterMappings })
+const repository = BaseRepository(model, Release, { getOptionsCallback, filterMappings })
 
 /**
  * Associates images to the release

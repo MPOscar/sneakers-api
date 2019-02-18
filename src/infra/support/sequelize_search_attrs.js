@@ -26,6 +26,30 @@ const updateFiltersInIncludes = (attrs, filterObject) => {
   })
 }
 
+const assignFilters = (newAttrs, searchParams, filterMappings) => {
+  let newFilters = {}
+  Object.keys(searchParams.filter).forEach((key) => {
+    if (filterMappings && filterMappings[key]) {
+      let filterCallback = filterMappings[key]
+      let filterObject = filterCallback(searchParams.filter[key])
+      if (!filterObject.model) {
+        Object.keys(filterObject.filter).forEach((filterKey) => {
+          if (!newFilters[filterKey]) {
+            newFilters[filterKey] = filterObject.filter[filterKey]
+          } else {
+            Object.assign(newFilters[filterKey], filterObject.filter[filterKey])
+          }
+        })
+      } else {
+        updateFiltersInIncludes(newAttrs, filterObject)
+      }
+    } else {
+      newFilters[key] = toLikeFilter(searchParams.filter[key])
+    }
+  })
+  Object.assign(newAttrs, { where: newFilters })
+}
+
 const toSequelizeSearch = (attrs, selectFields, searchParams, filterMappings) => {
   let newAttrs = Object.assign({}, attrs)
   Object.assign(newAttrs, {
@@ -37,21 +61,7 @@ const toSequelizeSearch = (attrs, selectFields, searchParams, filterMappings) =>
     Object.assign(newAttrs, { attributes: selectFields })
   }
   if (searchParams.filter && searchParams.filter !== {}) {
-    let newFilters = {}
-    Object.keys(searchParams.filter).forEach((key) => {
-      if (filterMappings && filterMappings[key]) {
-        let filterCallback = filterMappings[key]
-        let filterObject = filterCallback(searchParams.filter[key])
-        if (!filterObject.model) {
-          Object.assign(newFilters, filterObject.filter)
-        } else {
-          updateFiltersInIncludes(newAttrs, filterObject)
-        }
-      } else {
-        newFilters[key] = toLikeFilter(searchParams.filter[key])
-      }
-    })
-    Object.assign(newAttrs, { where: newFilters })
+    assignFilters(newAttrs, searchParams, filterMappings)
   }
   return newAttrs
 }

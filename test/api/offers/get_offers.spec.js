@@ -32,7 +32,7 @@ describe('Get all offers', () => {
       }))
       .then((release) => {
         releaseId = release.id
-        return repository.create({
+        return repository.bulkCreate([{
           releaseId: releaseId,
           priceUSD: 90,
           priceEUR: 90,
@@ -40,11 +40,41 @@ describe('Get all offers', () => {
           salePercentage: 1,
           status: 'available',
           shipping: 'worldwide',
-          description: 'new description',
+          description: 'test offer 1',
           raffle: false
-        })
+        }, {
+          releaseId: releaseId,
+          priceUSD: 90,
+          priceEUR: 90,
+          priceGBP: 90,
+          salePercentage: 1,
+          status: 'available',
+          shipping: 'worldwide',
+          description: 'test offer 2',
+          raffle: false
+        }, {
+          releaseId: releaseId,
+          priceUSD: 90,
+          priceEUR: 90,
+          priceGBP: 90,
+          salePercentage: 1,
+          status: 'available',
+          shipping: 'worldwide',
+          description: 'test offer 3',
+          raffle: false
+        }, {
+          releaseId: releaseId,
+          priceUSD: 90,
+          priceEUR: 90,
+          priceGBP: 90,
+          salePercentage: 1,
+          status: 'available',
+          shipping: 'worldwide',
+          description: 'test offer 4',
+          raffle: false
+        }])
       })
-      .then((entity) => {
+      .then((offers) => {
         done()
       })
   })
@@ -57,19 +87,19 @@ describe('Get all offers', () => {
         .end((err, res) => {
           expect(res.body).to.include.keys('data')
           expect(res.body.data).to.be.an('Array')
-          expect(res.body.data.length).to.be.equal(1)
+          expect(res.body.data.length).to.be.equal(4)
           done(err)
         })
     })
 
-    it('should list the offers', (done) => {
-      request.get(`${BASE_URI}/offers`)
+    it('should list the elements in an page', (done) => {
+      request.get(`${BASE_URI}/offers?offset=1&limit=2`)
         .set('Authorization', `Bearer ${global.token}`)
         .expect(200)
         .end((err, res) => {
           expect(res.body).to.include.keys('data')
           expect(res.body.data).to.be.an('Array')
-          expect(res.body.data.length).to.be.equal(1)
+          expect(res.body.data.length).to.be.equal(2)
           done(err)
         })
     })

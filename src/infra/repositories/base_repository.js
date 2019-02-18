@@ -53,16 +53,13 @@ module.exports = (model, toEntity, options = {}) => {
   }
 
   const bulkCreate = (elements) => {
-    if (elements && Array.isArray(elements) && elements.length > 0) {
-      elements = elements.map((element) => { toEntity(element) })
-    }
     if (options && options.createOptions) {
       return model.bulkCreate(elements, options.createOptions).then((models) => {
-        return models
+        return models.map((element) => { toEntity(element) })
       })
     }
     return model.bulkCreate(elements).then((models) => {
-      return models
+      return models.map((element) => { toEntity(element) })
     })
   }
 

@@ -8,7 +8,7 @@ const logger = container.resolve('logger')
 /**
  * turn off logger since we are testing on winston
  */
-logger.transports['console'].silent = false
+logger.transports['console'].silent = true
 logger.transports['file'].silent = true
 
 global.expect = chai.expect

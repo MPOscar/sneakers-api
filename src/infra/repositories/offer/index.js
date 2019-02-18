@@ -19,23 +19,25 @@ const createOptions = {
 }
 const updateOptions = createOptions
 
-const getOptions = {
-  include: [ {
-    model: releasesModel,
-    as: 'release',
-    attributes: ['id', 'sku', 'collectionId', 'styleId', 'hot'],
-    required: true,
-    include: [ {
-      model: styleModel,
-      as: 'style',
-      attributes: [ 'id', ['category', 'categoryId'], ['brand', 'brandId'] ],
-      required: true
-    } ]
-  }, {
-    model: offersLinksModel,
-    as: 'links'
-  }],
-  distinct: true
+const getOptionsCallback = (params) => {
+  return {
+    include: [{
+      model: releasesModel,
+      as: 'release',
+      attributes: ['id', 'sku', 'collectionId', 'styleId', 'hot'],
+      required: true,
+      include: [{
+        model: styleModel,
+        as: 'style',
+        attributes: ['id', ['category', 'categoryId'], ['brand', 'brandId']],
+        required: true
+      }]
+    }, {
+      model: offersLinksModel,
+      as: 'links'
+    }],
+    distinct: true
+  }
 }
 
 const filterMappings = {
@@ -63,6 +65,12 @@ const filterMappings = {
       model: releasesModel
     }
   },
+  styleId: (value) => {
+    return {
+      filter: { styleId: value },
+      model: releasesModel
+    }
+  },
   minPrice: (value) => {
     return {
       filter: { priceEUR: { [Op.gte]: parseFloat(value) } }
@@ -75,7 +83,7 @@ const filterMappings = {
   }
 }
 
-const OfferRepository = BaseRepository(database.models.offers, Offer, { createOptions, updateOptions, getOptions, filterMappings })
+const OfferRepository = BaseRepository(database.models.offers, Offer, { createOptions, updateOptions, getOptionsCallback, filterMappings })
 
 const updateLinks = async (id, links) => {
   const offer = await model.findOne({

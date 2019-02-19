@@ -23,7 +23,8 @@ describe('Create a shop', () => {
           currency: 'EUR',
           rank: 5,
           region: 'Europe',
-          country: 'France'
+          country: 'France',
+          showOnRegion: 'Europe'
         })
         .expect(200)
         .end((err, res) => {

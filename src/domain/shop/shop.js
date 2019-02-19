@@ -16,6 +16,7 @@ const Shop = makeEntity(t.struct({
   mainImage: t.maybe(t.String),
   currency: t.maybe(t.String),
   parent: t.maybe(t.String),
+  showOnRegion: t.maybe(t.enums.of(['USA', 'Europe', 'Marketplaces'])),
   isParent: t.maybe(t.Boolean),
   rank: t.maybe(t.Number),
   workingHours: t.maybe(t.list(ShopWorkingHours))

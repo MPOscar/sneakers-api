@@ -37,6 +37,9 @@ module.exports = {
       trackingListBaseUrl: {
         type: Sequelize.STRING
       },
+      showOnRegion: {
+        type: Sequelize.STRING
+      },
       mainImage: {
         type: Sequelize.STRING
       },

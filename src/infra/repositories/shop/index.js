@@ -33,7 +33,8 @@ const {
   destroy,
   getById,
   create,
-  destroyAll
+  destroyAll,
+  bulkCreate
 } = BaseRepository(model, Shop, { createOptions, updateOptions, getOptionsCallback })
 
 const createImages = async (id, images) => {
@@ -94,5 +95,6 @@ module.exports = {
   getById,
   create,
   destroyAll,
+  bulkCreate,
   getCountries
 }

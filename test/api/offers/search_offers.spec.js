@@ -92,7 +92,8 @@ describe('Get all offers with advance filter by POST', () => {
       status: 'available',
       shipping: 'worldwide',
       description: 'test offer 4',
-      raffle: false
+      raffle: false,
+      displayWhatsNew: true
     }])
 
     // NIKE brand, style, release and 4 offers
@@ -141,7 +142,8 @@ describe('Get all offers with advance filter by POST', () => {
       status: 'available',
       shipping: 'worldwide',
       description: 'test offer 2',
-      raffle: false
+      raffle: false,
+      displayWhatsNew: true
     }, {
       releaseId: nikeRelease.id,
       priceUSD: 15,
@@ -161,7 +163,8 @@ describe('Get all offers with advance filter by POST', () => {
       status: 'available',
       shipping: 'worldwide',
       description: 'test offer 4',
-      raffle: false
+      raffle: false,
+      displayWhatsNew: true
     }])
   }
 
@@ -277,6 +280,23 @@ describe('Get all offers with advance filter by POST', () => {
           filter: {
             minPrice: 80,
             maxPrice: 100
+          }
+        })
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body).to.include.keys('data')
+          expect(res.body.data).to.be.an('Array')
+          expect(res.body.data.length).to.be.equal(3)
+          done(err)
+        })
+    })
+
+    it('should list the whatsnew offers', (done) => {
+      request.post(`${BASE_URI}/offers/search`)
+        .set('Authorization', `Bearer ${global.token}`)
+        .send({
+          filter: {
+            displayWhatsNew: 1
           }
         })
         .expect(200)

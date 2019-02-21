@@ -147,6 +147,39 @@ module.exports = () => {
         })
     })
   /**
+   * @swagger
+   * /releases/:
+   *   get:
+   *     tags:
+   *       - Releases
+   *     description: Returns a list of releases
+   *     security:
+   *       - JWT: []
+   *     responses:
+   *       200:
+   *         description: An array of releases
+   *         schema:
+   *           type: array
+   *           items:
+   *             $ref: '#/definitions/release'
+   *       401:
+   *        $ref: '#/responses/Unauthorized'
+
+   */
+  router
+    .get('/:id/images', (req, res) => {
+      getAllImagesUseCase
+        .getAllImages(req.params.id)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
+  /**
    * Authentication for modifying endpoints
    */
   router.use(auth.authenticate())
@@ -399,39 +432,6 @@ module.exports = () => {
         .updateMainImage(req.params.id, req.body.mainImage)
         .then(() => {
           res.status(Status.OK).json(Success({}))
-        })
-        .catch((error) => {
-          logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
-        })
-    })
-  /**
-   * @swagger
-   * /releases/:
-   *   get:
-   *     tags:
-   *       - Releases
-   *     description: Returns a list of releases
-   *     security:
-   *       - JWT: []
-   *     responses:
-   *       200:
-   *         description: An array of releases
-   *         schema:
-   *           type: array
-   *           items:
-   *             $ref: '#/definitions/release'
-   *       401:
-   *        $ref: '#/responses/Unauthorized'
-
-   */
-  router
-    .get('/:id/images', (req, res) => {
-      getAllImagesUseCase
-        .getAllImages(req.params.id)
-        .then(data => {
-          res.status(Status.OK).json(Success(data))
         })
         .catch((error) => {
           logger.error(error) // we still need to log every error for debugging

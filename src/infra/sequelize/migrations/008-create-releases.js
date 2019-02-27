@@ -31,6 +31,9 @@ module.exports = {
       children: {
         type: Sequelize.BOOLEAN
       },
+      hiddenDashboard: {
+        type: Sequelize.BOOLEAN
+      },
       priceUSD: {
         type: Sequelize.REAL
       },

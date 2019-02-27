@@ -138,11 +138,19 @@ const getPastReleases = async (date) => {
  */
 const destroyImage = (id) => releaseImageModel.destroy({ where: { id } })
 
+/**
+ * Update hiddenDashboard
+ * @param id
+ * @returns {*}
+ */
+const setHiddenDashboard = (id, hiddenDashboard) => model.update({ hiddenDashboard: hiddenDashboard }, { where: { id } })
+
 Object.assign(repository, {
   createImages,
   destroyImage,
   getAllImages,
-  getPastReleases
+  getPastReleases,
+  setHiddenDashboard
 })
 
 module.exports = repository

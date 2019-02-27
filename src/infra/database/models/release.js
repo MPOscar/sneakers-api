@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     releaseDate: DataTypes.DATE,
     hot: DataTypes.BOOLEAN,
     customized: DataTypes.BOOLEAN,
+    hiddenDashboard: DataTypes.BOOLEAN,
     children: DataTypes.BOOLEAN,
     priceUSD: DataTypes.REAL,
     priceGBP: DataTypes.REAL,

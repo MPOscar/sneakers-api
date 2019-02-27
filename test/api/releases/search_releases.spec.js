@@ -59,7 +59,8 @@ describe('Get all releases', () => {
       releaseDate: '2019-03-10',
       color: 'blue',
       customized: false,
-      styleId: adidasStyle.id
+      styleId: adidasStyle.id,
+      hiddenDashboard: true
     }, {
       name: 'Adidas Release 2',
       sku: 'abc-asd-123',
@@ -72,7 +73,8 @@ describe('Get all releases', () => {
       releaseDate: '2019-02-25',
       color: 'blue',
       customized: false,
-      styleId: adidasStyle.id
+      styleId: adidasStyle.id,
+      hiddenDashboard: true
     }, {
       name: 'Nike Release 1',
       sku: 'abc-asd-123',
@@ -85,7 +87,8 @@ describe('Get all releases', () => {
       releaseDate: '2019-02-19',
       color: 'blue',
       customized: false,
-      styleId: nikeStyle.id
+      styleId: nikeStyle.id,
+      hiddenDashboard: false
     }, {
       name: 'Nike Release 2',
       sku: 'abc-asd-123',
@@ -98,7 +101,8 @@ describe('Get all releases', () => {
       releaseDate: '2019-02-20',
       color: 'blue',
       customized: false,
-      styleId: nikeStyle.id
+      styleId: nikeStyle.id,
+      hiddenDashboard: false
     }, {
       name: 'Nike Release 3',
       sku: 'abc-asd-123',
@@ -111,7 +115,8 @@ describe('Get all releases', () => {
       releaseDate: '2019-03-10',
       color: 'blue',
       customized: false,
-      styleId: nikeStyle.id
+      styleId: nikeStyle.id,
+      hiddenDashboard: false
     }
     ])
   }
@@ -218,6 +223,26 @@ describe('Get all releases', () => {
           expect(res.body.data.length).to.be.equal(3)
           res.body.data.forEach((release) => {
             expect(release.styleId).to.be.equal(nikeStyle.id)
+          })
+          done(err)
+        })
+    })
+
+    it('should filter by not hidden releases', (done) => {
+      request.post(`${BASE_URI}/releases/search`)
+        .set('Authorization', `Bearer ${global.token}`)
+        .send({
+          filter: {
+            hiddenDashboard: 0
+          }
+        })
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body).to.include.keys('data')
+          expect(res.body.data).to.be.an('Array')
+          expect(res.body.data.length).to.be.equal(3)
+          res.body.data.forEach((release) => {
+            expect(release.hiddenDashboard).to.be.equal(false)
           })
           done(err)
         })

@@ -1,7 +1,7 @@
 const repository = require('src/infra/repositories/release')
 const { Release } = require('src/domain/release')
 
-const attrs = ['id', 'name', 'description', 'styleId', 'collectionId', 'sku', 'hot', 'children', 'priceEUR', 'priceGBP', 'priceUSD', 'gender', 'color', 'mainImage', 'releaseDate', 'customized', 'createdAt', 'updatedAt']
+const attrs = ['id', 'name', 'description', 'styleId', 'collectionId', 'sku', 'hot', 'children', 'priceEUR', 'priceGBP', 'priceUSD', 'gender', 'color', 'mainImage', 'releaseDate', 'customized', 'hiddenDashboard', 'createdAt', 'updatedAt']
 const {
   getOneUseCase,
   createUseCase,
@@ -14,6 +14,7 @@ const removeImageUseCase = require('./delete_image')
 const updateMainImageUseCase = require('./change_main_image')
 const getAllImagesUseCase = require('./getAllImages')
 const getOutdatedUseCase = require('./get_outdated')
+const setHiddenUseCase = require('./set_hidden')
 
 module.exports = {
   getOneUseCase,
@@ -25,5 +26,6 @@ module.exports = {
   createImageUseCase,
   removeImageUseCase,
   updateMainImageUseCase,
-  getOutdatedUseCase
+  getOutdatedUseCase,
+  setHiddenUseCase
 }

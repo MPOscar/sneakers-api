@@ -3,6 +3,7 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
+  setHiddenUseCase,
   getAllImagesUseCase,
   updateMainImageUseCase,
   removeImageUseCase,
@@ -430,6 +431,55 @@ module.exports = () => {
     .patch('/:id/mainImage', (req, res) => {
       updateMainImageUseCase
         .updateMainImage(req.params.id, req.body.mainImage)
+        .then(() => {
+          res.status(Status.OK).json(Success({}))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
+  /**
+   * @swagger
+   * /releases/id/hiddenDashboard:
+   *   patch:
+   *     tags:
+   *       - Releases
+   *     description: Change release main image
+   *     security:
+   *       - JWT: []
+   *     produces:
+   *       - application/json
+   *     parameters:
+   *       - name: id
+   *         in: path
+   *         required: true
+   *         description: Release's ID to update
+   *         type: string
+   *       - name: body
+   *         description: Release's Entity
+   *         in: body
+   *         required: true
+   *         type: string
+   *         schema:
+   *           hiddenDashboard:
+   *            type: string
+   *            format: uuid
+   *     responses:
+   *       200:
+   *         description: Successfully Updated
+   *         schema:
+   *           $ref: '#/definitions/release'
+   *       401:
+   *         $ref: '#/responses/Unauthorized'
+   *       400:
+   *         $ref: '#/responses/BadRequest'
+   */
+  router
+    .patch('/:id/hiddenDashboard', (req, res) => {
+      setHiddenUseCase
+        .setHiddenDashboard(req.params.id)
         .then(() => {
           res.status(Status.OK).json(Success({}))
         })

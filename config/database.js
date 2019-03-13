@@ -35,17 +35,10 @@ module.exports = {
     }
   },
   production: {
-    'url': process.env.DATABASE_URL_PRODUCTION,
+    'url': process.env.RDS_CONNECTION_URL || 'mysql://dotzerodev:E7LCYGp6@moresneakers.ckt3wwdf3bjk.eu-west-3.rds.amazonaws.com/more_sneakers',
     'dialect': 'mysql',
     'define': {
       'underscored': false
-    },
-    'ssl': true,
-    'dialectOptions': {
-      'ssl': {
-        'require': true
-      },
-      'useUTC': true
     }
   }
 }

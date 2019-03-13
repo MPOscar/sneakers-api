@@ -1,4 +1,4 @@
-*.log
+  *.log
 node_modules
 .env
 npm-debug.*
@@ -9,3 +9,8 @@ debug.log
 coverage
 public/images/*
 .idea/*
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

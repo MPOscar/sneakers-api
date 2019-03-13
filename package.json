@@ -8,10 +8,10 @@
     "npm": ">=5"
   },
   "scripts": {
-    "local": "NODE_PATH=. NODE_ENV=development node index.js",
-    "dev": "cross-env NODE_PATH=. NODE_ENV=development nodemon",
+    "start-dev": "cross-env NODE_PATH=. NODE_ENV=development nodemon",
+    "start-prod": "NODE_PATH=. NODE_ENV=production node index.js",
+    "start-cluster": "node cluster.js",
     "gc": "git-cz",
-    "start": "node cluster.js",
     "test": "standard --verbose | snazzy && npm run test:cov",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "test:cov": "cross-env NODE_PATH=. NODE_ENV=test istanbul cover node_modules/mocha/bin/_mocha -- --exit",
@@ -25,14 +25,13 @@
     "lint": "standard --verbose | snazzy",
     "lint:staged": "lint-staged",
     "fresh-install": "rm -rf node_modules && npm cache clean --force && npm install",
-    "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release"
   },
   "lint-staged": {
     "*.js": "lint"
   },
   "pre-commit": "lint:staged",
-  "author": "Joshua C Alpuerto <joshuacalpuerto@gmail.com>",
+  "author": "soldev",
   "license": "ISC",
   "dependencies": {
     "awilix": "3.0.7",
@@ -57,9 +56,9 @@
     "passport-jwt": "4.0.0",
     "path": "^0.12.7",
     "pg": "7.4.1",
-    "pm2": "2.10.3",
     "ramda": "0.25.0",
     "sequelize": "4.37.6",
+    "sequelize-cli": "^5.4.0",
     "swagger-jsdoc": "1.9.7",
     "tcomb": "3.2.25",
     "uniqid": "^5.0.3",
@@ -80,8 +79,7 @@
     "semantic-release": "15.4.1",
     "sinon": "5.0.7",
     "sinon-chai": "3.0.0",
-    "supertest": "3.0.0",
-    "travis-deploy-once": "5.0.0"
+    "supertest": "3.0.0"
   },
   "standard": {
     "ignore": [
@@ -99,7 +97,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/joshuaalpuerto/node-ddd-boilerplate.git"
+    "url": "https://gitlab.com/solutiondeveloppeur/moresneakers.git"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"

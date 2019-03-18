@@ -26,13 +26,7 @@ module.exports = ({ config, logger, database }) => {
   const apiRouter = Router()
 
   apiRouter
-    .use(cors({
-      origin: [
-        process.env.CORS_ORIGIN_URL || '*'
-      ],
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-      allowedHeaders: ['Content-Type', 'Authorization']
-    }))
+    .use(cors())
     .use(bodyParser.json())
     .use(compression())
 

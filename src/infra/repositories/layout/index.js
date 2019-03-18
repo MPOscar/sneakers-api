@@ -17,6 +17,13 @@ const {
 } = require('./mapper')
 const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
 
+const {
+  createOurPartnersTab,
+  getOurPartnersTabs,
+  updateOurPartnersTab,
+  deleteOurPartnersTab
+} = require('./ourpartners')(database)
+
 const getByPage = async (page) => {
   let entity = await model.findOne({ where: { page: page } })
   return unmap(entity)
@@ -114,5 +121,9 @@ module.exports = {
   updateHeading,
   getHeading,
   updateHeader,
-  getHeader
+  getHeader,
+  createOurPartnersTab,
+  getOurPartnersTabs,
+  updateOurPartnersTab,
+  deleteOurPartnersTab
 }

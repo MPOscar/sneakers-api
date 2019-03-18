@@ -10,7 +10,10 @@ const {
   getLayoutSliderUseCase,
   setLayoutSliderUseCase,
   getLayoutUseCase,
-  setLayoutUseCase
+  setLayoutUseCase,
+  createOurPartnersTabUseCase,
+  updateOurPartnersTabUseCase,
+  deleteOurPartnersTabUseCase
 } = require('src/app/layout')
 
 module.exports = () => {
@@ -85,10 +88,50 @@ module.exports = () => {
         })
     })
 
+
   /**
    * Authentication for modifying endpoints
    */
   router.use(auth.authenticate())
+
+  router
+    .post('/:page/ourpartners_tabs', (req, res, next) => {
+      createOurPartnersTabUseCase
+        .createOurpartnersTab(req.params.page, req.body)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          next(error)
+        })
+    })
+
+  router
+    .put('/:page/ourpartners_tabs/:id', (req, res, next) => {
+      updateOurPartnersTabUseCase
+        .updateOurpartnersTab(req.params.page, req.params.id, req.body)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          next(error)
+        })
+    })
+
+  router
+    .delete('/:page/ourpartners_tabs/:id', (req, res, next) => {
+      deleteOurPartnersTabUseCase
+        .deleteOurpartnersTab(req.params.id)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          next(error)
+        })
+    })
 
   router
     .put('/', (req, res, next) => {

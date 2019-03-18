@@ -88,7 +88,6 @@ module.exports = () => {
         })
     })
 
-
   /**
    * Authentication for modifying endpoints
    */

@@ -11,6 +11,7 @@ const {
   setLayoutSliderUseCase,
   getLayoutUseCase,
   setLayoutUseCase,
+  getOurPartnersTabsUseCase,
   createOurPartnersTabUseCase,
   updateOurPartnersTabUseCase,
   deleteOurPartnersTabUseCase
@@ -79,6 +80,19 @@ module.exports = () => {
     .get('/:page/header', (req, res, next) => {
       getLayoutHeaderUseCase
         .getLayoutHeader(req.params.page)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          next(error)
+        })
+    })
+
+  router
+    .get('/:page/ourpartners_tabs', (req, res, next) => {
+      getOurPartnersTabsUseCase
+        .getOurpartnersTabs(req.params.page)
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })

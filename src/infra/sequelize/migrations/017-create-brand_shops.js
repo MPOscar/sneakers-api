@@ -18,12 +18,15 @@ module.exports = {
       },
       brandId: {
         type: Sequelize.UUID,
-        onDelete: 'CASCADE',
         references: {
           model: 'brands',
           key: 'id'
         },
-        allowNull: false
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      displayOnBrands: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,

@@ -5,12 +5,14 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4
-    }
+    },
+    displayOnBrands: DataTypes.BOOLEAN
   }, {
     underscored: false
   })
   brandShops.associate = function (models) {
     // associations can be defined here
+    brandShops.belongsTo(models.brands)
   }
   return brandShops
 }

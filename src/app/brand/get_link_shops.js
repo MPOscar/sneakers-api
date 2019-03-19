@@ -5,11 +5,9 @@ const getLinkedShops = (id) => {
     .resolve()
     .then(() =>
       repository.getShops(id)
-    ).then((shops) =>
-      shops.map((shop) => shop.id)
-    )
-    .catch(error => {
-      throw new Error(error)
+    ).then((shops) => {
+      // shops.map((shop) => shop.id)
+      return shops
     })
 }
 

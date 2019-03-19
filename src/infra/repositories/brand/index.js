@@ -1,4 +1,4 @@
-const { Brand } = require('src/domain/brand')
+const { Brand, BrandShops } = require('src/domain/brand')
 const BaseRepository = require('../base_repository')
 const container = require('src/container') // we have to get the DI
 const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
@@ -7,6 +7,7 @@ const { database } = container.cradle
 const model = database.models.brands
 const styleModel = database.models.styles
 const releaseModel = database.models.releases
+const brandShopsModel = database.models.brand_shops
 // const Sequelize = require('sequelize')
 
 const getOptionsCallback = (searchParams) => {
@@ -39,7 +40,8 @@ const setShops = async (id, shops) => {
   if (!entity) {
     throw new EntityNotFound()
   }
-  await entity.setShops(shops)
+  let shopsDb = await brandShopsModel.bulkCreate(mapBrandShops(shops))
+  await entity.setShops(shopsDb)
   return shops
 }
 
@@ -54,7 +56,11 @@ const getShops = async (id) => {
   if (!shops) {
     return []
   }
-  return shops
+  return mapBrandShops(shops)
+}
+
+const mapBrandShops = (shops) => {
+  return shops.map(shop => BrandShops(shop))
 }
 
 Object.assign(repository, {

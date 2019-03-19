@@ -13,6 +13,7 @@ const isDate = (date) => {
  * we need to remove undefined array means not required data.
  */
 const cleanData = (entity) => pickBy(notNull, entity)
+
 const cleanDate = (entity) => {
   Object.keys(entity).forEach((key) => {
     if (isDate(entity[key])) {

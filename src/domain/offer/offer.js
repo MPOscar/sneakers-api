@@ -17,10 +17,12 @@ const Offer = t.struct({
   raffleStart: t.maybe(t.String),
   raffleEnd: t.maybe(t.String),
   displayWhatsNew: t.maybe(t.Boolean),
+  displayOnSale: t.maybe(t.Boolean),
   release: t.maybe(t.Object)
 }, {
   defaultProps: {
     displayWhatsNew: false,
+    displayOnSale: false,
     priceUSD: 0,
     priceGBP: 0,
     priceEUR: 0,

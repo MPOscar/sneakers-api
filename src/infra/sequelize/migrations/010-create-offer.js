@@ -42,7 +42,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       displayWhatsNew: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      displayOnSale: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       shopId: {
         type: Sequelize.UUID,

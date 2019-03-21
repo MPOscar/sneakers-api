@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     raffle: DataTypes.BOOLEAN,
     raffleStart: DataTypes.STRING,
     raffleEnd: DataTypes.STRING,
-    displayWhatsNew: DataTypes.BOOLEAN
+    displayWhatsNew: DataTypes.BOOLEAN,
+    displayOnSale: DataTypes.BOOLEAN
   }, {
     underscored: false
   })

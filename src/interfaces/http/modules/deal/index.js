@@ -48,7 +48,7 @@ module.exports = () => {
    *         format: uuid
    */
 
-  router.use(auth.authenticate())
+
   /**
    * @swagger
    * /deals/id:
@@ -112,6 +112,8 @@ module.exports = () => {
             Fail(error.message))
         })
     })
+
+  router.use(auth.authenticate())
 
   /**
  * @swagger

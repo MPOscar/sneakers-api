@@ -11,7 +11,7 @@ module.exports = () => {
   router.post('/', upload.image, function (req, res, next) {
     console.log(req.file)
     const filename = req.file.filename || req.file.key
-    res.status(Status.OK).json(Success({ url: (path.join(baseUrl, filename)) }))
+    res.status(Status.OK).json(Success({ url: (baseUrl + filename) }))
     // res.status(Status.OK).json(Success({ url: req.file.location }))
   })
   return router

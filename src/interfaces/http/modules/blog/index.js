@@ -3,6 +3,9 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
+  getAllImagesUseCase,
+  removeImageUseCase,
+  createImageUseCase,
   changeImageUrlUseCase,
   getOneUseCase,
   createUseCase,
@@ -90,6 +93,40 @@ module.exports = () => {
     .get('/', (req, res) => {
       getAllUseCase
         .all(mapQuery(req.query))
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
+
+  /**
+   * @swagger
+   * /blogs/:
+   *   get:
+   *     tags:
+   *       - Blogs
+   *     description: Returns a list of blogs
+   *     security:
+   *       - JWT: []
+   *     responses:
+   *       200:
+   *         description: An array of blogs
+   *         schema:
+   *           type: array
+   *           items:
+   *             $ref: '#/definitions/blog'
+   *       401:
+   *        $ref: '#/responses/Unauthorized'
+
+   */
+  router
+    .get('/:id/images', (req, res) => {
+      getAllImagesUseCase
+        .getAllImages(req.params.id)
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })
@@ -275,6 +312,87 @@ module.exports = () => {
         })
         .catch((error) => {
           logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
+
+  /**
+   * @swagger
+   * /blogs/id/images:
+   *   post:
+   *     tags:
+   *       - Blogs
+   *     description: Add a new image to a blog
+   *     security:
+   *       - JWT: []
+   *     produces:
+   *       - application/json
+   *     parameters:
+   *       - name: body
+   *         description: Blog's Entity
+   *         in: body
+   *         required: true
+   *         type: string
+   *         schema:
+   *           $ref: '#/definitions/blog'
+   *     responses:
+   *       200:
+   *         description: Successfully Created
+   *         schema:
+   *           $ref: '#/definitions/blog'
+   *       401:
+   *         $ref: '#/responses/Unauthorized'
+   *       400:
+   *         $ref: '#/responses/BadRequest'
+   */
+  router
+    .post('/:id/images', (req, res) => {
+      createImageUseCase
+        .createImage({ id: req.params.id, body: req.body })
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
+
+  /**
+   * @swagger
+   * /blogs/id:
+   *   delete:
+   *     tags:
+   *       - Blogs
+   *     description: Delete Blog
+   *     security:
+   *       - JWT: []
+   *     produces:
+   *       - application/json
+   *     parameters:
+   *       - name: id
+   *         in: path
+   *         required: true
+   *         description: Blog's ID to delete
+   *         type: string
+   *     responses:
+   *       200:
+   *         description: Successfully Deleted
+   *         schema:
+   *           $ref: '#/definitions/blog'
+   *       401:
+   *         $ref: '#/responses/Unauthorized'
+   */
+  router
+    .delete('/:idBlog/images/:idImage', (req, res) => {
+      removeImageUseCase.remove({ id: req.params.idImage })
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error)
           res.status(Status.BAD_REQUEST).json(
             Fail(error.message))
         })

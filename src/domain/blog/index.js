@@ -5,5 +5,6 @@ const transform = (data) => {
 }
 
 const Blog = makeEntity(require('./blog'), transform)
+const BlogImage = makeEntity(require('./blog_image'))
 
-module.exports = { Blog }
+module.exports = { Blog, BlogImage }

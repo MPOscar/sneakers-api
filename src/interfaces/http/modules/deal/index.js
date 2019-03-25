@@ -48,7 +48,6 @@ module.exports = () => {
    *         format: uuid
    */
 
-
   /**
    * @swagger
    * /deals/id:

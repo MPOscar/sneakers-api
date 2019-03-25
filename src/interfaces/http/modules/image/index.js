@@ -1,6 +1,5 @@
 const { Router } = require('express')
 const Status = require('http-status')
-const path = require('path')
 const container = require('src/container')
 const baseUrl = process.env.IMAGE_URL || 'http://localhost:3000/api/images/'
 

@@ -42,6 +42,7 @@ module.exports = ({ config }) => {
 
   const upload = multer({ storage: storage })
   return {
-    image: upload.single('image')
+    image: upload.single('image'),
+    file: upload.single('file')
   }
 }

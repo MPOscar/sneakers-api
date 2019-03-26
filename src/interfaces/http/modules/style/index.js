@@ -128,6 +128,40 @@ module.exports = () => {
     })
 
   /**
+   * @swagger
+   * /styles/:
+   *   get:
+   *     tags:
+   *       - Styles
+   *     description: Returns the list of shops linked to a style
+   *     security:
+   *       - JWT: []
+   *     responses:
+   *       200:
+   *         description: An array of styles
+   *         schema:
+   *           type: array
+   *           items:
+   *             id:
+   *               type: string
+   *       401:
+   *        $ref: '#/responses/Unauthorized'
+
+   */
+  router
+    .get('/:id/shops', (req, res) => {
+      getLinkedShopsUseCase
+        .getLinkedShops(req.params.id)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
+  /**
    * Authenticated endpoints
    */
   router.use(auth.authenticate())
@@ -302,39 +336,5 @@ module.exports = () => {
         })
     })
 
-  /**
-   * @swagger
-   * /styles/:
-   *   get:
-   *     tags:
-   *       - Styles
-   *     description: Returns the list of shops linked to a style
-   *     security:
-   *       - JWT: []
-   *     responses:
-   *       200:
-   *         description: An array of styles
-   *         schema:
-   *           type: array
-   *           items:
-   *             id:
-   *               type: string
-   *       401:
-   *        $ref: '#/responses/Unauthorized'
-
-   */
-  router
-    .get('/:id/shops', (req, res) => {
-      getLinkedShopsUseCase
-        .getLinkedShops(req.params.id)
-        .then(data => {
-          res.status(Status.OK).json(Success(data))
-        })
-        .catch((error) => {
-          logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
-        })
-    })
   return router
 }

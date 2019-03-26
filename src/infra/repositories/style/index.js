@@ -1,4 +1,4 @@
-const { Style } = require('src/domain/style')
+const { Style, StyleShops } = require('src/domain/style')
 const BaseRepository = require('../base_repository')
 const container = require('src/container') // we have to get the DI
 const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
@@ -6,6 +6,7 @@ const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
 const { database } = container.cradle
 const model = database.models.styles
 const releaseModel = database.models.releases
+const styleShopsModel = database.models.style_shops
 const StyleRepository = BaseRepository(model, Style)
 
 const setShops = async (id, shops) => {
@@ -15,7 +16,8 @@ const setShops = async (id, shops) => {
   if (!style) {
     throw new EntityNotFound()
   }
-  await style.setShops(shops)
+  let shopsDb = await styleShopsModel.bulkCreate(mapStyleShops(shops))
+  await style.setShops(shopsDb)
   return shops
 }
 
@@ -30,7 +32,7 @@ const getShops = async (id) => {
   if (!shops) {
     return []
   }
-  return shops
+  return mapStyleShops(shops)
 }
 
 const getPopularStyles = async (brandId) => {
@@ -54,6 +56,10 @@ const getPopularStyles = async (brandId) => {
     return b.releaseCount - a.releaseCount
   })
   return styles.slice(0, 5)
+}
+
+const mapStyleShops = (shops) => {
+  return shops.map(shop => StyleShops(shop))
 }
 
 Object.assign(StyleRepository, {

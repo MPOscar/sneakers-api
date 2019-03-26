@@ -1,10 +1,11 @@
-const { Collection } = require('src/domain/collection')
+const { Collection, CollectionShops } = require('src/domain/collection')
 const BaseRepository = require('../base_repository')
 const container = require('src/container') // we have to get the DI
 // inject database
 const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
 const { database } = container.cradle
 const model = database.models.collections
+const collectionShopsModel = database.models.collection_shops
 
 const setShops = async (id, shops) => {
   const collection = await model.findOne({
@@ -13,7 +14,8 @@ const setShops = async (id, shops) => {
   if (!collection) {
     throw new EntityNotFound()
   }
-  await collection.setShops(shops)
+  let shopsDb = await collectionShopsModel.bulkCreate(mapCollectionShops(shops))
+  await collection.setShops(shopsDb)
   return shops
 }
 
@@ -28,7 +30,7 @@ const getShops = async (id) => {
   if (!shops) {
     return []
   }
-  return shops
+  return mapCollectionShops(shops)
 }
 
 const setReleases = async (id, releases) => {
@@ -54,6 +56,10 @@ const getReleases = async (id) => {
     return []
   }
   return releases
+}
+
+const mapCollectionShops = (shops) => {
+  return shops.map(shop => CollectionShops(shop))
 }
 
 const CollectionRepository = BaseRepository(model, Collection)

@@ -98,6 +98,41 @@ module.exports = () => {
         })
     })
 
+
+  /**
+   * @swagger
+   * /collections/id/shops:
+   *   get:
+   *     tags:
+   *       - Collections
+   *     description: Returns the list of shops linked to a collection
+   *     security:
+   *       - JWT: []
+   *     responses:
+   *       200:
+   *         description: An array of collections
+   *         schema:
+   *           type: array
+   *           items:
+   *             id:
+   *               type: string
+   *       401:
+   *        $ref: '#/responses/Unauthorized'
+
+   */
+  router
+    .get('/:id/shops', (req, res) => {
+      getLinkedShopsUseCase
+        .getLinkedShops(req.params.id)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
   /**
    * Authentication for modifying endpoints
    */
@@ -311,41 +346,6 @@ module.exports = () => {
     .post('/:id/shops', (req, res) => {
       linkShopsUseCase
         .linkShops({ id: req.params.id, body: req.body })
-        .then(data => {
-          res.status(Status.OK).json(Success(data))
-        })
-        .catch((error) => {
-          logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
-        })
-    })
-
-  /**
-   * @swagger
-   * /collections/id/shops:
-   *   get:
-   *     tags:
-   *       - Collections
-   *     description: Returns the list of shops linked to a collection
-   *     security:
-   *       - JWT: []
-   *     responses:
-   *       200:
-   *         description: An array of collections
-   *         schema:
-   *           type: array
-   *           items:
-   *             id:
-   *               type: string
-   *       401:
-   *        $ref: '#/responses/Unauthorized'
-
-   */
-  router
-    .get('/:id/shops', (req, res) => {
-      getLinkedShopsUseCase
-        .getLinkedShops(req.params.id)
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })

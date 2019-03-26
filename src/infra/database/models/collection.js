@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   collections.associate = function (models) {
     // associations can be defined here
     collections.belongsTo(models.brands, { as: 'brandId', foreignKey: 'brand' })
-    collections.belongsToMany(models.shops, { through: 'collection_shops', as: 'shops' })
+    collections.hasMany(models.collection_shops, { as: 'shops' })
     collections.belongsToMany(models.releases, { through: 'collection_releases', as: 'releases' })
   }
   return collections

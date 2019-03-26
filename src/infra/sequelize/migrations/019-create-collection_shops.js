@@ -18,12 +18,18 @@ module.exports = {
       },
       collectionId: {
         type: Sequelize.UUID,
-        onDelete: 'CASCADE',
         references: {
           model: 'collections',
           key: 'id'
         },
-        allowNull: false
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      linkText: {
+        type: Sequelize.STRING
+      },
+      linkUrl: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

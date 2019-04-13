@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     releases.belongsTo(models.styles, { as: 'style' })
     releases.belongsTo(models.collections, { as: 'collection' })
     releases.hasMany(models.release_images, { as: 'images' })
+    releases.hasMany(models.offers, { as: 'offers' })
   }
   return releases
 }

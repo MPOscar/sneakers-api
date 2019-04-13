@@ -55,7 +55,7 @@ const toSequelizeSearch = (attrs, selectFields, searchParams, filterMappings) =>
   Object.assign(newAttrs, {
     offset: searchParams.pagination.offset || 0,
     limit: searchParams.pagination.limit || 1000000,
-    order: [[searchParams.order.field || 'createdAt', searchParams.order.type || 'DESC']]
+    order: newAttrs.order ? newAttrs.order.concat(searchParams.order) : searchParams.order
   })
   if (selectFields) {
     Object.assign(newAttrs, { attributes: selectFields })

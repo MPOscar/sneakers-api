@@ -20,6 +20,13 @@ const createOptions = {
 const updateOptions = createOptions
 
 const getOptionsCallback = (params) => {
+  if (params.order) {
+    params.order.forEach((param, ind) => {
+      if (param[0] === 'hot') {
+        params.order[ind].unshift({ model: releasesModel, as: 'release' })
+      }
+    })
+  }
   return {
     include: [{
       model: releasesModel,
@@ -36,7 +43,8 @@ const getOptionsCallback = (params) => {
       model: offersLinksModel,
       as: 'links'
     }],
-    distinct: true
+    distinct: true,
+    subQuery: false
   }
 }
 

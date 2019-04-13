@@ -98,7 +98,6 @@ module.exports = () => {
         })
     })
 
-
   /**
    * @swagger
    * /collections/id/shops:

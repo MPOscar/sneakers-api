@@ -6,14 +6,26 @@ module.exports = () => {
       limit: (params.limit) ? parseInt(params.limit) : 1000000,
       offset: (params.offset) ? parseInt(params.offset) : 0
     }
-    const orderStr = params.ordering
-    let order = {}
-    if (orderStr) {
-      order = {
-        field: (orderStr.charAt(0) === '-') ? orderStr.substring(1) : orderStr,
-        type: (orderStr.charAt(0) === '-') ? 'DESC' : 'ASC'
-      }
+    let orderClauses = params.ordering
+    if (!orderClauses) {
+      orderClauses = []
+    } else if (!Array.isArray(orderClauses)) {
+      orderClauses = orderClauses.split(',')
     }
+    let order
+    if (!orderClauses) {
+      order = [['createdAt', 'DESC']]
+    } else {
+      order = []
+      orderClauses.forEach((sortParam) => {
+        let field = (sortParam.charAt(0) === '-') ? sortParam.substring(1) : sortParam
+        let type = (sortParam.charAt(0) === '-') ? 'DESC' : 'ASC'
+        order.push([field, type])
+      })
+    }
+
+    console.log(order)
+
     Object.assign(filter, filterRest)
     const searchParams = SearchParams({ filter, pagination, order })
     return searchParams

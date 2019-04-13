@@ -112,7 +112,7 @@ describe('Get all offers with advance filter by POST', () => {
       name: 'Nike release',
       sku: 'abc-asd-nike',
       description: 'This is a nike release',
-      hot: true,
+      hot: false,
       priceEUR: 35,
       priceGBP: 40,
       priceUSD: 45,
@@ -304,6 +304,42 @@ describe('Get all offers with advance filter by POST', () => {
           expect(res.body).to.include.keys('data')
           expect(res.body.data).to.be.an('Array')
           expect(res.body.data.length).to.be.equal(3)
+          done(err)
+        })
+    })
+
+    it('should order by hot', (done) => {
+      request.post(`${BASE_URI}/offers/search`)
+        .set('Authorization', `Bearer ${global.token}`)
+        .send({
+          ordering: ['-hot']
+        })
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body).to.include.keys('data')
+          expect(res.body.data).to.be.an('Array')
+          expect(res.body.data.length).to.be.equal(8)
+          res.body.data.forEach((offer, ind) => {
+            expect(offer.release.hot).to.be.equal(ind < 4)
+          })
+          done(err)
+        })
+    })
+
+    it('should allow multi-ordering (by hot and priceEUR)', (done) => {
+      request.post(`${BASE_URI}/offers/search`)
+        .set('Authorization', `Bearer ${global.token}`)
+        .send({
+          ordering: ['-hot', 'priceEUR']
+        })
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body).to.include.keys('data')
+          expect(res.body.data).to.be.an('Array')
+          expect(res.body.data.length).to.be.equal(8)
+          res.body.data.forEach((offer, ind) => {
+            expect(offer.release.hot).to.be.equal(ind < 4)
+          })
           done(err)
         })
     })

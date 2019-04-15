@@ -49,8 +49,13 @@ const filterMappings = {
     }
   },
   upcoming: (value) => {
+    if (parseInt(value) === 0) {
+      return {
+        filter: { releaseDate: { [Op.ne]: null } }
+      }
+    }
     return {
-      filter: { releaseDate: { [Op.or]: { [Op.eq]: null, [Op.eq]: '0000-00-00 00:00:00' } } }
+      filter: { releaseDate: null }
     }
   },
   minPrice: (value) => {

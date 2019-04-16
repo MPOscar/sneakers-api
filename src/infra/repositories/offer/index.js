@@ -79,6 +79,12 @@ const filterMappings = {
       model: releasesModel
     }
   },
+  hot: (value) => {
+    return {
+      filter: { hot: value },
+      model: releasesModel
+    }
+  },
   minPrice: (value) => {
     return {
       filter: { priceEUR: { [Op.gte]: parseFloat(value) } }

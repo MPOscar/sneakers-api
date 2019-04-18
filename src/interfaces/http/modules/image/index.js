@@ -13,7 +13,7 @@ module.exports = () => {
       originalName: req.file.originalname,
       generatedName: filename,
       msg: 'Image upload successful',
-      imageUrl: '/images/' + filename
+      imageUrl: (baseUrl + filename)
     }
     res.status(Status.OK).json(response)
   })
@@ -23,7 +23,6 @@ module.exports = () => {
   router.post('/', upload.image, function (req, res, next) {
     const filename = req.file.filename || req.file.key
     res.status(Status.OK).json(Success({ url: (baseUrl + filename) }))
-    // res.status(Status.OK).json(Success({ url: req.file.location }))
   })
   return router
 }

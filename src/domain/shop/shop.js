@@ -19,6 +19,8 @@ const Shop = makeEntity(t.struct({
   showOnRegion: t.maybe(t.enums.of(['USA', 'Europe', 'Marketplaces'])),
   isParent: t.maybe(t.Boolean),
   rank: t.maybe(t.Number),
+  lat: t.maybe(t.Number),
+  lon: t.maybe(t.Number),
   workingHours: t.maybe(t.list(ShopWorkingHours))
 }, {
   defaultProps: {

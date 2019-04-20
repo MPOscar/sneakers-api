@@ -21,7 +21,9 @@ module.exports = (sequelize, DataTypes) => {
     active: DataTypes.BOOLEAN,
     rank: DataTypes.INTEGER,
     parent: DataTypes.STRING,
-    isParent: DataTypes.BOOLEAN
+    isParent: DataTypes.BOOLEAN,
+    lat: DataTypes.FLOAT,
+    lon: DataTypes.FLOAT
   }, {
     underscored: false
   })

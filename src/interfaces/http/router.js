@@ -58,6 +58,7 @@ module.exports = ({ config, logger, database }) => {
   apiRouter.use('/settings', controller('setting'))
   apiRouter.use('/analytics', controller('analytics'))
   apiRouter.use('/deeplink', controller('deeplink'))
+  apiRouter.use('/mail', controller('mail'))
   router.use(`/api/${config.version}`, apiRouter)
 
   router.use(partialRight(errorHandler, [logger, config]))

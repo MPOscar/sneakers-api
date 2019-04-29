@@ -10,6 +10,12 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      description: {
+        type: Sequelize.TEXT
+      },
+      siteUrl: {
+        type: Sequelize.STRING
+      },
       address: {
         type: Sequelize.TEXT
       },

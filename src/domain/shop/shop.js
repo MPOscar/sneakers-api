@@ -4,6 +4,8 @@ const ShopWorkingHours = require('./shop_working_hours')
 
 const Shop = makeEntity(t.struct({
   name: t.String,
+  description: t.maybe(t.String),
+  siteUrl: t.maybe(t.String),
   active: t.maybe(t.Boolean),
   country: t.maybe(t.String),
   region: t.maybe(t.String),

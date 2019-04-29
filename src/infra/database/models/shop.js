@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4
     },
+    siteUrl: DataTypes.STRING,
+    description: DataTypes.TEXT,
     name: DataTypes.STRING,
     address: DataTypes.TEXT,
     currency: DataTypes.STRING,

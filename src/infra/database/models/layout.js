@@ -9,16 +9,20 @@ module.exports = (sequelize, DataTypes) => {
     page: DataTypes.STRING,
     title: DataTypes.STRING,
     description: DataTypes.TEXT,
-    headerItemsPerColumn: DataTypes.INTEGER,
-    keywords: DataTypes.STRING
+    keywords: DataTypes.STRING,
+    headerImgUrl: DataTypes.STRING,
+    headerLink: DataTypes.STRING,
+    headerDisplay: DataTypes.STRING,
+    sliderDisplay: DataTypes.STRING,
+    hottestDisplay: DataTypes.STRING,
+    hottestDisplayOnPage: DataTypes.BOOLEAN
   }, {
     freezeTableName: true,
     underscored: false
   })
   Layout.associate = function (models) {
     // associations can be defined here
-    Layout.hasMany(models.layout_sliders, { as: 'layout_sliders' })
-    Layout.hasMany(models.layout_header_columns, { as: 'columns' })
+    Layout.hasMany(models.layout_slides, { as: 'slides' })
   }
   return Layout
 }

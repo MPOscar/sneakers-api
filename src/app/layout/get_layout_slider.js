@@ -1,10 +1,10 @@
 const repository = require('src/infra/repositories/layout')
 
-const getLayoutSlider = (filter) => {
+const getLayoutSlider = (page) => {
   return Promise
     .resolve()
     .then(() =>
-      repository.getSliderByFilter(filter)
+      repository.getSlider(page)
     )
 }
 

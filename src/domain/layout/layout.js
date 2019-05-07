@@ -1,7 +1,7 @@
 const t = require('tcomb')
 const layoutHeader = require('./layout_header')
 const layoutHeading = require('./layout_heading')
-const layoutSlider = require('./layout_slider')
+const layoutSlider = require('./layout_slides')
 const layoutHottest = require('./layout_hottest')
 
 const Layout = t.struct({

@@ -21,8 +21,23 @@ module.exports = {
       keywords: {
         type: Sequelize.STRING
       },
-      headerItemsPerColumn: {
-        type: Sequelize.INTEGER
+      headerImgUrl: {
+        type: Sequelize.STRING
+      },
+      headerLink: {
+        type: Sequelize.STRING
+      },
+      headerDisplay: {
+        type: Sequelize.STRING
+      },
+      sliderDisplay: {
+        type: Sequelize.STRING
+      },
+      hottestDisplay: {
+        type: Sequelize.STRING
+      },
+      hottestDisplayOnPage: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

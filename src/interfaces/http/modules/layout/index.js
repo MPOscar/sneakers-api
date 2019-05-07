@@ -53,7 +53,7 @@ module.exports = () => {
   router
     .get('/:page/slider', (req, res, next) => {
       getLayoutSliderUseCase
-        .getLayoutSlider(req.query)
+        .getLayoutSlider(req.params.page)
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })

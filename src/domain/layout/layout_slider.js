@@ -1,22 +1,13 @@
 const t = require('tcomb')
+const LayoutSlide = require('./layout_slides')
 
-const image = t.struct({
-  url: t.String,
-  display: t.maybe(t.String)
-})
-
-const Slider = t.struct({
-  url: t.maybe(t.String),
-  isFiltered: t.Boolean,
-  filter: t.maybe(t.Object),
-  filterLimit: t.maybe(t.Number),
-  images: t.list(image)
+const LayoutSlider = t.struct({
+  slides: t.maybe(t.list(LayoutSlide)),
+  display: t.enums.of(['top', 'middle', 'bottom'])
 }, {
   defaultProps: {
-    images: [],
-    filters: [],
-    isFiltered: false
+    display: 'top'
   }
 })
 
-module.exports = Slider
+module.exports = LayoutSlider

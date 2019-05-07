@@ -33,10 +33,10 @@ const {
 } = require('./hottest')(database)
 
 const getByPage = async (page) => {
-  let heading = getHeading(page)
-  let header = getHeader(page)
-  let hottest = getHottest(page)
-  let slider = getSlider(page)
+  let heading = await getHeading(page)
+  let header = await getHeader(page)
+  let hottest = await getHottest(page)
+  let slider = await getSlider(page)
   return unmap({
     page,
     heading,

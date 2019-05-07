@@ -1,17 +1,12 @@
 const t = require('tcomb')
 
-const hottestFilter = t.struct(
-  {
-    type: t.enums.of(['brand', 'collection', 'offer']),
-    value: t.String
-  }
-)
-
 const Layout = t.struct({
-  filters: hottestFilter
+  displayOnPage: t.Boolean,
+  display: t.enums.of(['top', 'middle', 'bottom'])
 }, {
   defaultProps: {
-    filters: []
+    display: 'top',
+    displayOnPage: true
   }
 })
 

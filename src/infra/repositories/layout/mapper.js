@@ -23,13 +23,7 @@ const unmapHeading = (dbModel) => {
 }
 
 const unmap = (dbModel) => {
-  return Layout({
-    page: dbModel.page,
-    heading: JSON.parse(dbModel.headingJson),
-    header: JSON.parse(dbModel.headerJson),
-    slider: JSON.parse(dbModel.sliderJson),
-    hottest: JSON.parse(dbModel.hottestJson)
-  })
+  return Layout(dbModel)
 }
 
 module.exports = {

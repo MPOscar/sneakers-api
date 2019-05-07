@@ -3,25 +3,19 @@ const { LayoutHeader } = require('src/domain/layout')
 
 const mapHeader = (headerDomain) => {
   let newHeaderDomain = LayoutHeader(headerDomain)
-  newHeaderDomain.headerItemsPerColumn = headerDomain.itemsPerColumn
-  delete newHeaderDomain.itemsPerColumn
-  if (headerDomain.columns) {
-    newHeaderDomain.columns.map((column) => {
-      column.filter = JSON.stringify(column.filter)
-    })
-  }
+  newHeaderDomain.headerDisplay = headerDomain.display ? headerDomain.display : 'top'
+  newHeaderDomain.headerLink = headerDomain.link
+  newHeaderDomain.headerImgUrl = headerDomain.imgUrl
   return newHeaderDomain
 }
 
 // Transforms layout_slider from domain to database object
 const unmapHeader = (dbModel) => {
   let headerDomain = Object.create(dbModel)
-  headerDomain.itemsPerColumn = headerDomain.headerItemsPerColumn
-  delete headerDomain.headerItemsPerColumn
-  headerDomain.columns.map((column) => {
-    column.filter = JSON.parse(column.filter)
-  })
-  return LayoutHeader(dbModel)
+  headerDomain.display = dbModel.headerDisplay ? dbModel.headerDisplay : 'top'
+  headerDomain.link = dbModel.headerLink
+  headerDomain.imgUrl = dbModel.headerImgUrl
+  return LayoutHeader(headerDomain)
 }
 
 module.exports = (database) => {

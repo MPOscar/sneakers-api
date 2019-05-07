@@ -30,7 +30,15 @@ const makeEntity = (entity, transform) => {
   return compose(cleanData, Entity.extend(entity), cleanDate)
 }
 
+const makeValueObject = (entity, transform) => {
+  if (transform) {
+    return compose(cleanData, entity, transform, cleanDate)
+  }
+  return compose(cleanData, entity, cleanDate)
+}
+
 module.exports = {
   cleanData,
-  makeEntity
+  makeEntity,
+  makeValueObject
 }

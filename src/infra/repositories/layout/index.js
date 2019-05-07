@@ -27,9 +27,23 @@ const {
   updateHeader
 } = require('./header')(database)
 
+const {
+  getHottest,
+  updateHottest
+} = require('./hottest')(database)
+
 const getByPage = async (page) => {
-  let entity = await model.findOne({ where: { page: page } })
-  return unmap(entity)
+  let heading = getHeading(page)
+  let header = getHeader(page)
+  let hottest = getHottest(page)
+  let slider = getSlider(page)
+  return unmap({
+    page,
+    heading,
+    hottest,
+    header,
+    slider
+  })
 }
 
 const updatePage = async (page, layout) => {
@@ -67,6 +81,8 @@ module.exports = {
   getHeading,
   updateHeader,
   getHeader,
+  updateHottest,
+  getHottest,
   updateSlider,
   getSlider,
   createOurPartnersTab,

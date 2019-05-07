@@ -6,6 +6,8 @@ const setLayoutHeadingUseCase = require('./set_layout_heading')
 const getLayoutHeadingUseCase = require('./get_layout_heading')
 const setLayoutHeaderUseCase = require('./set_layout_header')
 const getLayoutHeaderUseCase = require('./get_layout_header')
+const setLayoutHottestUseCase = require('./set_layout_hottest')
+const getLayoutHottestUseCase = require('./get_layout_hottest')
 const getOurPartnersTabsUseCase = require('./get_layout_ourpartners_tabs')
 const createOurPartnersTabUseCase = require('./create_layout_ourpartners_tab')
 const updateOurPartnersTabUseCase = require('./update_layout_ourpartners_tab')
@@ -20,6 +22,8 @@ module.exports = {
   getLayoutHeadingUseCase,
   setLayoutHeaderUseCase,
   getLayoutHeaderUseCase,
+  setLayoutHottestUseCase,
+  getLayoutHottestUseCase,
   createOurPartnersTabUseCase,
   updateOurPartnersTabUseCase,
   deleteOurPartnersTabUseCase,

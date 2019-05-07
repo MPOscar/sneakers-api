@@ -3,6 +3,8 @@ const Status = require('http-status')
 const container = require('src/container') // we have to get the DI
 
 const {
+  getLayoutHottestUseCase,
+  setLayoutHottestUseCase,
   getLayoutHeaderUseCase,
   setLayoutHeaderUseCase,
   getLayoutHeadingUseCase,
@@ -38,9 +40,9 @@ module.exports = () => {
  *         type: string
  */
   router
-    .get('/', (req, res, next) => {
+    .get('/:page', (req, res, next) => {
       getLayoutUseCase
-        .getPageLayout(req.query.page)
+        .getPageLayout(req.params.page)
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })
@@ -80,6 +82,19 @@ module.exports = () => {
     .get('/:page/header', (req, res, next) => {
       getLayoutHeaderUseCase
         .getLayoutHeader(req.params.page)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          next(error)
+        })
+    })
+
+  router
+    .get('/:page/hottest', (req, res, next) => {
+      getLayoutHottestUseCase
+        .getLayoutHottest(req.params.page)
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })
@@ -189,6 +204,19 @@ module.exports = () => {
     .put('/:page/header', (req, res, next) => {
       setLayoutHeaderUseCase
         .setHeader(req.params.page, req.body)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          next(error)
+        })
+    })
+
+  router
+    .put('/:page/hottest', (req, res, next) => {
+      setLayoutHottestUseCase
+        .setHottest(req.params.page, req.body)
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })

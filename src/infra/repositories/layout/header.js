@@ -6,6 +6,7 @@ const mapHeader = (headerDomain) => {
   newHeaderDomain.headerDisplay = headerDomain.display ? headerDomain.display : 'top'
   newHeaderDomain.headerLink = headerDomain.link
   newHeaderDomain.headerImgUrl = headerDomain.imgUrl
+  newHeaderDomain.headerDisplayOnPage = headerDomain.displayOnPage ? headerDomain.displayOnPage : true
   return newHeaderDomain
 }
 
@@ -15,6 +16,7 @@ const unmapHeader = (dbModel) => {
   headerDomain.display = dbModel.headerDisplay ? dbModel.headerDisplay : 'top'
   headerDomain.link = dbModel.headerLink
   headerDomain.imgUrl = dbModel.headerImgUrl
+  headerDomain.displayOnPage = dbModel.headerDisplayOnPage
   return LayoutHeader(headerDomain)
 }
 

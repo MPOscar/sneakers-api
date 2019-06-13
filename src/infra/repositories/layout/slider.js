@@ -4,13 +4,15 @@ const { LayoutSlider, LayoutSlide } = require('src/domain/layout')
 // Transforms layout_slider from domain to database object
 const mapSlider = (layoutSliderDomain) => {
   return {
-    sliderDisplay: layoutSliderDomain.display
+    sliderDisplay: layoutSliderDomain.display,
+    sliderDisplayOnPage: layoutSliderDomain.displayOnPage ? layoutSliderDomain.displayOnPage : true
   }
 }
 
 const unmapSlider = (dbModel) => {
   const sliderDomain = dbModel
   sliderDomain.display = dbModel.sliderDisplay ? dbModel.sliderDisplay : 'top'
+  sliderDomain.displayOnPage = dbModel.sliderDisplayOnPage
   return LayoutSlider(sliderDomain)
 }
 

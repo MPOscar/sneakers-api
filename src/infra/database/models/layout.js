@@ -13,7 +13,9 @@ module.exports = (sequelize, DataTypes) => {
     headerImgUrl: DataTypes.STRING,
     headerLink: DataTypes.STRING,
     headerDisplay: DataTypes.STRING,
+    headerDisplayOnPage: DataTypes.BOOLEAN,
     sliderDisplay: DataTypes.STRING,
+    sliderDisplayOnPage: DataTypes.BOOLEAN,
     hottestDisplay: DataTypes.STRING,
     hottestDisplayOnPage: DataTypes.BOOLEAN
   }, {

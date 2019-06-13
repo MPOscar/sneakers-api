@@ -36,6 +36,12 @@ module.exports = {
       hottestDisplay: {
         type: Sequelize.STRING
       },
+      headerDisplayOnPage: {
+        type: Sequelize.BOOLEAN
+      },
+      sliderDisplayOnPage: {
+        type: Sequelize.BOOLEAN
+      },
       hottestDisplayOnPage: {
         type: Sequelize.BOOLEAN
       },

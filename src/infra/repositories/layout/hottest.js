@@ -4,7 +4,7 @@ const { LayoutHottest } = require('src/domain/layout')
 const mapHottest = (hottestDomain) => {
   let newHottestDomain = LayoutHottest(hottestDomain)
   newHottestDomain.hottestDisplay = hottestDomain.display ? hottestDomain.display : 'top'
-  newHottestDomain.hottestDisplayOnPage = hottestDomain.displayOnPage ? hottestDomain.displayOnPage : true
+  newHottestDomain.hottestDisplayOnPage = Boolean(hottestDomain.displayOnPage)
   return newHottestDomain
 }
 
@@ -12,7 +12,7 @@ const mapHottest = (hottestDomain) => {
 const unmapHottest = (dbModel) => {
   let hottestDomain = Object.create(dbModel)
   hottestDomain.display = dbModel.hottestDisplay
-  hottestDomain.displayOnPage = dbModel.hottestDisplayOnPage
+  hottestDomain.displayOnPage = Boolean(parseInt(dbModel.hottestDisplayOnPage))
   return LayoutHottest(hottestDomain)
 }
 

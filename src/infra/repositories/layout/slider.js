@@ -5,14 +5,14 @@ const { LayoutSlider, LayoutSlide } = require('src/domain/layout')
 const mapSlider = (layoutSliderDomain) => {
   return {
     sliderDisplay: layoutSliderDomain.display,
-    sliderDisplayOnPage: layoutSliderDomain.displayOnPage ? layoutSliderDomain.displayOnPage : true
+    sliderDisplayOnPage: Boolean(layoutSliderDomain.displayOnPage)
   }
 }
 
 const unmapSlider = (dbModel) => {
-  const sliderDomain = dbModel
+  const sliderDomain = Object.create(dbModel)
   sliderDomain.display = dbModel.sliderDisplay ? dbModel.sliderDisplay : 'top'
-  sliderDomain.displayOnPage = dbModel.sliderDisplayOnPage
+  sliderDomain.displayOnPage = Boolean(parseInt(dbModel.sliderDisplayOnPage))
   return LayoutSlider(sliderDomain)
 }
 

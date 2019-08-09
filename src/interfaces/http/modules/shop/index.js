@@ -120,7 +120,39 @@ module.exports = () => {
             Fail(error.message))
         })
     })
+  /**
+   * @swagger
+   * /shops/:
+   *   get:
+   *     tags:
+   *       - Shops
+   *     description: Returns a list of shops
+   *     security:
+   *       - JWT: []
+   *     responses:
+   *       200:
+   *         description: An array of shops
+   *         schema:
+   *           type: array
+   *           items:
+   *             $ref: '#/definitions/shop'
+   *       401:
+   *        $ref: '#/responses/Unauthorized'
 
+   */
+  router
+    .get('/:id/images', (req, res) => {
+      getAllImagesUseCase
+        .getAllImages(req.params.id)
+        .then(data => {
+          res.status(Status.OK).json(Success(data))
+        })
+        .catch((error) => {
+          logger.error(error) // we still need to log every error for debugging
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message))
+        })
+    })
   /**
    * Authentication for modifying endpoints
    */
@@ -376,39 +408,6 @@ module.exports = () => {
         .updateMainImage(req.params.id, req.body.mainImage)
         .then(() => {
           res.status(Status.OK).json(Success({}))
-        })
-        .catch((error) => {
-          logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
-        })
-    })
-  /**
-   * @swagger
-   * /shops/:
-   *   get:
-   *     tags:
-   *       - Shops
-   *     description: Returns a list of shops
-   *     security:
-   *       - JWT: []
-   *     responses:
-   *       200:
-   *         description: An array of shops
-   *         schema:
-   *           type: array
-   *           items:
-   *             $ref: '#/definitions/shop'
-   *       401:
-   *        $ref: '#/responses/Unauthorized'
-
-   */
-  router
-    .get('/:id/images', (req, res) => {
-      getAllImagesUseCase
-        .getAllImages(req.params.id)
-        .then(data => {
-          res.status(Status.OK).json(Success(data))
         })
         .catch((error) => {
           logger.error(error) // we still need to log every error for debugging

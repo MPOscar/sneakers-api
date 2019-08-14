@@ -23,9 +23,13 @@ const Shop = makeEntity(t.struct({
   rank: t.maybe(t.Number),
   lat: t.maybe(t.Number),
   lon: t.maybe(t.Number),
-  workingHours: t.maybe(t.list(ShopWorkingHours))
+  workingHours: t.maybe(t.list(ShopWorkingHours)),
+  brands: t.list(t.String),
+  categories: t.list(t.String)
 }, {
   defaultProps: {
+    brands: [],
+    categories: [],
     workingHours: [],
     currency: 'EUR',
     isParent: false

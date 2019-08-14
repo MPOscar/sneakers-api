@@ -7,6 +7,7 @@ const { database } = container.cradle
 const model = database.models.shops
 const imageModel = database.models.shop_images
 const workingHoursModel = database.models.shop_working_hours
+const brandsModel = database.models.brands
 const countriesRepository = require('./countries_repository')
 
 const createOptions = {
@@ -23,9 +24,14 @@ const getOptionsCallback = (params) => {
       as: 'workingHours',
       attributes: ['dayOfWeek', 'openHour', 'closeHour'],
       order: [['dayOfWeek', 'ASC']]
+    }, {
+      model: brandsModel,
+      as: 'brands'
     }]
   }
 }
+
+const associatedIds = ['brands']
 
 const {
   update,
@@ -35,7 +41,12 @@ const {
   create,
   destroyAll,
   bulkCreate
-} = BaseRepository(model, Shop, { createOptions, updateOptions, getOptionsCallback })
+} = BaseRepository(model, Shop, {
+  createOptions,
+  updateOptions,
+  getOptionsCallback,
+  associatedIds
+})
 
 const createImages = async (id, images) => {
   const release = await model.findOne({
@@ -59,6 +70,20 @@ const updateWorkingHours = async (id, workingHours) => {
   const newWorkingHours = await workingHoursModel.bulkCreate(workingHours)
   await shop.setWorkingHours(newWorkingHours)
   return newWorkingHours
+}
+
+const updateBrands = async (id, brands) => {
+  const shop = await model.findOne({
+    where: { id }
+  })
+  if (!shop) {
+    throw new EntityNotFound()
+  }
+  const brandsDb = await brandsModel.findAll({
+    where: { id: brands }
+  })
+  await shop.setBrands(brandsDb)
+  return shop
 }
 
 const getAllImages = async (id) => {
@@ -89,6 +114,7 @@ module.exports = {
   createImages,
   destroyImage,
   updateWorkingHours,
+  updateBrands,
   update,
   getAll,
   destroy,

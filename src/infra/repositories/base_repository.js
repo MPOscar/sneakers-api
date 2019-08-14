@@ -18,6 +18,11 @@ module.exports = (model, toEntity, options = {}) => {
     return model.findAndCountAll(searchAttrs).then((result) => {
       const rows = result.rows.map((data) => {
         const { dataValues } = data
+        if (options && options.associatedIds) {
+          options.associatedIds.forEach((item) => {
+            dataValues[item] = dataValues[item].map((assocation) => assocation.id)
+          })
+        }
         return toEntity(dataValues)
       })
       return SearchResult({ rows, count: result.count })
@@ -37,6 +42,11 @@ module.exports = (model, toEntity, options = {}) => {
         throw new EntityNotFoundError()
       }
       const { dataValues } = entity
+      if (options && options.associatedIds) {
+        options.associatedIds.forEach((item) => {
+          dataValues[item] = dataValues[item].map((assocation) => assocation.id)
+        })
+      }
       return toEntity(dataValues)
     })
   }

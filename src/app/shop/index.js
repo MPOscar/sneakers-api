@@ -21,6 +21,9 @@ const update = ({ id, body }) => {
       const domain = Shop(body)
       await repository.update(domain, id)
       await repository.updateWorkingHours(id, domain.workingHours)
+      if (domain.brands) {
+        await repository.updateBrands(id, domain.brands)
+      }
       resolve(domain)
     } catch (error) {
       reject(error)

@@ -1,0 +1,11 @@
+deploy_staging:
+  stage: deploy
+  image: coxauto/aws-ebcli
+  script:
+    - eb init moresneakers-api -r $AWS_REGION -p node.js
+    - eb use  moresneakers-api-staging
+    - eb deploy moresneakers-api-staging
+  environment:
+    name: staging
+  only:
+    - develop

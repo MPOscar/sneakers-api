@@ -3,12 +3,21 @@ const { Shop } = require('src/domain/shop')
 
 const attrs = ['id', 'name', 'description', 'address', 'siteUrl', 'currency', 'country', 'region', 'shippingDetails', 'shippingCountries', 'countries', 'mainImage', 'trackingListBaseUrl', 'rank', 'active', 'zipCode', 'parent', 'isParent', 'showOnRegion', 'lat', 'lon', 'createdAt', 'updatedAt']
 
+const afterCreate = async (domain, entity) => {
+  if (domain.brands) {
+    await repository.updateBrands(entity.id, domain.brands)
+  }
+  if (domain.categories) {
+    await repository.updateCategories(entity.id, domain.categories)
+  }
+}
+
 const {
   getOneUseCase,
   createUseCase,
   getAllUseCase,
   removeUseCase
-} = require('src/app/crud')(repository, Shop, attrs)
+} = require('src/app/crud')(repository, Shop, attrs, { afterCreate })
 const createImageUseCase = require('./create_image')
 const removeImageUseCase = require('./delete_image')
 const updateMainImageUseCase = require('./change_main_image')
@@ -23,6 +32,9 @@ const update = ({ id, body }) => {
       await repository.updateWorkingHours(id, domain.workingHours)
       if (domain.brands) {
         await repository.updateBrands(id, domain.brands)
+      }
+      if (domain.categories) {
+        await repository.updateCategories(id, domain.categories)
       }
       resolve(domain)
     } catch (error) {

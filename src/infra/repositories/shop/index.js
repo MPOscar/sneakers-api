@@ -8,6 +8,7 @@ const model = database.models.shops
 const imageModel = database.models.shop_images
 const workingHoursModel = database.models.shop_working_hours
 const brandsModel = database.models.brands
+const categoriesModel = database.models.categories
 const countriesRepository = require('./countries_repository')
 
 const createOptions = {
@@ -27,11 +28,14 @@ const getOptionsCallback = (params) => {
     }, {
       model: brandsModel,
       as: 'brands'
+    }, {
+      model: categoriesModel,
+      as: 'categories'
     }]
   }
 }
 
-const associatedIds = ['brands']
+const associatedIds = ['brands', 'categories']
 
 const {
   update,
@@ -72,10 +76,12 @@ const updateWorkingHours = async (id, workingHours) => {
   return newWorkingHours
 }
 
-const updateBrands = async (id, brands) => {
-  const shop = await model.findOne({
-    where: { id }
-  })
+const updateBrands = async (id, brands, shop = null) => {
+  if (shop === null) {
+    shop = await model.findOne({
+      where: { id }
+    })
+  }
   if (!shop) {
     throw new EntityNotFound()
   }
@@ -83,6 +89,22 @@ const updateBrands = async (id, brands) => {
     where: { id: brands }
   })
   await shop.setBrands(brandsDb)
+  return shop
+}
+
+const updateCategories = async (id, categories, shop = null) => {
+  if (shop === null) {
+    shop = await model.findOne({
+      where: { id }
+    })
+  }
+  if (!shop) {
+    throw new EntityNotFound()
+  }
+  const categoriesDb = await categoriesModel.findAll({
+    where: { id: categories }
+  })
+  await shop.setCategories(categoriesDb)
   return shop
 }
 
@@ -115,6 +137,7 @@ module.exports = {
   destroyImage,
   updateWorkingHours,
   updateBrands,
+  updateCategories,
   update,
   getAll,
   destroy,

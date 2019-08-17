@@ -26,12 +26,6 @@ module.exports = {
     'dialect': 'mysql',
     'define': {
       'underscored': false
-    },
-    'ssl': true,
-    'dialectOptions': {
-      'ssl': {
-        'require': true
-      }
     }
   },
   production: {

@@ -8,4 +8,4 @@ deploy_staging:
   environment:
     name: staging
   only:
-    - develop
+    - staging

@@ -10,6 +10,8 @@ const workingHoursModel = database.models.shop_working_hours
 const brandsModel = database.models.brands
 const categoriesModel = database.models.categories
 const countriesRepository = require('./countries_repository')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 const createOptions = {
   include: [{
@@ -35,6 +37,19 @@ const getOptionsCallback = (params) => {
   }
 }
 
+const filterMappings = {
+  hasParent: (value) => {
+    if (parseInt(value) === 1) {
+      return {
+        filter: { parent: { [Op.ne]: null } }
+      }
+    }
+    return {
+      filter: { parent: null }
+    }
+  }
+}
+
 const associatedIds = ['brands', 'categories']
 
 const {
@@ -49,7 +64,8 @@ const {
   createOptions,
   updateOptions,
   getOptionsCallback,
-  associatedIds
+  associatedIds,
+  filterMappings
 })
 
 const createImages = async (id, images) => {

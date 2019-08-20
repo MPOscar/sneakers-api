@@ -79,6 +79,12 @@ const filterMappings = {
       model: releasesModel
     }
   },
+  gender: (value) => {
+    return {
+      filter: { gender: value },
+      model: releasesModel
+    }
+  },
   hot: (value) => {
     return {
       filter: { hot: value },

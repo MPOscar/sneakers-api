@@ -7,7 +7,8 @@ const Deal = t.struct({
   salePercentage: t.Number,
   status: t.enums.of(['Coming Soon']),
   promoCode: t.maybe(t.String),
-  time: t.maybe(t.String),
+  startTime: t.maybe(t.String),
+  endTime: t.maybe(t.String),
   shopId: t.maybe(t.String),
   displayOnSale: t.Boolean,
   imgUrl: t.maybe(t.String)

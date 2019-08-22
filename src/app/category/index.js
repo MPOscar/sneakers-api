@@ -1,7 +1,7 @@
 const repository = require('src/infra/repositories/category')
 const { Category } = require('src/domain/category')
 
-const attrs = ['id', 'name', 'createdAt', 'updatedAt']
+const attrs = ['id', 'name', 'description', 'imgUrl', 'createdAt', 'updatedAt']
 
 const {
   getOneUseCase,

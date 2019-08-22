@@ -38,6 +38,9 @@ module.exports = (Repository, Domain, attrs, options) => {
       try {
         const domain = Domain(body)
         await Repository.update(domain, id)
+        if (options && options.afterUpdate) {
+          options.afterUpdate(domain, { id })
+        }
         resolve(domain)
       } catch (error) {
         reject(error)

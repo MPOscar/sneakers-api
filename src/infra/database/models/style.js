@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     style.hasMany(models.style_shops, { as: 'shops' })
     style.hasMany(models.releases, { as: 'releases' })
     // associations can be defined here
-    style.belongsTo(models.categories, { as: 'CategoryModel', foreignKey: 'category' })
+    style.belongsToMany(models.categories, { through: 'style_categories', as: 'categories' })
     style.belongsTo(models.brands, { as: 'BrandModel', foreignKey: 'brand' })
   }
   return style

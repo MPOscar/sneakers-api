@@ -14,8 +14,8 @@ const Offer = t.struct({
   description: t.String,
   links: t.maybe(t.list(t.Object)),
   raffle: t.Boolean,
-  raffleStart: t.maybe(t.String),
-  raffleEnd: t.maybe(t.String),
+  raffleStart: t.maybe(t.Date),
+  raffleEnd: t.maybe(t.Date),
   displayWhatsNew: t.maybe(t.Boolean),
   displayOnSale: t.maybe(t.Boolean),
   release: t.maybe(t.Object)

@@ -1,7 +1,7 @@
 const repository = require('src/infra/repositories/shop')
 const { Shop } = require('src/domain/shop')
 
-const attrs = ['id', 'name', 'description', 'address', 'siteUrl', 'currency', 'country', 'region', 'shippingDetails', 'shippingCountries', 'countries', 'mainImage', 'trackingListBaseUrl', 'rank', 'active', 'zipCode', 'parent', 'isParent', 'showOnRegion', 'lat', 'lon', 'createdAt', 'updatedAt']
+const attrs = ['id', 'name', 'description', 'address', 'siteUrl', 'currency', 'country', 'region', 'shippingDetails', 'shippingCountries', 'countries', 'mainImage', 'trackingListBaseUrl', 'rank', 'active', 'zipCode', 'parent', 'isParent', 'showOnRegion', 'lat', 'lon', 'defaultOfferLabel', 'createdAt', 'updatedAt']
 
 const afterCreate = async (domain, entity) => {
   if (domain.brands) {

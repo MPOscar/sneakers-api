@@ -25,7 +25,8 @@ module.exports = (sequelize, DataTypes) => {
     parent: DataTypes.STRING,
     isParent: DataTypes.BOOLEAN,
     lat: DataTypes.FLOAT,
-    lon: DataTypes.FLOAT
+    lon: DataTypes.FLOAT,
+    defaultOfferLabel: DataTypes.STRING
   }, {
     underscored: false
   })

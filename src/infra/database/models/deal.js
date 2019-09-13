@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     endDate: DataTypes.DATE,
     imgUrl: DataTypes.TEXT,
     promoCode: DataTypes.STRING,
-    time: DataTypes.STRING,
+    startTime: DataTypes.STRING,
+    endTime: DataTypes.STRING,
     displayOnSale: DataTypes.BOOLEAN
   }, {
     underscored: false

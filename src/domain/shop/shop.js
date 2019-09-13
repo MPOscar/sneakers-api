@@ -24,6 +24,7 @@ const Shop = makeEntity(t.struct({
   lat: t.maybe(t.Number),
   lon: t.maybe(t.Number),
   workingHours: t.maybe(t.list(ShopWorkingHours)),
+  defaultOfferLabel: t.maybe(t.String),
   brands: t.list(t.String),
   categories: t.list(t.String)
 }, {

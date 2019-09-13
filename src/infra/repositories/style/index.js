@@ -7,7 +7,19 @@ const { database } = container.cradle
 const model = database.models.styles
 const releaseModel = database.models.releases
 const styleShopsModel = database.models.style_shops
-const StyleRepository = BaseRepository(model, Style)
+const categoriesModel = database.models.categories
+
+const getOptionsCallback = (params) => {
+  return {
+    include: [{
+      model: categoriesModel,
+      as: 'categories'
+    }]
+  }
+}
+const associatedIds = ['categories']
+
+const StyleRepository = BaseRepository(model, Style, { getOptionsCallback, associatedIds })
 
 const setShops = async (id, shops) => {
   const style = await model.findOne({
@@ -58,6 +70,20 @@ const getPopularStyles = async (brandId) => {
   return styles.slice(0, 5)
 }
 
+const setCategories = async (id, categories) => {
+  let style = await model.findOne({
+    where: { id }
+  })
+  if (!style) {
+    throw new EntityNotFound()
+  }
+  const categoriesDb = await categoriesModel.findAll({
+    where: { id: categories }
+  })
+  await style.setCategories(categoriesDb)
+  return style
+}
+
 const mapStyleShops = (shops) => {
   return shops.map(shop => StyleShops(shop))
 }
@@ -65,7 +91,8 @@ const mapStyleShops = (shops) => {
 Object.assign(StyleRepository, {
   getShops,
   setShops,
-  getPopularStyles
+  getPopularStyles,
+  setCategories
 })
 
 module.exports = StyleRepository

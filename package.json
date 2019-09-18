@@ -11,6 +11,7 @@
     "start-dev": "cross-env NODE_PATH=. NODE_ENV=development nodemon",
     "start-prod": "NODE_PATH=. NODE_ENV=production node index.js",
     "start-cluster": "node cluster.js",
+    "debug": "cross-env NODE_PATH=. NODE_ENV=development nodemon --inspect",
     "gc": "git-cz",
     "test": "standard --verbose | snazzy && npm run test:cov",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",

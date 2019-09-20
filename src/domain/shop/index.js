@@ -1,8 +1,6 @@
 const { makeEntity } = require('../helper')
-const ShopImage = makeEntity(require('./shop_image'))
-const Shop = require('./shop')
+const Shop = makeEntity(require('./shop'))
 
 module.exports = {
-  Shop,
-  ShopImage
+  Shop
 }

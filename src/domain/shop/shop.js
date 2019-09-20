@@ -1,8 +1,7 @@
 const t = require('tcomb')
-const { makeEntity } = require('../helper')
 const ShopWorkingHours = require('./shop_working_hours')
 
-const Shop = makeEntity(t.struct({
+const Shop = t.struct({
   name: t.String,
   description: t.maybe(t.String),
   siteUrl: t.maybe(t.String),
@@ -35,6 +34,6 @@ const Shop = makeEntity(t.struct({
     currency: 'EUR',
     isParent: false
   }
-}))
+})
 
 module.exports = Shop

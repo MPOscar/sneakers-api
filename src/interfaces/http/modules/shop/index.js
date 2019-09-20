@@ -4,10 +4,6 @@ const container = require('src/container') // we have to get the DI
 
 const {
   getCountriesUseCase,
-  getAllImagesUseCase,
-  updateMainImageUseCase,
-  removeImageUseCase,
-  createImageUseCase,
   getOneUseCase,
   createUseCase,
   getAllUseCase,
@@ -111,39 +107,6 @@ module.exports = () => {
     .get('/', (req, res) => {
       getAllUseCase
         .all(mapQuery(req.query))
-        .then(data => {
-          res.status(Status.OK).json(Success(data))
-        })
-        .catch((error) => {
-          logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
-        })
-    })
-  /**
-   * @swagger
-   * /shops/:
-   *   get:
-   *     tags:
-   *       - Shops
-   *     description: Returns a list of shops
-   *     security:
-   *       - JWT: []
-   *     responses:
-   *       200:
-   *         description: An array of shops
-   *         schema:
-   *           type: array
-   *           items:
-   *             $ref: '#/definitions/shop'
-   *       401:
-   *        $ref: '#/responses/Unauthorized'
-
-   */
-  router
-    .get('/:id/images', (req, res) => {
-      getAllImagesUseCase
-        .getAllImages(req.params.id)
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })
@@ -279,135 +242,6 @@ module.exports = () => {
         .remove({ id: req.params.id })
         .then(data => {
           res.status(Status.OK).json(Success(data))
-        })
-        .catch((error) => {
-          logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
-        })
-    })
-  /**
-   * @swagger
-   * /shops/id/images:
-   *   post:
-   *     tags:
-   *       - Shops
-   *     description: Add a new image to a shop
-   *     security:
-   *       - JWT: []
-   *     produces:
-   *       - application/json
-   *     parameters:
-   *       - name: body
-   *         description: Shop's Entity
-   *         in: body
-   *         required: true
-   *         type: string
-   *         schema:
-   *           $ref: '#/definitions/shop'
-   *     responses:
-   *       200:
-   *         description: Successfully Created
-   *         schema:
-   *           $ref: '#/definitions/shop'
-   *       401:
-   *         $ref: '#/responses/Unauthorized'
-   *       400:
-   *         $ref: '#/responses/BadRequest'
-   */
-  router
-    .post('/:id/images', (req, res) => {
-      createImageUseCase
-        .createImage({ id: req.params.id, body: req.body })
-        .then(data => {
-          res.status(Status.OK).json(Success(data))
-        })
-        .catch((error) => {
-          logger.error(error) // we still need to log every error for debugging
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
-        })
-    })
-
-  /**
-   * @swagger
-   * /shops/id:
-   *   delete:
-   *     tags:
-   *       - Shops
-   *     description: Delete Shop
-   *     security:
-   *       - JWT: []
-   *     produces:
-   *       - application/json
-   *     parameters:
-   *       - name: id
-   *         in: path
-   *         required: true
-   *         description: Shop's ID to delete
-   *         type: string
-   *     responses:
-   *       200:
-   *         description: Successfully Deleted
-   *         schema:
-   *           $ref: '#/definitions/shop'
-   *       401:
-   *         $ref: '#/responses/Unauthorized'
-   */
-  router
-    .delete('/:idShop/images/:idImage', (req, res) => {
-      removeImageUseCase.remove({ id: req.params.idImage })
-        .then(data => {
-          res.status(Status.OK).json(Success(data))
-        })
-        .catch((error) => {
-          logger.error(error)
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
-        })
-    })
-  /**
-   * @swagger
-   * /shops/id/mainImage:
-   *   patch:
-   *     tags:
-   *       - Shops
-   *     description: Change shop main image
-   *     security:
-   *       - JWT: []
-   *     produces:
-   *       - application/json
-   *     parameters:
-   *       - name: id
-   *         in: path
-   *         required: true
-   *         description: Shop's ID to update
-   *         type: string
-   *       - name: body
-   *         description: Shop's Entity
-   *         in: body
-   *         required: true
-   *         type: string
-   *         schema:
-   *           mainImage:
-   *            type: string
-   *            format: uuid
-   *     responses:
-   *       200:
-   *         description: Successfully Updated
-   *         schema:
-   *           $ref: '#/definitions/shop'
-   *       401:
-   *         $ref: '#/responses/Unauthorized'
-   *       400:
-   *         $ref: '#/responses/BadRequest'
-   */
-  router
-    .patch('/:id/mainImage', (req, res) => {
-      updateMainImageUseCase
-        .updateMainImage(req.params.id, req.body.mainImage)
-        .then(() => {
-          res.status(Status.OK).json(Success({}))
         })
         .catch((error) => {
           logger.error(error) // we still need to log every error for debugging

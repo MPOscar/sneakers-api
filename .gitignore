@@ -9,6 +9,7 @@ debug.log
 coverage
 public/images/*
 .idea/*
+logs/
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

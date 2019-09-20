@@ -35,6 +35,8 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn('NOW')
       }
+    }).then(function () {
+      queryInterface.migrator.sequelize.query('INSERT INTO style_categories(id, categoryId, styleId, createdAt, updatedAt) SELECT MID(UUID(),1,36), category AS categoryId, id AS styleId, createdAt, updatedAt FROM styles WHERE styles.category IS NOT NULL')
     })
   },
   down: (queryInterface, Sequelize) => {

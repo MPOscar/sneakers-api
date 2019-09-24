@@ -16,7 +16,7 @@ const getOptionsCallback = (params) => {
   return {
     include: [
       { model: releaseImageModel, as: 'images' },
-      { model: styleModel, as: 'style', attributes: [ 'id', 'brand', 'category' ] }
+      { model: styleModel, as: 'style', attributes: ['id', 'brand', 'category'] }
     ],
     distinct: true
   }
@@ -77,7 +77,12 @@ const filterMappings = {
     return {
       filter: { releaseDate: { [Op.lte]: moment.utc(value) } }
     }
-  }
+  },
+  gender: (value) => {
+    return {
+      filter: { gender: { [Op.or]: [value, 'u'] } }
+    }
+  },
 }
 
 const repository = BaseRepository(model, Release, { getOptionsCallback, filterMappings })

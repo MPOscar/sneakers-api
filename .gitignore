@@ -10,6 +10,8 @@ coverage
 public/images/*
 .idea/*
 logs/
+public/upload/*
+package-lock.json
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

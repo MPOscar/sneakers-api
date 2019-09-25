@@ -1,7 +1,7 @@
 const OfferRepository = require('src/infra/repositories/offer')
 const { Offer } = require('src/domain/offer')
 
-const attrs = ['id', 'priceEUR', 'priceGBP', 'priceUSD', 'salePercentage', 'releaseId', 'shopId', 'status', 'shipping', 'offerDate', 'raffle', 'raffleStart', 'raffleEnd', 'displayWhatsNew', 'displayOnSale', 'createdAt', 'updatedAt']
+const attrs = ['id', 'priceEUR', 'priceGBP', 'priceUSD', 'salePercentage', 'releaseId', 'shopId', 'status', 'shipping', 'offerDate', 'raffle', 'raffleStart', 'raffleEnd', 'releaseTime', 'displayWhatsNew', 'displayOnSale', 'createdAt', 'updatedAt']
 
 const update = ({ id, body }) => {
   return new Promise(async (resolve, reject) => {

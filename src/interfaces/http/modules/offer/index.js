@@ -48,11 +48,14 @@ module.exports = () => {
    *         type: boolean
    *         description: Wether the offer is a raffle
    *       raffleStart:
-   *         type: string
+   *         type: date
    *         description: Time when the raffle starts in the day, only when raffle true
    *       raffleEnd:
-   *         type: string
+   *         type: date
    *         description: Time when the raffle ends in the day, only when raffle true
+   *       releaseTime:
+   *         type: date
+   *         description: Release time, only when raffle false
    *       offerDate:
    *          type: string
    *          format: date-time

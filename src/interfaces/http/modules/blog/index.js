@@ -7,7 +7,6 @@ const {
   removeImageUseCase,
   createImageUseCase,
   changeImageUrlUseCase,
-  changeImagePositionUseCase,
   getOneUseCase,
   createUseCase,
   getAllUseCase,
@@ -280,53 +279,6 @@ module.exports = () => {
         })
     })
 
-  /**
- * @swagger
- * /image-position/id:
- *   patch:
- *     tags:
- *       - Blogs
- *     description: Update image blog position
- *     security:
- *       - JWT: []
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: id
- *         in: path
- *         required: true
- *         description: image blog ID to update
- *         type: string
- *       - name: body
- *         description: new position
- *         in: body
- *         required: true
- *         type: string
- *         schema:
- *           $ref: '#/definitions/blog'
- *     responses:
- *       200:
- *         description: Successfully Updated
- *         schema:
- *           $ref: '#/definitions/blog'
- *       401:
- *         $ref: '#/responses/Unauthorized'
- *       400:
- *         $ref: '#/responses/BadRequest'
- */
-  router
-    .patch('/image-position/:id', (req, res) => {
-      changeImagePositionUseCase
-        .updateImagePosition(req.params.id, req.body.position)
-        .then((data) => {
-          res.status(Status.OK).json(Success(data))
-        })
-        .catch((error) => {
-          logger.error(error)
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
-        })
-    })
   /**
    * @swagger
    * /blogs/id:

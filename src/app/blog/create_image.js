@@ -1,5 +1,5 @@
 const repository = require('../../infra/repositories/blog')
-const { BlogImage } = require('../../domain/blog')
+const { CreateBlogImage } = require('../../domain/blog')
 
 const createImage = ({ id, body }) => {
   return Promise
@@ -7,11 +7,11 @@ const createImage = ({ id, body }) => {
     .then(() => {
       if (body.length) {
         const domains = body.map((imgData) => {
-          return new BlogImage(imgData)
+          return new CreateBlogImage(imgData)
         })
         return repository.createImages(id, domains)
       }
-      const domain = new BlogImage(body)
+      const domain = new CreateBlogImage(body)
       return repository.createImages(id, [domain])
     })
     .catch(error => {

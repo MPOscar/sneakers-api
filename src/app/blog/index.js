@@ -11,14 +11,12 @@ const {
   updateUseCase
 } = require('src/app/crud')(repository, Blog, attrs)
 const changeImageUrlUseCase = require('./change_image_url')
-const changeImagePositionUseCase = require('./change_image_position')
 const createImageUseCase = require('./create_image')
 const removeImageUseCase = require('./delete_image')
 const getAllImagesUseCase = require('./getAllImages')
 
 module.exports = {
   changeImageUrlUseCase,
-  changeImagePositionUseCase,
   getOneUseCase,
   createUseCase,
   getAllUseCase,

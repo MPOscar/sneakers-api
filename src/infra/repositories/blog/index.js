@@ -23,76 +23,26 @@ const createImages = async (id, images) => {
   if (!blog) {
     throw new EntityNotFound()
   }
-  var lastPosition = 0
-  const oldImages = await blog.getImages()
-  if (oldImages) {
-    for (var i = 0; i < oldImages.length; i++) {
-      if (oldImages[i].position > lastPosition) {
-        lastPosition = oldImages[i].position
-      }
+  const imagesToCreate = [];
+  for (var i = 0; i < images.length; i++) {
+    if(images[i].state === 'new') {
+      imagesToCreate.push(images[i])
+    } else {
+      await blogImageModel.update(
+        {
+          position: images[i].position
+        },
+        {
+          where: {
+            id: images[i].imgId
+          }
+        })
     }
   }
-  for (var i = 0; i < images.length; i++) {
-    images[i].position = lastPosition + i + 1;
-  }
-  const newImages = await blogImageModel.bulkCreate(images)
+
+  const newImages = await blogImageModel.bulkCreate(imagesToCreate)
   await blog.addImages(newImages)
   return newImages
-}
-
-/**
- * Associates images to the blog
- * @param imageId
- * @param newPosition
- * @returns {Promise<Array<Model>>}
- */
-const updateImagePosition = async (imageId, newPosition) => {
-  const image = await blogImageModel.findOne({
-    where: { id: imageId }
-  })
-  if (!image) {
-    throw new EntityNotFound()
-  }
-
-  var blogId = image.blogId
-
-  await blogImageModel.update(
-    {
-      position: Sequelize.literal('position - 1')
-    },
-    {
-      where: {
-        blogId: blogId,
-        position: {
-          [Op.gt]: image.position
-        }
-      }
-    })
-
-  await blogImageModel.update(
-    {
-      position: Sequelize.literal('position + 1')
-    },
-    {
-      where: {
-        blogId: blogId,
-        position: {
-          [Op.gte]: newPosition
-        }
-      }
-    })
-
-  image.position = newPosition
-  await blogImageModel.update(
-    {
-      position: newPosition
-    },
-    {
-      where: {
-        id: imageId
-      }
-    })
-  return BlogImage(image)
 }
 
 /**
@@ -159,8 +109,7 @@ const destroyImage = async (id) => {
 Object.assign(BlogRepository, {
   createImages,
   destroyImage,
-  getAllImages,
-  updateImagePosition
+  getAllImages
 })
 
 module.exports = BlogRepository

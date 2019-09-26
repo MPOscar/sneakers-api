@@ -34,7 +34,7 @@ const createImages = async (id, images) => {
         },
         {
           where: {
-            id: images[i].imgId
+            id: images[i].id
           }
         })
     }

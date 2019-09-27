@@ -2,6 +2,7 @@ const { Style, StyleShops } = require('src/domain/style')
 const BaseRepository = require('../base_repository')
 const container = require('src/container') // we have to get the DI
 const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
+const { Op } = require('sequelize')
 // inject database
 const { database } = container.cradle
 const model = database.models.styles
@@ -28,7 +29,19 @@ const setShops = async (id, shops) => {
   if (!style) {
     throw new EntityNotFound()
   }
-  let shopsDb = await styleShopsModel.bulkCreate(mapStyleShops(shops))
+  await styleShopsModel.destroy({ 
+    where: { 
+      id: { 
+        [Op.notIn]: shops.map(shop => shop.shopId)
+      }
+    }
+  })
+
+  shops.forEach(shop => {
+    shop.styleId = id
+  })
+  
+  let shopsDb = await styleShopsModel.bulkCreate(mapStyleShops(shops), {updateOnDuplicate: ['shopId', 'styleId'] })
   await style.setShops(shopsDb)
   return shops
 }

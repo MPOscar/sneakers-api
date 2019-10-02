@@ -31,9 +31,10 @@ const setShops = async (id, shops) => {
   }
   await styleShopsModel.destroy({ 
     where: { 
-      id: { 
+      shopId: { 
         [Op.notIn]: shops.map(shop => shop.shopId)
-      }
+      },
+      styleId: id
     }
   })
 

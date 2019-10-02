@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const offerLinks = sequelize.define('offer_links', {
+  const shopOfferLinks = sequelize.define('shop_offer_links', {
     id: {
       allowNull: false,
       primaryKey: true,
@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     underscored: false
   })
-  offerLinks.associate = function (models) {
+  shopOfferLinks.associate = function (models) {
     // associations can be defined here
-    offerLinks.belongsTo(models.offers)
+    shopOfferLinks.belongsTo(models.shop_offers)
   }
-  return offerLinks
+  return shopOfferLinks
 }

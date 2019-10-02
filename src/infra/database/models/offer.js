@@ -25,8 +25,9 @@ module.exports = (sequelize, DataTypes) => {
   offer.associate = function (models) {
     // associations can be defined here
     offer.belongsTo(models.releases, { as: 'release' })
+    offer.hasMany(models.shop_offers, { as: 'shops' })
     offer.belongsTo(models.shops, { as: 'shop' })
-    offer.hasMany(models.offer_links, { as: 'links' })
+    // offer.hasMany(models.offer_links, { as: 'links' })
   }
   return offer
 }

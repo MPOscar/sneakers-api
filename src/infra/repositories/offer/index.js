@@ -1,22 +1,21 @@
-const { Offer, ShopOffer, Link } = require('src/domain/offer')
+const { Offer } = require('src/domain/offer')
 const BaseRepository = require('../base_repository')
 const container = require('src/container') // we have to get the DI
 const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
 // inject database
 const { database } = container.cradle
 const model = database.models.offers
-const shopOffersModel = database.models.shop_offers
-const shopOfferLinksModel = database.models.shop_offer_links
+const offersLinksModel = database.models.offer_links
 const releasesModel = database.models.releases
 const styleModel = database.models.styles
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 
 const createOptions = {
-  // include: [{
-  //   model: shopOffersModel,
-  //   as: 'shops'
-  // }]
+  include: [{
+    model: offersLinksModel,
+    as: 'links'
+  }]
 }
 const updateOptions = createOptions
 
@@ -29,29 +28,21 @@ const getOptionsCallback = (params) => {
     })
   }
   return {
-    include: [
-      {
-        model: releasesModel,
-        as: 'release',
-        attributes: ['id', 'sku', 'collectionId', 'styleId', 'hot'],
-        required: true,
-        include: [{
-          model: styleModel,
-          as: 'style',
-          attributes: ['id', ['category', 'categoryId'], ['brand', 'brandId']],
-          required: true
-        }]
-      }, {
-        model: shopOffersModel,
-        as: 'shops',
-        attributes: ['shopId'],
-        include: [{
-          model: shopOfferLinksModel,
-          as: 'links',
-          attributes: ['text', 'url']
-        }]
-      }
-    ],
+    include: [{
+      model: releasesModel,
+      as: 'release',
+      attributes: ['id', 'sku', 'collectionId', 'styleId', 'hot'],
+      required: true,
+      include: [{
+        model: styleModel,
+        as: 'style',
+        attributes: ['id', ['category', 'categoryId'], ['brand', 'brandId']],
+        required: true
+      }]
+    }, {
+      model: offersLinksModel,
+      as: 'links'
+    }],
     distinct: true,
     subQuery: false
   }
@@ -114,53 +105,18 @@ const filterMappings = {
 
 const OfferRepository = BaseRepository(database.models.offers, Offer, { createOptions, updateOptions, getOptionsCallback, filterMappings })
 
-const setShops = async (id, shops) => {
+const updateLinks = async (id, links) => {
   const offer = await model.findOne({
     where: { id }
   })
   if (!offer) {
     throw new EntityNotFound()
   }
-  await shopOffersModel.destroy({ 
-    where: { 
-      shopId: { 
-        [Op.notIn]: shops.map(shop => shop.shopId)
-      },
-      offerId: id
-    }
-  })
-
-  shops.forEach(shop => {
-    shop.offerId = id
-  })
-  
-  let shopOffers = await shopOffersModel.bulkCreate(mapShopOffers(shops), { updateOnDuplicate: ['shopId', 'offerId'] })
-  await offer.setShops(shopOffers)
-  await addLinks(shopOffers, shops)
-  return shops
+  const newLinks = await offersLinksModel.bulkCreate(links)
+  await offer.setLinks(newLinks)
+  return newLinks
 }
 
-const addLinks = async (shopOffers, shops) => {
-  for(let shopOffer of shopOffers) {
-    await shopOfferLinksModel.destroy({ 
-      where: {
-        shopOfferId: shopOffer.id
-      }
-    })
-    const shop = shops.find(s => s.shopId === shopOffer.shopId)
-    let links = await shopOfferLinksModel.bulkCreate(mapLinks(shop.links))
-    await shopOffer.setLinks(links)
-  }
-}
-
-const mapShopOffers = (shops) => {
-  return shops.map(shop => ShopOffer(shop))
-}
-
-const mapLinks = (links) => {
-  return links.map(link => Link(link))
-}
-
-Object.assign(OfferRepository, { setShops })
+Object.assign(OfferRepository, { updateLinks })
 
 module.exports = OfferRepository

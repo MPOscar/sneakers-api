@@ -1,9 +1,8 @@
 const t = require('tcomb')
-const ShopOffer = require('./shop_offer')
-const Entity = require('../entity')
 
 const Offer = t.struct({
   releaseId: t.String,
+  shopId: t.maybe(t.String),
   offerDate: t.maybe(t.Date),
   priceUSD: t.Number,
   priceGBP: t.Number,
@@ -12,14 +11,14 @@ const Offer = t.struct({
   currency: t.maybe(t.String),
   status: t.enums.of(['sold_out', 'available', 'on_sale', 'unavailable', 'restock', 'live', 'closed']),
   shipping: t.enums.of(['worldwide', 'unavailable']),
+  links: t.maybe(t.list(t.Object)),
   raffle: t.Boolean,
   raffleStart: t.maybe(t.Date),
   raffleEnd: t.maybe(t.Date),
   releaseTime: t.maybe(t.Date),
   displayWhatsNew: t.maybe(t.Boolean),
   displayOnSale: t.maybe(t.Boolean),
-  release: t.maybe(t.Object),
-  shops: t.maybe(t.list(Entity.extend(ShopOffer)))
+  release: t.maybe(t.Object)
 }, {
   defaultProps: {
     displayWhatsNew: false,
@@ -27,7 +26,7 @@ const Offer = t.struct({
     priceUSD: 0,
     priceGBP: 0,
     priceEUR: 0,
-    shops: []
+    links: []
   }
 })
 

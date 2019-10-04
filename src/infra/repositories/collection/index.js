@@ -1,4 +1,5 @@
 const { Collection, CollectionShops } = require('src/domain/collection')
+const { Op } = require('sequelize')
 const BaseRepository = require('../base_repository')
 const container = require('src/container') // we have to get the DI
 // inject database
@@ -14,6 +15,13 @@ const setShops = async (id, shops) => {
   if (!collection) {
     throw new EntityNotFound()
   }
+
+  await collectionShopsModel.destroy({ 
+    where: {
+      collectionId: id
+    }
+  })
+  
   let shopsDb = await collectionShopsModel.bulkCreate(mapCollectionShops(shops))
   await collection.setShops(shopsDb)
   return shops

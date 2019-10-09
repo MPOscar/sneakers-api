@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     description: DataTypes.TEXT,
     keywords: DataTypes.STRING,
+    headingImgUrl: DataTypes.STRING,
     headerImgUrl: DataTypes.STRING,
     headerLink: DataTypes.STRING,
     headerLabel: DataTypes.STRING,

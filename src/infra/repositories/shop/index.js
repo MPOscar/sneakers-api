@@ -24,7 +24,7 @@ const getOptionsCallback = (params) => {
     include: [{
       model: workingHoursModel,
       as: 'workingHours',
-      attributes: ['dayOfWeek', 'openHour', 'closeHour'],
+      attributes: ['dayOfWeek', 'openHour', 'closeHour', 'offWork'],
       order: [['dayOfWeek', 'ASC']]
     }, {
       model: brandsModel,

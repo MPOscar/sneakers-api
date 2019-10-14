@@ -8,7 +8,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     dayOfWeek: DataTypes.INTEGER,
     openHour: DataTypes.STRING,
-    closeHour: DataTypes.STRING
+    closeHour: DataTypes.STRING,
+    offWork: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   }, {
     underscored: false
   })

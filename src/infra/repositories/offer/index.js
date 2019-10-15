@@ -112,6 +112,11 @@ const updateLinks = async (id, links) => {
   if (!offer) {
     throw new EntityNotFound()
   }
+  await offersLinksModel.destroy({
+    where: {
+      offerId: id
+    }
+  })
   const newLinks = await offersLinksModel.bulkCreate(links)
   await offer.setLinks(newLinks)
   return newLinks

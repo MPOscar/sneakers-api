@@ -2,6 +2,7 @@ const { Brand, BrandShops } = require('src/domain/brand')
 const BaseRepository = require('../base_repository')
 const container = require('src/container') // we have to get the DI
 const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
+const { Op } = require('sequelize')
 // inject database
 const { database } = container.cradle
 const model = database.models.brands
@@ -40,9 +41,38 @@ const setShops = async (id, shops) => {
   if (!entity) {
     throw new EntityNotFound()
   }
-  let shopsDb = await brandShopsModel.bulkCreate(mapBrandShops(shops))
-  await entity.setShops(shopsDb)
+  await brandShopsModel.destroy({ 
+    where: { 
+      shopId: { 
+        [Op.notIn]: shops.map(shop => shop.shopId)
+      },
+      brandId: id
+    }
+  })
+  addShops(id, shops);
   return shops
+}
+
+const addShops = async (id, shops) => {
+  return Promise.all(shops.map(shop => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const domain = BrandShops(shop)
+            brandShopsModel.findOrCreate({
+              where: { 
+                shopId: domain.shopId,
+                brandId: id 
+              }
+            }).spread(async function(brandShop, created){
+              brandShop.displayOnBrands = domain.displayOnBrands;
+              await brandShop.save();
+              resolve(brandShop)
+            });
+        } catch (error) {
+            reject(error)
+        }
+    })
+  }))
 }
 
 const getShops = async (id) => {

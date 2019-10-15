@@ -38,13 +38,35 @@ const setShops = async (id, shops) => {
     }
   })
 
-  shops.forEach(shop => {
-    shop.styleId = id
-  })
-  
-  let shopsDb = await styleShopsModel.bulkCreate(mapStyleShops(shops), {updateOnDuplicate: ['shopId', 'styleId'] })
-  await style.setShops(shopsDb)
+  await addShops(id, shops);
   return shops
+}
+
+const addShops = async (id, shops) => {
+  return Promise.all(shops.map(shop => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const domain = StyleShops(shop)
+            styleShopsModel.findOrCreate({
+              // defaults: { 
+              //   linkText: domain.linkText,
+              //   linkUrl: domain.linkUrl
+              // },
+              where: { 
+                shopId: domain.shopId,
+                styleId: id 
+              }
+            }).spread(async function(styleShop, created){
+              styleShop.linkText = domain.linkText;
+              styleShop.linkUrl = domain.linkUrl;
+              await styleShop.save();
+              resolve(styleShop)
+            });
+        } catch (error) {
+            reject(error)
+        }
+    })
+  }))
 }
 
 const getShops = async (id) => {

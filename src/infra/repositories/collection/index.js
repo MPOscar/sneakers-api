@@ -16,15 +16,40 @@ const setShops = async (id, shops) => {
     throw new EntityNotFound()
   }
 
-  await collectionShopsModel.destroy({ 
+  await collectionShopsModel.destroy({
     where: {
+      shopId: {
+        [Op.notIn]: shops.map(shop => shop.shopId)
+      },
       collectionId: id
     }
   })
-  
-  let shopsDb = await collectionShopsModel.bulkCreate(mapCollectionShops(shops))
-  await collection.setShops(shopsDb)
+
+  await addShops(id, shops);
   return shops
+}
+
+const addShops = async (id, shops) => {
+  return Promise.all(shops.map(shop => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const domain = CollectionShops(shop)
+            collectionShopsModel.findOrCreate({
+              where: { 
+                shopId: domain.shopId,
+                collectionId: id 
+              }
+            }).spread(async function(collectionShop, created){
+              collectionShop.linkText = domain.linkText;
+              collectionShop.linkUrl = domain.linkUrl;
+              await collectionShop.save();
+              resolve(collectionShop)
+            });
+        } catch (error) {
+            reject(error)
+        }
+    })
+  }))
 }
 
 const getShops = async (id) => {

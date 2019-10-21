@@ -6,6 +6,7 @@ const { database } = container.cradle
 const model = database.models.releases
 const releaseImageModel = database.models.release_images
 const styleModel = database.models.styles
+const offerModel = database.models.offers
 
 const EntityNotFound = require('src/infra/errors/EntityNotFoundError')
 const moment = require('moment')
@@ -16,7 +17,8 @@ const getOptionsCallback = (params) => {
   return {
     include: [
       { model: releaseImageModel, as: 'images' },
-      { model: styleModel, as: 'style', attributes: ['id', 'brand', 'category'] }
+      { model: styleModel, as: 'style', attributes: ['id', 'brand', 'category'] },
+      { model: offerModel, as: 'offers', attributes: ['status', 'shipping'] }
     ],
     distinct: true
   }
@@ -33,6 +35,18 @@ const filterMappings = {
     return {
       filter: { category: Array.isArray(value) ? { [Op.or]: value } : value },
       model: styleModel
+    }
+  },
+  status: (value) => {
+    return {
+      filter: { status: Array.isArray(value) ? { [Op.or]: value } : value },
+      model: offerModel
+    }
+  },
+  shipping: (value) => {
+    return {
+      filter: { shipping: Array.isArray(value) ? { [Op.or]: value } : value },
+      model: offerModel
     }
   },
   outdated: (value) => {
@@ -80,7 +94,17 @@ const filterMappings = {
   },
   gender: (value) => {
     return {
-      filter: { gender: { [Op.or]: [value, 'u'] } }
+      filter: { gender: Array.isArray(value) ? { [Op.or]: [...value, 'u'] } : { [Op.or]: [value, 'u'] } }
+    }
+  },
+  color: (value) => {
+    const colors = Array.isArray(value) ? value : [value];
+    const likes = [];
+    colors.forEach(color => {
+      likes.push({ [Op.like]: `%${color}%` });
+    })
+    return {
+      filter: { color: { [Op.or]: likes } }
     }
   },
 }

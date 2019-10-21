@@ -21,7 +21,8 @@ const Release = t.struct({
   gender: t.maybe(t.String),
   styleId: t.maybe(t.String),
   brandId: t.maybe(t.String), // gotten from style
-  collectionId: t.maybe(t.String)
+  collectionId: t.maybe(t.String),
+  status: t.maybe(t.String) // gotten from offer
 }, {
   defaultProps: {
     hiddenDashboard: false,

@@ -4,7 +4,19 @@ const transform = (data) => {
   if (data.style) {
     data.brandId = data.style.brand
   }
-  console.log(JSON.stringify(data))
+  if (data.offers) {
+    // on_sale > available > restock > sold_out
+    if(data.offers.find(offer => offer.status === 'on_sale')) {
+      data.status = 'on_sale';
+    } else if(data.offers.find(offer => offer.status === 'available')) {
+      data.status = 'available';
+    } else if(data.offers.find(offer => offer.status === 'restock')) {
+      data.status = 'restock';
+    } else if(data.offers.find(offer => offer.status === 'sold_out')) {
+      data.status = 'sold_out';
+    }
+  }
+  // console.log(JSON.stringify(data))
   return data
 }
 

@@ -8,7 +8,9 @@ const {
   removeUseCase,
   updateUseCase
 } = require('src/app/crud')(repository, Deal)
+
 const changeImageUrlUseCase = require('./change_image_url')
+const getAllByShopUseCase = require('./get_all_by_shop')
 
 module.exports = {
   changeImageUrlUseCase,
@@ -16,5 +18,6 @@ module.exports = {
   createUseCase,
   getAllUseCase,
   removeUseCase,
-  updateUseCase
+  updateUseCase,
+  getAllByShopUseCase
 }

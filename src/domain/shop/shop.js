@@ -3,6 +3,7 @@ const ShopWorkingHours = require('./shop_working_hours')
 
 const Shop = t.struct({
   name: t.String,
+  type: t.maybe(t.enums.of(['virtual', 'physical'])),
   description: t.maybe(t.String),
   siteUrl: t.maybe(t.String),
   active: t.maybe(t.Boolean),

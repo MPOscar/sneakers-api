@@ -8,7 +8,8 @@ const {
   createUseCase,
   getAllUseCase,
   removeUseCase,
-  updateUseCase
+  updateUseCase,
+  getAllByShopUseCase
 } = require('src/app/deal')
 
 module.exports = () => {
@@ -47,6 +48,37 @@ module.exports = () => {
    *         type: string
    *         format: uuid
    */
+
+   /**
+   * @swagger
+   * /deals/shop/shopId:
+   *   get:
+   *     tags:
+   *       - Deals
+   *     description: Returns all deals associated to a shop
+   *     security:
+   *       - JWT: []
+   *     responses:
+   *       200:
+   *         description: A list of deals in json format
+   *         schema:
+   *           $ref: '#/definitions/deal'
+   *       401:
+   *        $ref: '#/responses/Unauthorized'
+
+   */
+  router
+  .get('/shop/:shopId', (req, res, next) => {
+    getAllByShopUseCase
+      .getAllByShop(req.params.shopId)
+      .then(data => {
+        res.status(Status.OK).json(Success(data))
+      })
+      .catch((error) => {
+        logger.error(error) // we still need to log every error for debugging
+        next(error)
+      })
+  })
 
   /**
    * @swagger

@@ -74,8 +74,27 @@ const updateWorkingHours = async (id, workingHours) => {
   if (!shop) {
     throw new EntityNotFound()
   }
-  const newWorkingHours = await workingHoursModel.bulkCreate(workingHours)
-  await shop.setWorkingHours(newWorkingHours)
+  const currentWorkingHours = await workingHoursModel.findAll({
+    where: { shopId: id }
+  });
+
+  if(!currentWorkingHours) {
+    const newWorkingHours = await workingHoursModel.bulkCreate(workingHours)
+    await shop.setWorkingHours(newWorkingHours)
+  } else {
+    for(let newWorkingHour of workingHours) {
+      currentWorkingHour = currentWorkingHours.find(w => w.dayOfWeek === newWorkingHour.dayOfWeek);
+      if(currentWorkingHour) {
+        currentWorkingHour.openHour = newWorkingHour.openHour;
+        currentWorkingHour.closeHour = newWorkingHour.closeHour;
+        currentWorkingHour.offWork = newWorkingHour.offWork;
+        await currentWorkingHour.save();
+      } else {
+        currentWorkingHour = await workingHoursModel.create(newWorkingHour);
+        await shop.addWorkingHours(currentWorkingHours);
+      }
+    }
+  }
   return newWorkingHours
 }
 
@@ -111,6 +130,74 @@ const updateCategories = async (id, categories, shop = null) => {
   return shop
 }
 
+const createShop = async (domain) => {
+  domain = unsetPropertiesByShopType(domain.isParent, domain.type, domain);
+  const shop = await create(domain);
+  // if (shop.type === 'physical') {
+  //   await updateWorkingHours(shop.id, domain.workingHours);
+  // }
+  await updateBrands(shop.id, domain.brands);
+  await updateCategories(shop.id, domain.categories);
+
+}
+
+const updateShop = async (id, domain) => {
+  const shop = await model.findOne({
+    where: { id }
+  })
+  if (!shop) {
+    throw new EntityNotFound()
+  }
+  domain = unsetPropertiesByShopType(shop.isParent, shop.type, domain);
+  await update(domain, id);
+  if (shop.type === 'physical') {
+    await updateWorkingHours(id, domain.workingHours);
+  }
+  if (domain.brands) {
+    await updateBrands(id, domain.brands);
+  }
+  if (domain.categories) {
+    await updateCategories(id, domain.categories);
+  }
+}
+
+const unsetPropertiesByShopType = (isParent, shopType, domain) => {
+  if (isParent) {
+    domain.isParent = true;
+    domain.type = null;
+    domain.parent = null;
+    domain = unsetVirtualProperties(domain);
+    domain = unsetPhysicalProperties(domain);
+  } else {
+    domain.isParent = false;
+    if (shopType === 'virtual') {
+      domain = unsetPhysicalProperties(domain);
+      domain.type = 'virtual';
+    } else {
+      domain = unsetVirtualProperties(domain);
+      domain.type = 'physical';
+    }
+  }
+  return domain;
+}
+
+const unsetVirtualProperties = (domain) => {
+  domain.trackingListBaseUrl = null;
+  domain.currency = null;
+  domain.shippingDetails = null;
+  domain.shippingCountries = null;
+  return domain;
+}
+
+const unsetPhysicalProperties = (domain) => {
+  domain.address = null;
+  domain.zipCode = null;
+  domain.lat = null;
+  domain.lon = null;
+  domain.workingHours = null;
+  return domain;
+}
+
 const getCountries = async () => {
   return countriesRepository.getCountries()
 }
@@ -126,5 +213,7 @@ module.exports = {
   create,
   destroyAll,
   bulkCreate,
-  getCountries
+  getCountries,
+  updateShop,
+  createShop
 }

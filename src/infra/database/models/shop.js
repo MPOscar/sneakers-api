@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     siteUrl: DataTypes.STRING,
     description: DataTypes.TEXT,
     name: DataTypes.STRING,
+    type: DataTypes.STRING,
     address: DataTypes.TEXT,
     currency: DataTypes.STRING,
     country: DataTypes.STRING,

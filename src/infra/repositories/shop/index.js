@@ -68,34 +68,30 @@ const {
 })
 
 const updateWorkingHours = async (id, workingHours) => {
-  const shop = await model.findOne({
-    where: { id }
-  })
-  if (!shop) {
-    throw new EntityNotFound()
-  }
-  const currentWorkingHours = await workingHoursModel.findAll({
-    where: { shopId: id }
-  });
+  if (workingHours) {
+    const shop = await model.findOne({
+      where: { id }
+    })
+    if (!shop) {
+      throw new EntityNotFound()
+    }
+    const currentWorkingHours = await workingHoursModel.findAll({
+      where: { shopId: id }
+    });
 
-  if(!currentWorkingHours) {
-    const newWorkingHours = await workingHoursModel.bulkCreate(workingHours)
-    await shop.setWorkingHours(newWorkingHours)
-  } else {
-    for(let newWorkingHour of workingHours) {
+    for (let newWorkingHour of workingHours) {
       currentWorkingHour = currentWorkingHours.find(w => w.dayOfWeek === newWorkingHour.dayOfWeek);
-      if(currentWorkingHour) {
+      if (currentWorkingHour) {
         currentWorkingHour.openHour = newWorkingHour.openHour;
         currentWorkingHour.closeHour = newWorkingHour.closeHour;
         currentWorkingHour.offWork = newWorkingHour.offWork;
         await currentWorkingHour.save();
       } else {
         currentWorkingHour = await workingHoursModel.create(newWorkingHour);
-        await shop.addWorkingHours(currentWorkingHours);
+        await shop.addWorkingHours(currentWorkingHour);
       }
     }
   }
-  return newWorkingHours
 }
 
 const updateBrands = async (id, brands, shop = null) => {

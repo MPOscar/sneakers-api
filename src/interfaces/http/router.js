@@ -50,7 +50,6 @@ module.exports = ({ config, logger, database }) => {
   apiRouter.use('/offers', controller('offer'))
   apiRouter.use('/collections', controller('collection'))
   apiRouter.use('/blogs', controller('blog'))
-  apiRouter.use('/pages', controller('page'))
   apiRouter.use('/deals', controller('deal'))
   apiRouter.use('/urls', controller('url'))
   apiRouter.use('/tasks', controller('task'))

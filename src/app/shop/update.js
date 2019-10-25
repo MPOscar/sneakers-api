@@ -5,7 +5,7 @@ const update = ({ id, body }) => {
   return new Promise(async (resolve, reject) => {
     try {
       const domain = Shop(body)
-      await repository.updateShop(domain, id)      
+      await repository.updateShop(id, domain)      
       resolve(domain)
     } catch (error) {
       reject(error)

@@ -5,7 +5,7 @@ const transform = (data) => {
     data.brandId = data.style.brand
   }
   if (data.offers) {
-    // on_sale > available > restock > sold_out
+    // on_sale > available > restock > sold_out > coming_soon
     if(data.offers.find(offer => offer.status === 'on_sale')) {
       data.status = 'on_sale';
     } else if(data.offers.find(offer => offer.status === 'available')) {
@@ -14,6 +14,8 @@ const transform = (data) => {
       data.status = 'restock';
     } else if(data.offers.find(offer => offer.status === 'sold_out')) {
       data.status = 'sold_out';
+    } else if(data.offers.find(offer => offer.status === 'coming_soon')) {
+      data.status = 'coming_soon';
     }
   }
   // console.log(JSON.stringify(data))

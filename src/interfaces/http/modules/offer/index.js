@@ -34,7 +34,7 @@ module.exports = () => {
    *         description: The shop it belongs to in Uuidv4 format
    *       status:
    *         type: string
-   *         enum: ['sold_out', 'available', 'on_sale', 'unavailable', 'restock', 'live', 'closed']
+   *         enum: ['sold_out', 'available', 'on_sale', 'unavailable', 'restock', 'coming_soon', 'live', 'closed']
    *       shipping:
    *         type: string
    *         enum: ['worldwide', 'unavailable']

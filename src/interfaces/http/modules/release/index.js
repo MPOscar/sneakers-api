@@ -12,7 +12,8 @@ const {
   getAllUseCase,
   removeUseCase,
   updateUseCase,
-  getOneUseCase
+  getOneUseCase,
+  searchUseCase
 } = require('src/app/release')
 
 module.exports = () => {
@@ -137,7 +138,7 @@ module.exports = () => {
    */
   router
     .post('/search', (req, res) => {
-      getAllUseCase.all(mapQuery(req.body))
+      searchUseCase.search(mapQuery(req.body))
         .then(data => {
           res.status(Status.OK).json(Success(data))
         })

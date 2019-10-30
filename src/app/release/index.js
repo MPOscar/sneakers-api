@@ -15,6 +15,7 @@ const updateMainImageUseCase = require('./change_main_image')
 const getAllImagesUseCase = require('./getAllImages')
 const getOutdatedUseCase = require('./get_outdated')
 const setHiddenUseCase = require('./set_hidden')
+const { searchUseCase } = require('./search')(repository, attrs)
 
 module.exports = {
   getOneUseCase,
@@ -27,5 +28,6 @@ module.exports = {
   removeImageUseCase,
   updateMainImageUseCase,
   getOutdatedUseCase,
-  setHiddenUseCase
+  setHiddenUseCase,
+  searchUseCase
 }

@@ -21,18 +21,19 @@ const createOptions = {
 const updateOptions = createOptions
 const getOptionsCallback = (params) => {
   return {
-    include: [{
-      model: workingHoursModel,
-      as: 'workingHours',
-      attributes: ['dayOfWeek', 'openHour', 'closeHour', 'offWork'],
-      order: [['dayOfWeek', 'ASC']]
-    }, {
-      model: brandsModel,
-      as: 'brands'
-    }, {
-      model: categoriesModel,
-      as: 'categories'
-    }]
+    include: [
+      {
+        model: workingHoursModel,
+        as: 'workingHours',
+        attributes: ['dayOfWeek', 'openHour', 'closeHour', 'offWork'],
+        order: [['dayOfWeek', 'ASC']]
+      }, {
+        model: brandsModel, as: 'brands'
+      }, {
+        model: categoriesModel, as: 'categories'
+      }
+    ],
+    distinct: true
   }
 }
 
@@ -47,6 +48,16 @@ const filterMappings = {
     return {
       filter: { id: Array.isArray(value) ? { [Op.or]: value } : value },
       model: categoriesModel
+    }
+  },
+  showOnRegion: (value) => {
+    return {
+      filter: { showOnRegion: Array.isArray(value) ? { [Op.or]: value } : value }
+    }
+  },
+  shippingCountries: (value) => {
+    return {
+      filter: { shippingCountries: Array.isArray(value) ? { [Op.or]: value } : value }
     }
   },
   country: (value) => {

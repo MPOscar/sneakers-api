@@ -8,7 +8,8 @@ const {
   createUseCase,
   getAllUseCase,
   removeUseCase,
-  updateUseCase
+  updateUseCase,
+  searchUseCase
 } = require('src/app/shop')
 
 module.exports = () => {
@@ -249,5 +250,38 @@ module.exports = () => {
             Fail(error.message))
         })
     })
+  
+    /**
+   * @swagger
+   * /shops/search:
+   *   post:
+   *     tags:
+   *       - Shops
+   *     description: Returns a list of shops
+   *     security:
+   *       - JWT: []
+   *     responses:
+   *       200:
+   *         description: An array of shops
+   *         schema:
+   *           type: array
+   *           items:
+   *             $ref: '#/definitions/shop'
+   *       401:
+   *        $ref: '#/responses/Unauthorized'
+
+   */
+  router
+  .post('/search', (req, res) => {
+    searchUseCase.search(mapQuery(req.body))
+      .then(data => {
+        res.status(Status.OK).json(Success(data))
+      })
+      .catch((error) => {
+        logger.error(error) // we still need to log every error for debugging
+        res.status(Status.BAD_REQUEST).json(
+          Fail(error.message))
+      })
+  })
   return router
 }

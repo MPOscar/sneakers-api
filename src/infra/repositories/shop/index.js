@@ -37,6 +37,28 @@ const getOptionsCallback = (params) => {
 }
 
 const filterMappings = {
+  brandId: (value) => {
+    return {
+      filter: { id: Array.isArray(value) ? { [Op.or]: value } : value },
+      model: brandsModel
+    }
+  },
+  categoryId: (value) => {
+    return {
+      filter: { id: Array.isArray(value) ? { [Op.or]: value } : value },
+      model: categoriesModel
+    }
+  },
+  country: (value) => {
+    const countries = Array.isArray(value) ? value : [value];
+    const likes = [];
+    countries.forEach(country => {
+      likes.push({ [Op.like]: `%${country}%` });
+    })
+    return {
+      filter: { countries: { [Op.or]: likes } }
+    }
+  },
   hasParent: (value) => {
     if (parseInt(value) === 1) {
       return {

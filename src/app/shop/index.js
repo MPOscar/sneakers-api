@@ -20,6 +20,7 @@ const {
 const getCountriesUseCase = require('./get_countries')
 const updateUseCase = require('./update')
 const createUseCase = require('./create')
+const { searchUseCase } = require('./search')(repository, attrs)
 
 module.exports = {
   getOneUseCase,
@@ -27,5 +28,6 @@ module.exports = {
   getAllUseCase,
   removeUseCase,
   updateUseCase,
-  getCountriesUseCase
+  getCountriesUseCase,
+  searchUseCase
 }

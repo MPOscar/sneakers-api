@@ -55,7 +55,7 @@ const filterMappings = {
       filter: { showOnRegion: Array.isArray(value) ? { [Op.or]: value } : value }
     }
   },
-  shippingCountries: (value) => {
+  shipping: (value) => {
     return {
       filter: { shippingCountries: Array.isArray(value) ? { [Op.or]: value } : value }
     }

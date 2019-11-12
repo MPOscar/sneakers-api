@@ -15,9 +15,9 @@ deploy_prod:
   image: coxauto/aws-ebcli
   script:
     - eb init moresneakers-api -r $AWS_REGION -p node.js
-    - eb use  moresneakers-api-production
-    - eb deploy moresneakers-api-production
+    - eb use  moresneakers-api-prod
+    - eb deploy moresneakers-api-prod
   environment:
-    name: production
+    name: prod
   only:
     - master
